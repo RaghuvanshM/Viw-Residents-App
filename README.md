@@ -9,7 +9,7 @@ This project is for the View Residents App.
 
 ## Technologies
 Project is created with:
-* React Native : Version xx.xx
+* React Native : Version 0.64
 * Any other dependency library: Version xx.xx
 	
 ## Setup
