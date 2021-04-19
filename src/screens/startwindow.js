@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -11,10 +11,10 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import {images, theme} from '../constants';
-const {onboarding1, onboarding2, onboarding3} = images;
+import { images, theme } from '../constants';
+const { onboarding1, onboarding2, onboarding3 } = images;
 // theme
-const {COLORS, FONTS, SIZES} = theme;
+const { COLORS, FONTS, SIZES } = theme;
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -28,7 +28,8 @@ import {
 import onboardScreen from '../componets';
 import PaperOnboarding from 'react-native-paper-onboarding';
 import FourthOnboard from '../componets/fourthonboard';
-import {LogBox} from 'react-native';
+import { LogBox } from 'react-native';
+import Intro from './Intro';
 
 class StartWindow extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class StartWindow extends Component {
     this.state = {
       modalvisible: false,
     };
-    console.log(onboardScreen);
+    // console.log(onboardScreen);
   }
   renderDots = () => {
     return (
@@ -79,27 +80,29 @@ class StartWindow extends Component {
   }
 
   render() {
-    let {modalvisible} = this.state;
+    let { modalvisible } = this.state;
     return (
-      <ImageBackground
-        source={require('../assets/vbg-nature.png')}
-        style={styles.imagebackground}>
-        {!modalvisible ? (
-          <View style={styles.imageview}>
-            <View>
-              <Image source={require('../assets/logo-view-logo-white.png')} />
-              <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
-            </View>
-            <TouchableWithoutFeedback
-              onPress={() => {
-                this.setState({modalvisible: true});
-              }}>
-              <Text style={styles.taptostarttext}>Tap to start</Text>
-            </TouchableWithoutFeedback>
-            {this.renderDots()}
-          </View>
-        ) : null}
-        <Modal
+      <>
+        {
+          !modalvisible ?
+            <ImageBackground
+              source={require('../assets/vbg-nature.png')}
+              style={styles.imagebackground}>
+
+              <>
+                <View>
+                  <Image source={require('../assets/logo-view-logo-white.png')} />
+                  <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
+                </View>
+                <TouchableWithoutFeedback
+                  onPress={() => {
+                    this.setState({ modalvisible: true });
+                  }}>
+                  <Text style={styles.taptostarttext}>Tap to start</Text>
+                </TouchableWithoutFeedback>
+                {/* {this.renderDots()} */}
+              </>
+              {/* <Modal
           visible={true}
           transparent={true}
           coverScreen={false}
@@ -108,8 +111,10 @@ class StartWindow extends Component {
             this.setState({modalvisible: false});
           }}>
           {this.renderContent()}
-        </Modal>
-      </ImageBackground>
+        </Modal> */}
+            </ImageBackground> : <Intro />
+        }
+      </>
     );
   }
 }
@@ -118,9 +123,8 @@ const styles = StyleSheet.create({
   imagebackground: {
     width: '100%',
     height: '100%',
-    position: 'relative',
-    top: 0,
-    left: 0,
+    justifyContent: "center",
+    alignItems: "center"
   },
   imageview: {
     alignSelf: 'center',
@@ -138,7 +142,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     alignSelf: 'center',
-    marginTop: hp('6%'),
+    position: "absolute",
+    bottom: '10%'
   },
   viewsmartglasstext: {
     fontSize: 20,
