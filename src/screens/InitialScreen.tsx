@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import {Button, StyleSheet, Text, View} from "react-native";
 import {authUser} from "../module/actions";
-import {Props} from "./types/auth";
+import {Props} from "./types/no.auth";
 
 const InitialScreen: React.FC<Props> = ({navigation}) => {
     const dispatch = useDispatch();
@@ -32,6 +32,6 @@ const InitialScreen: React.FC<Props> = ({navigation}) => {
     );
 };
 const styles = StyleSheet.create({
-    base: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+    base: {flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'},
 });
 export default InitialScreen;

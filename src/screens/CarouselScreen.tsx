@@ -8,7 +8,7 @@ const CarouselScreen: React.FC<Props> = ({navigation}) => {
             <Text>Carousel screen</Text>
             <Button
                 title="Go to Initial"
-                onPress={() => navigation.navigate('Initial')}
+                onPress={() => navigation.goBack()}
             />
         </View>
     );

@@ -5,7 +5,8 @@ import {Store} from './module/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
 import Router from './router';
-
+import { enableScreens } from 'react-native-screens';
+enableScreens();
 const persistor = persistStore(Store);
 
 const App = () => {
