@@ -10,11 +10,9 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  LogBox,
 } from 'react-native';
 import {images, theme} from '../constants';
-const {onboarding1, onboarding2, onboarding3} = images;
-// theme
-const {COLORS, FONTS, SIZES} = theme;
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -28,7 +26,10 @@ import {
 import onboardScreen from '../componets';
 import PaperOnboarding from 'react-native-paper-onboarding';
 import FourthOnboard from '../componets/fourthonboard';
-import {LogBox} from 'react-native';
+
+const {onboarding1, onboarding2, onboarding3} = images;
+// theme
+const {COLORS, FONTS, SIZES} = theme;
 
 class StartWindow extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class StartWindow extends Component {
     };
     console.log(onboardScreen);
   }
+
   renderDots = () => {
     return (
       <View style={styles.dotsContainer}>
@@ -45,9 +47,11 @@ class StartWindow extends Component {
       </View>
     );
   };
+
   callonscroll = () => {
     console.log('hello');
   };
+
   renderContent = () => {
     return (
       // <Animated.ScrollView
@@ -74,12 +78,13 @@ class StartWindow extends Component {
       <PaperOnboarding screens={onboardScreen} />
     );
   };
+
   componentDidMount() {
     LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
   }
 
   render() {
-    let {modalvisible} = this.state;
+    const {modalvisible} = this.state;
     return (
       <ImageBackground
         source={require('../assets/vbg-nature.png')}
