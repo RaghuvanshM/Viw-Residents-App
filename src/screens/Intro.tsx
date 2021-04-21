@@ -10,6 +10,12 @@ import {
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native-gesture-handler';
+import {TextInput} from 'react-native-paper';
+import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
@@ -72,15 +78,29 @@ const slides = [
     title: 'Let’s get started',
     description:
       'Sign in with your email and password provided by your building manager.',
-      image1:require('../assets/log-in.png'),
-      image2:require('../assets/logo-view-logo.png'),
-      subtitle1:'Don’t have an account? ',
-      subtitle2:'Sign up here.'
-   
+    image1: require('../assets/log-in.png'),
+    image2: require('../assets/logo-view-logo.png'),
+    subtitle1: 'Don’t have an account? ',
+    subtitle2: 'Sign up here.',
+    subtitle3: 'Forgot your password ',
+    subtitle4: 'Tap here to reset',
   },
 ];
-
+const theme = {
+  roundness: 5,
+  colors: {
+    text: 'black',
+    placeholder: '#0b59b8',
+    primary: '#92c8d3',
+    background: 'white',
+  },
+};
 const Intro: FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const onSigninPress = () => {
+    alert('Pressed');
+  };
   const _renderItem = ({item}) => {
     if (item.key == 3) {
       return (
@@ -153,29 +173,57 @@ const Intro: FC = () => {
           </View>
         </View>
       );
-    }
-    else if (item.key == 4) {
+    } else if (item.key == 4) {
       return (
+        <ScrollView style={{alignSelf:'center'}}>
         <View key={item.key} style={styles.slide}>
-          <View >
+          <View>
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.description}>{item.description}</Text>
-             <ImageBackground
-              source={item.image1}
-              style={{height:200}}
-              resizeMode="contain"
-             >
-               <Image 
+            <View style={styles.formcontainer}>
+              <Image
                 source={item.image2}
-                style={{alignSelf:'center'}}
-               />
-             </ImageBackground>
-             <View style={{flexDirection:'row',alignSelf:'center'}}>
-               <Text style={styles.subtitle}>{item.subtitle1}</Text>
-               <Text style={{...styles.subtitle,fontWeight:'bold'}}>{item.subtitle2}</Text>
-               </View>
+                style={{...styles.image, marginTop: 20}}
+                resizeMode="contain"
+              />
+              <View style={{marginTop: 20}}>
+                <TextInput
+                  label="Email"
+                  mode="outlined"
+                  style={styles.textinput}
+                  onChangeText={text => setEmail(text)}
+                  theme={theme}
+                />
+                <TextInput
+                  label="Password"
+                  mode="outlined"
+                  style={styles.textinput}
+                  secureTextEntry={true}
+                  onChangeText={text => setPassword(text)}
+                  theme={theme}
+                />
+                <View style={{alignSelf: 'center'}}>
+                  <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
+                  <Text style={{...styles.formsubtitle, fontWeight: 'bold'}}>
+                    {item.subtitle4}
+                  </Text>
+                </View>
+                <TouchableWithoutFeedback
+                  style={styles.signinbutton}
+                  onPress={onSigninPress}>
+                  <Text style={styles.signtext}>SIGN IN</Text>
+                </TouchableWithoutFeedback>
+              </View>
+            </View>
+            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+              <Text style={styles.subtitle}>{item.subtitle1}</Text>
+              <Text style={{...styles.subtitle, fontWeight: 'bold'}}>
+                {item.subtitle2}
+              </Text>
+            </View>
           </View>
         </View>
+        </ScrollView>
       );
     }
     return (
@@ -267,10 +315,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: hp('10%'),
     justifyContent: 'space-between',
-    marginHorizontal:'10%',
+    marginHorizontal: '10%',
   },
   calenderimage: {
     height: 70,
     alignSelf: 'center',
+  },
+  formcontainer: {
+    paddingVertical: 20,
+    backgroundColor: 'white',
+    borderRadius: wp('4%'),
+  },
+  textinput: {
+    width: wp('80%'),
+    alignSelf: 'center',
+    marginTop:10,
+  },
+  signinbutton: {
+    backgroundColor: 'rgb(52, 144, 172)',
+    width: wp('80%'),
+    alignSelf: 'center',
+    borderRadius:5
+  },
+  signtext: {
+    alignSelf: 'center',
+    paddingVertical: 10,
+    color: 'white',
+    fontSize: 20,
+  },
+  formsubtitle: {
+    textAlign: 'center',
+    fontSize: 18,
+    marginVertical: 5,
+    color: 'rgb(52,101,127)',
   },
 });

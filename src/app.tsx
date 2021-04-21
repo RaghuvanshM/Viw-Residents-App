@@ -6,6 +6,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
 import Router from './router';
 import { enableScreens } from 'react-native-screens';
+import { Provider as PaperProvider } from 'react-native-paper';
 enableScreens();
 const persistor = persistStore(Store);
 
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{}}>
+      <PaperProvider>
       <Provider store={Store}>
         <PersistGate
           persistor={persistor}
@@ -26,6 +28,7 @@ const App = () => {
           }}
         />
       </Provider>
+      </PaperProvider>
     </AppContext.Provider>
   );
 };
