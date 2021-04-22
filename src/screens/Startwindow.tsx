@@ -5,7 +5,7 @@ import {
   ImageBackground,
   StyleSheet,
   Image,
-  TouchableWithoutFeedback,
+  TouchableOpacity
 } from 'react-native';
 import images from '../constants/Images';
 import Intro from './Intro';
@@ -25,9 +25,9 @@ const Startwindow: FC = () => {
             <Image source={require('../assets/Images/logo-view-logo-white.png')} />
             <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
           </View>
-          <TouchableWithoutFeedback onPress={onTaptostartPress}>
+          <TouchableOpacity onPress={onTaptostartPress}>
             <Text style={styles.taptostarttext}>Tap to start</Text>
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
         </View>
       </ImageBackground> : <Intro />}
     </View>
@@ -44,12 +44,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     color: 'white',
-    fontWeight: 'bold',
+    fontFamily:'GothamMedium'
+    
   },
   taptostarttext: {
     fontSize: 20,
     color: 'white',
     alignSelf: 'center',
+    fontFamily:'IBMPlexSans-Medium'
   },
   imageview: {
     alignSelf: 'center',
