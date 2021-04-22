@@ -31,7 +31,9 @@ const Slider: React.FC<SliderProps> = ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
   useEffect(() => {
-    if (changeSelectedIndex) changeSelectedIndex(selectedIndex);
+    if (changeSelectedIndex) {
+      changeSelectedIndex(selectedIndex);
+    }
   }, [selectedIndex, changeSelectedIndex]);
   const style = StyleSheetFactory.getSheet(
     isHorizontal,

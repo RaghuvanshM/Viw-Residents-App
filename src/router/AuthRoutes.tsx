@@ -37,7 +37,7 @@ export default function AuthRoutes() {
       <Tab.Navigator
         tabBarOptions={{
           style: {backgroundColor: 'black'},
-          labelStyle: {fontSize: 12,fontFamily: "IBMPlexSans-Medium"},
+          labelStyle: {fontSize: 12, fontFamily: 'IBMPlexSans-Medium'},
           inactiveTintColor: 'rgba(255,255,255, 0.3)',
           activeTintColor: '#fff',
         }}>
@@ -51,31 +51,31 @@ export default function AuthRoutes() {
                 style={{
                   width: 55,
                   resizeMode: 'contain',
-                  tintColor: focused ? "white" : 'rgba(255,255,255, 0.3)',
+                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
                 }}
                 source={require('../assets/tabIcon1.png')}
               />
             ),
           }}
         />
-          <Tab.Screen
-              name="Settings"
-              component={SettingsStackScreen}
-              options={{
-                  tabBarLabel: 'Control',
-                  tabBarIcon: ({focused, color, size}) => (
-                      <Image
-                          style={{
-                              width: 60,
-                              height: 25,
-                              resizeMode: 'contain',
-                              tintColor: focused ? "white" : 'rgba(255,255,255, 0.3)',
-                          }}
-                          source={require('../assets/tabIcon2.png')}
-                      />
-                  ),
-              }}
-          />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsStackScreen}
+          options={{
+            tabBarLabel: 'Control',
+            tabBarIcon: ({focused, color, size}) => (
+              <Image
+                style={{
+                  width: 60,
+                  height: 25,
+                  resizeMode: 'contain',
+                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
+                }}
+                source={require('../assets/tabIcon2.png')}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

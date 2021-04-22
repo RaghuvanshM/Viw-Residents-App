@@ -66,7 +66,7 @@ const WellnessScreen = () => {
                   fontFamily: 'IBMPlexSans-Light',
                   fontSize: 14,
                 }}>
-                Sunset at{" "}
+                Sunset at{' '}
               </Text>
               <Text
                 style={{
@@ -74,7 +74,7 @@ const WellnessScreen = () => {
                   fontFamily: 'IBMPlexSans-Bold',
                   fontSize: 14,
                 }}>
-                 7:21pm
+                7:21pm
               </Text>
             </View>
           </View>

@@ -1,0 +1,21 @@
+const images = {
+  blueClearBtn: require('./images/btnClear.png'),
+  blueDarkBtn: require('./images/btnDark.png'),
+  blueLightBtn: require('./images/btnLight.png'),
+  blueMediumBtn: require('./images/btnMedium.png'),
+  sun: require('./images/sun.png'),
+  landscape: require('./images/landscape.png'),
+  sunGlasses: require('./images/sun-glasses.png'),
+  highTemperature: require('./images/high-temperature.png'),
+  clock: require('./images/clock.png'),
+  cloud: require('./images/cloud.png'),
+  angle: require('./images/angle.png'),
+  exercise: require('./images/exercise.png'),
+  override: require('./images/override.png'),
+  control: require('./images/control.png'),
+  calendar: require('./images/calendar.png'),
+  check: require('./images/check.png'),
+  viewLogo: require('./images/logo-view-logo.png'),
+  vbgNature: require('./images/vbg-nature.png'),
+};
+export default images;
