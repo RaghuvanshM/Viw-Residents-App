@@ -10,10 +10,9 @@ export const check = require('../assets/Images/check.png');
 export const vgnature = require('../assets/Images/vbg-nature.png')
 
 export const sunset = require('../assets/sunset.png');
-export const background = require('../assets/vbg-nature.png');
 export const partlyCloudy = require('../assets/partlyCloudy.png');
 export const wellnessHeaderImg = require('../assets/wellness_header.png');
-export const logo = require('../assets/logo-view-logo-white.png');
+export const logo = require('../assets/Images/logo-view-logo-white.png');
 
 export const tint1 = require('../assets/tintButton1.png');
 export const tint2 = require('../assets/tintButton1.png');
@@ -36,7 +35,6 @@ export default {
   calendar,
   check,
   sunset,
-  background,
   partlyCloudy,
   wellnessHeaderImg,
 

@@ -82,9 +82,32 @@ const WellnessScreen = () => {
             'Your windows are automatically tinting based on our real-time intelligence to provide reduced glare. You can adjust your tint level by tapping on a room and then using the slider.'
           }
         />
-        <RoomCard />
-        <RoomCard />
-        <RoomCard />
+        <RoomCard
+          roomStatus={'Schedule'}
+          controlStatus={'Clear'}
+          roomSubText={'Weekday Wake Up'}
+          roomName={'Living Room'}
+        />
+        <RoomCard
+          hasWakeupAlarm
+          roomStatus={'Intelligence™'}
+          controlStatus={'Light'}
+          roomSubText={'Preventing morning glare'}
+          roomName={'Living Room'}
+        />
+        <RoomCard
+          roomStatus={'Schedule'}
+          controlStatus={'Medium'}
+          roomSubText={'Weekday Wake Up'}
+          roomName={'Living Room'}
+        />
+        <RoomCard
+          hasWakeupAlarm
+          roomStatus={'Override'}
+          controlStatus={'Dark'}
+          roomSubText={'0:59:12'}
+          roomName={'Living Room'}
+        />
       </Animated.ScrollView>
       <Animated.View
         style={[
@@ -179,6 +202,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: HEADER_MAX_HEIGHT,
+    width: '100%',
     resizeMode: 'cover',
   },
   topBar: {

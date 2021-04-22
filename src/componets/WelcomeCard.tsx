@@ -17,8 +17,8 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
         <View
           style={{
             backgroundColor: savings ? 'rgb(135,191,43)' : 'transparent',
-            marginBottom: 10,
-            paddingVertical: 10,
+            marginBottom: 5,
+            paddingVertical: 5,
           }}>
           <Text
             style={[
@@ -63,12 +63,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
+    fontFamily: "IBMPlexSans-Bold",
     color: 'rgb(52,101,127)',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    textAlign: 'center'
   },
   description: {
     fontSize: 14,
+    fontFamily: "IBMPlexSans-Regular",
     color: 'rgb(52,101,127)',
     textAlign: 'center',
     paddingHorizontal: 20,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(88,166,232)',
     borderRadius: 50,
     paddingHorizontal: 30,
-    paddingVertical: 12,
+    paddingVertical: 10,
     marginTop: 20,
   },
   btnText: {
