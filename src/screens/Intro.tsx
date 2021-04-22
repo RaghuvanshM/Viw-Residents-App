@@ -29,10 +29,10 @@ const slides = [
     subtitle2: 'Maintains Outside Views',
     subtitle3: 'Minimizes Glare',
     subtitle4: 'Optimal Thermal Comfort',
-    image1: require('../assets/sun.png'),
-    image2: require('../assets/landscape.png'),
-    image3: require('../assets/sun-glasses.png'),
-    image4: require('../assets/high-temperature.png'),
+    image1: require('../assets/Images/sun.png'),
+    image2: require('../assets/Images/landscape.png'),
+    image3: require('../assets/Images/sun-glasses.png'),
+    image4: require('../assets/Images/high-temperature.png'),
   },
   {
     key: 1,
@@ -43,10 +43,10 @@ const slides = [
     subtitle2: 'Angle of the Sun',
     subtitle3: 'Cloud Cover',
     subtitle4: 'Orientation',
-    image1: require('../assets/clock.png'),
-    image2: require('../assets/sun.png'),
-    image3: require('../assets/cloud.png'),
-    image4: require('../assets/angle.png'),
+    image1: require('../assets/Images/clock.png'),
+    image2: require('../assets/Images/sun.png'),
+    image3: require('../assets/Images/cloud.png'),
+    image4: require('../assets/Images/angle.png'),
   },
   {
     key: 2,
@@ -55,8 +55,8 @@ const slides = [
       'The glass tints automatically based on real-time data and our predictive intelligence. :',
     subtitle1:
       'Sit back and enjoy light, views, reduced glare, and optimized thermal comfort that result in an overall feeling of wellness.',
-    image1: require('../assets/exercise.png'),
-    image3: require('../assets/override.png'),
+    image1: require('../assets/Images/exercise.png'),
+    image3: require('../assets/Images/override.png'),
   },
   {
     key: 3,
@@ -65,9 +65,9 @@ const slides = [
       'Override the window’s tint setting at any time with this app. Just select the room and tint level.',
     subtitle1:
       'You can also set a schedule so your glass responds to your needs. ',
-    image1: require('../assets/control.png'),
-    calender: require('../assets/calendar.png'),
-    check: require('../assets/check.png'),
+    image1: require('../assets/Images/control.png'),
+    calender: require('../assets/Images/calendar.png'),
+    check: require('../assets/Images/check.png'),
     weekly: 'Weekday Wake Up',
     circadian: 'Circadian Rhythm',
     wfhmod: 'WFH Mode',
@@ -78,8 +78,8 @@ const slides = [
     title: 'Let’s get started',
     description:
       'Sign in with your email and password provided by your building manager.',
-    image1: require('../assets/log-in.png'),
-    image2: require('../assets/logo-view-logo.png'),
+    image1: require('../assets/Images/log-in.png'),
+    image2: require('../assets/Images/logo-view-logo.png'),
     subtitle1: 'Don’t have an account? ',
     subtitle2: 'Sign up here.',
     subtitle3: 'Forgot your password ',
@@ -311,7 +311,7 @@ const Intro: FC = () => {
     <ImageBackground
       style={{height: '100%'}}
       resizeMode="cover"
-      source={require('../assets/vbg-nature.png')}>
+      source={require('../assets/Images/vbg-nature.png')}>
       <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
         <AppIntroSlider
           nextLabel={false}
@@ -354,6 +354,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'rgb(52,101,127)',
     marginTop: 15,
+    fontFamily:'IBMPlexSans-Bold'
   },
   description: {
     marginVertical: 20,
@@ -361,12 +362,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: 'rgb(52,101,127)',
+    fontFamily:'IBMPlexSans-Regular'
   },
   subtitle: {
     textAlign: 'center',
     fontSize: 18,
     marginVertical: 15,
     color: 'rgb(52,101,127)',
+    fontFamily:'IBMPlexSans-Medium'
   },
   image: {
     alignSelf: 'center',
@@ -382,6 +385,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: 'rgb(52,101,127)',
+    fontFamily:'IBMPlexSans-Medium'
   },
   calenderwithtext: {
     flexDirection: 'row',
@@ -427,6 +431,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 18,
     color: 'rgb(52,101,127)',
+    fontFamily:'IBMPlexSans-Regular'
   },
 
   image2: {
@@ -436,9 +441,9 @@ const styles = StyleSheet.create({
   title2: {
     fontSize: 30,
     textAlign: 'center',
-    fontWeight: 'bold',
     color: 'rgb(52,101,127)',
     marginTop: 5,
+    fontFamily:'IBMPlexSans-Bold'
   },
   donthaveacc: {
     lineHeight: 22,
@@ -446,5 +451,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: 'rgb(52,101,127)',
+    fontFamily:'IBMPlexSans-Regular'
   },
 });
