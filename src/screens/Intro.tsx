@@ -21,6 +21,7 @@ import {
 } from 'react-native-responsive-screen';
 import {useDispatch} from 'react-redux';
 import {authUser} from '../module/actions';
+import images from "../assets/images";
 
 const slides = [
   {
@@ -31,10 +32,10 @@ const slides = [
     subtitle2: 'Maintains Outside Views',
     subtitle3: 'Minimizes Glare',
     subtitle4: 'Optimal Thermal Comfort',
-    image1: require('../assets/Images/sun.png'),
-    image2: require('../assets/Images/landscape.png'),
-    image3: require('../assets/Images/sun-glasses.png'),
-    image4: require('../assets/Images/high-temperature.png'),
+    image1: images.sun,
+    image2: images.landscape,
+    image3: images.sunGlasses,
+    image4: images.highTemperature,
   },
   {
     key: 1,
@@ -45,10 +46,10 @@ const slides = [
     subtitle2: 'Angle of the Sun',
     subtitle3: 'Cloud Cover',
     subtitle4: 'Orientation',
-    image1: require('../assets/Images/clock.png'),
-    image2: require('../assets/Images/sun.png'),
-    image3: require('../assets/Images/cloud.png'),
-    image4: require('../assets/Images/angle.png'),
+    image1: images.clock,
+    image2: images.sun,
+    image3: images.cloud,
+    image4: images.angle,
   },
   {
     key: 2,
@@ -57,8 +58,8 @@ const slides = [
       'The glass tints automatically based on real-time data and our predictive intelligence. :',
     subtitle1:
       'Sit back and enjoy light, views, reduced glare, and optimized thermal comfort that result in an overall feeling of wellness.',
-    image1: require('../assets/Images/exercise.png'),
-    image3: require('../assets/Images/override.png'),
+    image1: images.exercise,
+    image3: images.override,
   },
   {
     key: 3,
@@ -67,9 +68,9 @@ const slides = [
       'Override the window’s tint setting at any time with this app. Just select the room and tint level.',
     subtitle1:
       'You can also set a schedule so your glass responds to your needs. ',
-    image1: require('../assets/Images/control.png'),
-    calender: require('../assets/Images/calendar.png'),
-    check: require('../assets/Images/check.png'),
+    image1: images.control,
+    calender: images.calendar,
+    check: images.check,
     weekly: 'Weekday Wake Up',
     circadian: 'Circadian Rhythm',
     wfhmod: 'WFH Mode',
@@ -80,8 +81,8 @@ const slides = [
     title: 'Let’s get started',
     description:
       'Sign in with your email and password provided by your building manager.',
-    image1: require('../assets/Images/log-in.png'),
-    image2: require('../assets/Images/logo-view-logo.png'),
+    image1: null,
+    image2: images.viewLogo,
     subtitle1: 'Don’t have an account? ',
     subtitle2: 'Sign up here.',
     subtitle3: 'Forgot your password ',
@@ -322,7 +323,7 @@ const Intro: FC = () => {
     <ImageBackground
       style={{height: '100%'}}
       resizeMode="cover"
-      source={require('../assets/Images/vbg-nature.png')}>
+      source={images.vbgNature}>
       <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
         <AppIntroSlider
           nextLabel={false}

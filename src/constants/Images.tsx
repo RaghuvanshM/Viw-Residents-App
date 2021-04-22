@@ -1,18 +1,18 @@
-export const angle = require('../assets/Images/angle.png');
-export const clock = require('../assets/Images/clock.png');
-export const cloud = require('../assets/Images/cloud.png');
-export const sun = require('../assets/Images/sun.png');
-export const exercise = require('../assets/Images/exercise.png');
-export const override = require('../assets/Images/override.png');
-export const control = require('../assets/Images/control.png');
-export const calendar = require('../assets/Images/calendar.png');
-export const check = require('../assets/Images/check.png');
-export const vgnature = require('../assets/Images/vbg-nature.png');
+export const angle = require('../assets/images/angle.png');
+export const clock = require('../assets/images/clock.png');
+export const cloud = require('../assets/images/cloud.png');
+export const sun = require('../assets/images/sun.png');
+export const exercise = require('../assets/images/exercise.png');
+export const override = require('../assets/images/override.png');
+export const control = require('../assets/images/control.png');
+export const calendar = require('../assets/images/calendar.png');
+export const check = require('../assets/images/check.png');
+export const vgnature = require('../assets/images/vbg-nature.png');
 
 export const sunset = require('../assets/sunset.png');
 export const partlyCloudy = require('../assets/partlyCloudy.png');
 export const wellnessHeaderImg = require('../assets/wellness_header.png');
-export const logo = require('../assets/Images/logo-view-logo-white.png');
+export const logo = require('../assets/images/logo-view-logo-white.png');
 
 export const tint1 = require('../assets/tintButton1.png');
 export const tint2 = require('../assets/tintButton1.png');

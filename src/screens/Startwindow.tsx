@@ -24,7 +24,7 @@ const Startwindow: FC = () => {
           <View style={styles.imageview}>
             <View>
               <Image
-                source={require('../assets/Images/logo-view-logo-white.png')}
+                source={images.logo}
               />
               <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
             </View>
