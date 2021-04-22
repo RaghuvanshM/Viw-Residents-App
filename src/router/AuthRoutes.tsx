@@ -5,7 +5,7 @@ import {
   createStackNavigator
 } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from "../screens/HomeScreen";
+import WellnessScreen from "../screens/WellnessScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
@@ -15,7 +15,7 @@ const HomeStack = createStackNavigator();
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator screenOptions={{ header: () => null }}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Home" component={WellnessScreen} />
       <HomeStack.Screen name="Details" component={DetailsScreen} />
     </HomeStack.Navigator>
   );
