@@ -13,8 +13,8 @@ import {
   sunset,
   wellnessHeaderImg,
 } from '../constants/Images';
-import WelcomeCard from '../componets/WelcomeCard';
-import RoomCard from '../componets/RoomCard';
+import WelcomeCard from '../components/WelcomeCard';
+import RoomCard from '../components/RoomCard';
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
@@ -59,10 +59,34 @@ const WellnessScreen = () => {
               style={{width: 20, height: 20, marginRight: 10}}
               source={sunset}
             />
-            <Text style={{color: '#fff'}}>Sunset at 7:21pm</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontFamily: 'IBMPlexSans-Light',
+                  fontSize: 14,
+                }}>
+                Sunset at{" "}
+              </Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontFamily: 'IBMPlexSans-Bold',
+                  fontSize: 14,
+                }}>
+                 7:21pm
+              </Text>
+            </View>
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{color: '#fff'}}>Outside Air Quality </Text>
+            <Text
+              style={{
+                color: '#fff',
+                fontFamily: 'IBMPlexSans-Regular',
+                fontSize: 14,
+              }}>
+              Outside Air Quality{' '}
+            </Text>
             <View
               style={{
                 width: 15,
@@ -217,7 +241,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 16,
+    fontFamily: 'IBMPlexSans-Regular',
+    fontSize: 14,
   },
   avatar: {
     height: 54,

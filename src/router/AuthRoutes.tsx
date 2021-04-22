@@ -37,28 +37,10 @@ export default function AuthRoutes() {
       <Tab.Navigator
         tabBarOptions={{
           style: {backgroundColor: 'black'},
-          labelStyle: {fontSize: 12},
-          inactiveTintColor: 'gray',
+          labelStyle: {fontSize: 12,fontFamily: "IBMPlexSans-Medium"},
+          inactiveTintColor: 'rgba(255,255,255, 0.3)',
           activeTintColor: '#fff',
         }}>
-        <Tab.Screen
-          name="Settings"
-          component={SettingsStackScreen}
-          options={{
-            tabBarLabel: 'Control',
-            tabBarIcon: ({focused, color, size}) => (
-              <Image
-                style={{
-                  width: 60,
-                  height: 25,
-                  resizeMode: 'contain',
-                  tintColor: focused ? null : 'gray',
-                }}
-                source={require('../assets/tabIcon1.png')}
-              />
-            ),
-          }}
-        />
         <Tab.Screen
           name="Home"
           component={HomeStackScreen}
@@ -67,16 +49,33 @@ export default function AuthRoutes() {
             tabBarIcon: ({focused, color, size}) => (
               <Image
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 55,
                   resizeMode: 'contain',
-                  tintColor: focused ? null : 'gray',
+                  tintColor: focused ? "white" : 'rgba(255,255,255, 0.3)',
                 }}
-                source={require('../assets/tabIcon2.png')}
+                source={require('../assets/tabIcon1.png')}
               />
             ),
           }}
         />
+          <Tab.Screen
+              name="Settings"
+              component={SettingsStackScreen}
+              options={{
+                  tabBarLabel: 'Control',
+                  tabBarIcon: ({focused, color, size}) => (
+                      <Image
+                          style={{
+                              width: 60,
+                              height: 25,
+                              resizeMode: 'contain',
+                              tintColor: focused ? "white" : 'rgba(255,255,255, 0.3)',
+                          }}
+                          source={require('../assets/tabIcon2.png')}
+                      />
+                  ),
+              }}
+          />
       </Tab.Navigator>
     </NavigationContainer>
   );
