@@ -21,7 +21,7 @@ import {
 } from 'react-native-responsive-screen';
 import {useDispatch} from 'react-redux';
 import {authUser} from '../module/actions';
-import images from "../assets/images";
+import images from '../assets/images';
 
 const slides = [
   {

@@ -23,9 +23,7 @@ const Startwindow: FC = () => {
           style={styles.backgrondimage}>
           <View style={styles.imageview}>
             <View>
-              <Image
-                source={images.logo}
-              />
+              <Image source={images.logo} />
               <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
             </View>
             <TouchableOpacity onPress={onTaptostartPress}>
