@@ -20,7 +20,7 @@ const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const WellnessScreen = () => {
+const HomeControlScreen = () => {
   const scrollAnim = useRef(new Animated.Value(0));
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
@@ -182,7 +182,7 @@ const WellnessScreen = () => {
     </Fragment>
   );
 };
-export default WellnessScreen;
+export default HomeControlScreen;
 const styles = StyleSheet.create({
   saveArea: {
     flex: 1,

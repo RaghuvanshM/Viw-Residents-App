@@ -17,5 +17,9 @@ const images = {
   check: require('./images/check.png'),
   viewLogo: require('./images/logo-view-logo.png'),
   vbgNature: require('./images/vbg-nature.png'),
+  tabIcon1: require('./tabIcon1.png'),
+  tabIcon2: require('./tabIcon2.png'),
+  tabIcon3: require('./tabIcon3.png'),
+  tabIcon4: require('./tabIcon4.png'),
 };
 export default images;
