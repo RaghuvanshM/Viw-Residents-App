@@ -22,7 +22,7 @@ const Startwindow: FC = () => {
         style={styles.backgrondimage}>
         <View style={styles.imageview}>
           <View>
-            <Image source={require('../assets/logo-view-logo-white.png')} />
+            <Image source={require('../assets/Images/logo-view-logo-white.png')} />
             <Text style={styles.smartwindowtext}>SMART WINDOWS</Text>
           </View>
           <TouchableWithoutFeedback onPress={onTaptostartPress}>
