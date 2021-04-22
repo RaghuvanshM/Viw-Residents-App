@@ -19,6 +19,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {useDispatch} from "react-redux";
+import {authUser} from "../module/actions";
 
 const slides = [
   {
@@ -96,10 +98,18 @@ const theme = {
   },
 };
 const Intro: FC = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const onSigninPress = () => {
-    alert('Pressed');
+      dispatch(
+          authUser({
+              id: '123',
+              firstName: 'Viral',
+              lastName: 'Pattani',
+              email: 'viral.pattani@piri.ai',
+          }),
+      );
   };
   const _renderItem = ({item}) => {
     if (item.key == 3) {
@@ -218,7 +228,7 @@ const Intro: FC = () => {
             style={{
               justifyContent: 'space-between',
               flex: 1,
-  
+
             }}>
             <ScrollView showsVerticalScrollIndicator={false}>
               <View>
@@ -350,7 +360,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     width: wp('90%'),
     alignSelf: 'center',
-    
+
   },
   title: {
     fontSize: 30,
