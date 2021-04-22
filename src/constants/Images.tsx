@@ -7,6 +7,7 @@ export const override = require('../assets/override.png');
 export const control = require('../assets/control.png');
 export const calendar = require('../assets/calendar.png');
 export const check = require('../assets/check.png');
+export const vgnature = require('../assets/vbg-nature.png')
 
 export const sunset = require('../assets/sunset.png');
 export const background = require('../assets/vbg-nature.png');
