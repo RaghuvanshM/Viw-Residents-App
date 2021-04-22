@@ -44,6 +44,7 @@
 		E4DDDE1C2C044B948D96FDE4 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92C2752EE6B44E9F976AFE15 /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		EE834FEEDCDE49098DB93D81 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2131B74EC0064BF4AB7B5037 /* IBMPlexSans-Thin.ttf */; };
 		EB4CE205447D4EF795CA03B0 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 388563C2534D4862BCEB7A96 /* IBMPlexSans-ThinItalic.ttf */; };
+		D619556AAF6E4FD89A8B2BFA /* GothamMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16882985A6344DC9BC6DDC3F /* GothamMedium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		92C2752EE6B44E9F976AFE15 /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../src/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2131B74EC0064BF4AB7B5037 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-Thin.ttf"; path = "../src/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		388563C2534D4862BCEB7A96 /* IBMPlexSans-ThinItalic.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-ThinItalic.ttf"; path = "../src/assets/fonts/IBMPlexSans-ThinItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		16882985A6344DC9BC6DDC3F /* GothamMedium.ttf */ = {isa = PBXFileReference; name = "GothamMedium.ttf"; path = "../src/assets/fonts/GothamMedium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 				92C2752EE6B44E9F976AFE15 /* IBMPlexSans-SemiBoldItalic.ttf */,
 				2131B74EC0064BF4AB7B5037 /* IBMPlexSans-Thin.ttf */,
 				388563C2534D4862BCEB7A96 /* IBMPlexSans-ThinItalic.ttf */,
+				16882985A6344DC9BC6DDC3F /* GothamMedium.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				E4DDDE1C2C044B948D96FDE4 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
 				EE834FEEDCDE49098DB93D81 /* IBMPlexSans-Thin.ttf in Resources */,
 				EB4CE205447D4EF795CA03B0 /* IBMPlexSans-ThinItalic.ttf in Resources */,
+				D619556AAF6E4FD89A8B2BFA /* GothamMedium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

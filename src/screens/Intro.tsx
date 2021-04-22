@@ -213,15 +213,14 @@ const Intro: FC = () => {
       );
     } else if (item.key == 4) {
       return (
-        <View key={item.key} style={styles.slide2}>
+        <View key={item.key} style={styles.slide}>
           <View
             style={{
               justifyContent: 'space-between',
               flex: 1,
+  
             }}>
-            <ScrollView
-             showsVerticalScrollIndicator={false}
-            >
+            <ScrollView showsVerticalScrollIndicator={false}>
               <View>
                 <Text style={styles.title2}>{item.title} </Text>
               </View>
@@ -258,24 +257,28 @@ const Intro: FC = () => {
                         marginVertical: 10,
                       }}>
                       <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
-                      <Text
-                        style={{...styles.formsubtitle, fontWeight: 'bold'}}>
-                        {item.subtitle4}
-                      </Text>
+                      <TouchableOpacity>
+                        <Text
+                          style={{...styles.formsubtitle, fontWeight: 'bold'}}>
+                          {item.subtitle4}
+                        </Text>
+                      </TouchableOpacity>
                     </View>
-                    <TouchableWithoutFeedback
+                    <TouchableOpacity
                       style={styles.signinbutton}
                       onPress={onSigninPress}>
                       <Text style={styles.signtext}>SIGN IN</Text>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </View>
               <View style={{flexDirection: 'row', alignSelf: 'center'}}>
                 <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
-                <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
-                  {item.subtitle2}
-                </Text>
+                <TouchableOpacity>
+                  <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
+                    {item.subtitle2}
+                  </Text>
+                </TouchableOpacity>
               </View>
               <View>
                 <Image
@@ -306,7 +309,6 @@ const Intro: FC = () => {
   };
 
   const _onDone = () => {};
-
   return (
     <ImageBackground
       style={{height: '100%'}}
@@ -321,6 +323,7 @@ const Intro: FC = () => {
           activeDotStyle={{marginTop: 15, backgroundColor: '#fff'}}
           renderItem={_renderItem}
           onDone={_onDone}
+
         />
       </SafeAreaView>
     </ImageBackground>
@@ -333,7 +336,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.8)',
     paddingHorizontal: 10,
     justifyContent: 'center',
-    paddingVertical: 20,
+    paddingVertical: 10,
     marginHorizontal: 20,
     marginTop: 20,
     borderRadius: 14,
@@ -347,6 +350,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     width: wp('90%'),
     alignSelf: 'center',
+    
   },
   title: {
     fontSize: 30,
@@ -354,7 +358,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'rgb(52,101,127)',
     marginTop: 15,
-    fontFamily:'IBMPlexSans-Bold'
+    fontFamily: 'IBMPlexSans-Bold',
   },
   description: {
     marginVertical: 20,
@@ -362,14 +366,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily:'IBMPlexSans-Regular'
+    fontFamily: 'IBMPlexSans-Regular',
   },
   subtitle: {
     textAlign: 'center',
     fontSize: 18,
     marginVertical: 15,
     color: 'rgb(52,101,127)',
-    fontFamily:'IBMPlexSans-Medium'
+    fontFamily: 'IBMPlexSans-Medium',
   },
   image: {
     alignSelf: 'center',
@@ -385,7 +389,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     color: 'rgb(52,101,127)',
-    fontFamily:'IBMPlexSans-Medium'
+    fontFamily: 'IBMPlexSans-Medium',
   },
   calenderwithtext: {
     flexDirection: 'row',
@@ -418,6 +422,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     color: 'white',
     fontSize: 20,
+    fontFamily:'IBMPlexSans-Bold'
   },
   formsubtitle: {
     textAlign: 'center',
@@ -431,7 +436,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 18,
     color: 'rgb(52,101,127)',
-    fontFamily:'IBMPlexSans-Regular'
+    fontFamily: 'IBMPlexSans-Regular',
   },
 
   image2: {
@@ -443,7 +448,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(52,101,127)',
     marginTop: 5,
-    fontFamily:'IBMPlexSans-Bold'
+    fontFamily: 'IBMPlexSans-Bold',
   },
   donthaveacc: {
     lineHeight: 22,
@@ -451,6 +456,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily:'IBMPlexSans-Regular'
+    fontFamily: 'IBMPlexSans-Regular',
   },
 });
