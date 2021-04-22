@@ -104,37 +104,73 @@ const Intro: FC = () => {
   const _renderItem = ({item}) => {
     if (item.key == 3) {
       return (
-        <View key={item.key} style={styles.slide}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.description}>{item.description}</Text>
-          <Image
-            style={styles.image}
-            resizeMode="contain"
-            source={item.image1}
-          />
-          <Text style={styles.subtitle}>{item.subtitle1}</Text>
-          <View style={styles.calenderwithtext}>
-            <Image
-              style={styles.calenderimage}
-              resizeMode="contain"
-              source={item.calender}
-            />
+        <View key={item.key} style={styles.slide2}>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flex: 1,
+              marginVertical: hp('10%'),
+            }}>
             <View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.checkimge} source={item.check} />
-                <Text style={styles.checktext}>{item.weekly}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.checkimge} source={item.check} />
-                <Text style={styles.checktext}>{item.circadian}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.checkimge} source={item.check} />
-                <Text style={styles.checktext}>{item.wfhmod}</Text>
-              </View>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.checkimge} source={item.check} />
-                <Text style={styles.checktext}>{item.custom}</Text>
+              <Text style={styles.title2}>{item.title}</Text>
+            </View>
+            <View>
+              <Text style={styles.description2}>{item.description}</Text>
+            </View>
+            <View>
+              <Image
+                source={item.image1}
+                style={{height: 70, alignSelf: 'center'}}
+                resizeMode="contain"
+              />
+            </View>
+            <View>
+              <Text style={styles.description2}>{item.subtitle1}</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginHorizontal: wp('5%'),
+              }}>
+              <Image
+                source={item.calender}
+                style={{height: 100, alignSelf: 'center'}}
+                resizeMode="contain"
+              />
+              <View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image
+                    source={item.check}
+                    resizeMode="contain"
+                    style={styles.checkimge}
+                  />
+                  <Text style={{...styles.checktext}}>{item.weekly}</Text>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image
+                    source={item.check}
+                    style={styles.checkimge}
+                    resizeMode="contain"
+                  />
+                  <Text style={{...styles.checktext}}>{item.circadian}</Text>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image
+                    source={item.check}
+                    style={styles.checkimge}
+                    resizeMode="contain"
+                  />
+                  <Text style={{...styles.checktext}}>{item.wfhmod}</Text>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image
+                    source={item.check}
+                    style={styles.checkimge}
+                    resizeMode="contain"
+                  />
+                  <Text style={{...styles.checktext}}>{item.custom}</Text>
+                </View>
               </View>
             </View>
           </View>
@@ -142,88 +178,115 @@ const Intro: FC = () => {
       );
     } else if (item.key == 2) {
       return (
-        <View key={item.key} style={styles.slide}>
-          <View style={{marginTop: 60}}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={item.image1}
-            />
-            <Text style={styles.subtitle}>{item.subtitle1}</Text>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={item.image2}
-            />
-            <Text style={styles.subtitle}>{item.subtitle2}</Text>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={item.image3}
-            />
-            <Text style={styles.subtitle}>{item.subtitle3}</Text>
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={item.image4}
-            />
-            <Text style={styles.subtitle}>{item.subtitle4}</Text>
+        <View key={item.key} style={styles.slide2}>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flex: 1,
+              marginVertical: hp('10%'),
+            }}>
+            <View>
+              <Text style={styles.title2}>{item.title} </Text>
+            </View>
+            <View>
+              <Text style={styles.description2}>{item.description}</Text>
+            </View>
+            <View>
+              <Image
+                source={item.image1}
+                style={{height: 70, alignSelf: 'center'}}
+                resizeMode="contain"
+              />
+            </View>
+            <View>
+              <Text style={styles.description2}>{item.subtitle1}</Text>
+            </View>
+            <View>
+              <Image
+                source={item.image3}
+                style={{height: 70, alignSelf: 'center'}}
+                resizeMode="contain"
+              />
+            </View>
           </View>
         </View>
       );
     } else if (item.key == 4) {
       return (
-        <ScrollView style={{alignSelf:'center'}}>
-        <View key={item.key} style={styles.slide}>
-          <View>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <View style={styles.formcontainer}>
-              <Image
-                source={item.image2}
-                style={{...styles.image, marginTop: 20}}
-                resizeMode="contain"
-              />
-              <View style={{marginTop: 20}}>
-                <TextInput
-                  label="Email"
-                  mode="outlined"
-                  style={styles.textinput}
-                  onChangeText={text => setEmail(text)}
-                  theme={theme}
-                />
-                <TextInput
-                  label="Password"
-                  mode="outlined"
-                  style={styles.textinput}
-                  secureTextEntry={true}
-                  onChangeText={text => setPassword(text)}
-                  theme={theme}
-                />
-                <View style={{alignSelf: 'center'}}>
-                  <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
-                  <Text style={{...styles.formsubtitle, fontWeight: 'bold'}}>
-                    {item.subtitle4}
-                  </Text>
-                </View>
-                <TouchableWithoutFeedback
-                  style={styles.signinbutton}
-                  onPress={onSigninPress}>
-                  <Text style={styles.signtext}>SIGN IN</Text>
-                </TouchableWithoutFeedback>
+        <View key={item.key} style={styles.slide2}>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              flex: 1,
+            }}>
+            <ScrollView
+             showsVerticalScrollIndicator={false}
+            >
+              <View>
+                <Text style={styles.title2}>{item.title} </Text>
               </View>
-            </View>
-            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-              <Text style={styles.subtitle}>{item.subtitle1}</Text>
-              <Text style={{...styles.subtitle, fontWeight: 'bold'}}>
-                {item.subtitle2}
-              </Text>
-            </View>
+              <View>
+                <Text style={styles.description2}>{item.description}</Text>
+              </View>
+              <View>
+                <View style={styles.formcontainer}>
+                  <Image
+                    source={item.image2}
+                    style={{...styles.image, marginTop: 10}}
+                    resizeMode="contain"
+                  />
+                  <View style={{marginTop: 10}}>
+                    <TextInput
+                      label="Email"
+                      mode="outlined"
+                      style={styles.textinput}
+                      onChangeText={text => setEmail(text)}
+                      theme={theme}
+                    />
+                    <TextInput
+                      label="Password"
+                      mode="outlined"
+                      style={styles.textinput}
+                      secureTextEntry={true}
+                      onChangeText={text => setPassword(text)}
+                      theme={theme}
+                    />
+                    <View
+                      style={{
+                        alignSelf: 'center',
+                        flexDirection: 'row',
+                        marginVertical: 10,
+                      }}>
+                      <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
+                      <Text
+                        style={{...styles.formsubtitle, fontWeight: 'bold'}}>
+                        {item.subtitle4}
+                      </Text>
+                    </View>
+                    <TouchableWithoutFeedback
+                      style={styles.signinbutton}
+                      onPress={onSigninPress}>
+                      <Text style={styles.signtext}>SIGN IN</Text>
+                    </TouchableWithoutFeedback>
+                  </View>
+                </View>
+              </View>
+              <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+                <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
+                <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
+                  {item.subtitle2}
+                </Text>
+              </View>
+              <View>
+                <Image
+                  source={item.image3}
+                  style={{height: 60, alignSelf: 'center'}}
+                  resizeMode="contain"
+                />
+              </View>
+            </ScrollView>
           </View>
         </View>
-        </ScrollView>
       );
     }
     return (
@@ -276,6 +339,15 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     height: '90%',
   },
+  slide2: {
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    height: '90%',
+    paddingHorizontal: 10,
+    marginTop: 20,
+    borderRadius: 14,
+    width: wp('90%'),
+    alignSelf: 'center',
+  },
   title: {
     fontSize: 30,
     textAlign: 'center',
@@ -301,14 +373,14 @@ const styles = StyleSheet.create({
     height: 55,
   },
   checkimge: {
-    height: 30,
+    height: 15,
     resizeMode: 'contain',
   },
   checktext: {
-    marginVertical: 10,
-    lineHeight: 17,
+    marginVertical: 2,
+    lineHeight: 18,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: 18,
     color: 'rgb(52,101,127)',
   },
   calenderwithtext: {
@@ -322,20 +394,20 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   formcontainer: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     backgroundColor: 'white',
     borderRadius: wp('4%'),
   },
   textinput: {
     width: wp('80%'),
     alignSelf: 'center',
-    marginTop:10,
+    marginTop: 10,
   },
   signinbutton: {
     backgroundColor: 'rgb(52, 144, 172)',
     width: wp('80%'),
     alignSelf: 'center',
-    borderRadius:5
+    borderRadius: 5,
   },
   signtext: {
     alignSelf: 'center',
@@ -345,8 +417,34 @@ const styles = StyleSheet.create({
   },
   formsubtitle: {
     textAlign: 'center',
+    fontSize: 16,
+    color: 'rgb(52,101,127)',
+  },
+  description2: {
+    marginVertical: 18,
+    lineHeight: 22,
+    textAlign: 'center',
+    marginHorizontal: 20,
     fontSize: 18,
-    marginVertical: 5,
+    color: 'rgb(52,101,127)',
+  },
+
+  image2: {
+    height: 55,
+    alignSelf: 'center',
+  },
+  title2: {
+    fontSize: 30,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: 'rgb(52,101,127)',
+    marginTop: 5,
+  },
+  donthaveacc: {
+    lineHeight: 22,
+    textAlign: 'center',
+    marginTop: 10,
+    fontSize: 16,
     color: 'rgb(52,101,127)',
   },
 });
