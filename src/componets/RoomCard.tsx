@@ -37,7 +37,7 @@ const RoomCard: FC<RoomCardProps> = ({
                   : controlStatus === 'Light'
                   ? 0.25
                   : controlStatus === 'Medium'
-                  ? 0.50
+                  ? 0.5
                   : 0.75
               })`,
             }}>

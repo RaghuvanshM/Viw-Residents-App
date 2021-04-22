@@ -63,13 +63,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontFamily: "IBMPlexSans-Bold",
+    fontFamily: 'IBMPlexSans-Bold',
     color: 'rgb(52,101,127)',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   description: {
     fontSize: 14,
-    fontFamily: "IBMPlexSans-Regular",
+    fontFamily: 'IBMPlexSans-Regular',
     color: 'rgb(52,101,127)',
     textAlign: 'center',
     paddingHorizontal: 20,

@@ -7,7 +7,7 @@ export const override = require('../assets/Images/override.png');
 export const control = require('../assets/Images/control.png');
 export const calendar = require('../assets/Images/calendar.png');
 export const check = require('../assets/Images/check.png');
-export const vgnature = require('../assets/Images/vbg-nature.png')
+export const vgnature = require('../assets/Images/vbg-nature.png');
 
 export const sunset = require('../assets/sunset.png');
 export const partlyCloudy = require('../assets/partlyCloudy.png');
@@ -21,7 +21,6 @@ export const tint4 = require('../assets/tintButton1.png');
 export const arrowRight = require('../assets/chevron-right.png');
 
 export const cardimage1 = require('../assets/cardimg1.png');
-
 
 export default {
   logo,
@@ -45,5 +44,5 @@ export default {
   arrowRight,
 
   cardimage1,
-  vgnature
-}
+  vgnature,
+};

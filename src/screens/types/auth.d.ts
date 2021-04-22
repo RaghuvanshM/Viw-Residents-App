@@ -1,19 +1,18 @@
-import {StackNavigationProp} from "@react-navigation/stack";
-import WellnessScreen from "../WellnessScreen";
+import {StackNavigationProp} from '@react-navigation/stack';
 
 export type AuthRootStackParamList = {
-    Wellness: undefined;
-    Details: undefined;
-    Settings: undefined;
+  Wellness: undefined;
+  Details: undefined;
+  Settings: undefined;
 };
 type ScreenRouteProp = RouteProp<AuthRootStackParamList, 'Wellness'>;
 
 type ScreenNavigationProp = StackNavigationProp<
-    AuthRootStackParamList,
-    'Wellness'
-    >;
+  AuthRootStackParamList,
+  'Wellness'
+>;
 
 export type Props = {
-    route: ScreenRouteProp;
-    navigation: ScreenNavigationProp;
+  route: ScreenRouteProp;
+  navigation: ScreenNavigationProp;
 };
