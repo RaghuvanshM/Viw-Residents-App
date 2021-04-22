@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, TouchableOpacity, Text, View, ImageBackground, Image, StyleSheet } from 'react-native';
-import { wellnessHeaderImg, sunset, tint1, arrowRight } from "../constants/images";
+import { wellnessHeaderImg, sunset, tint1, arrowRight } from "../constants/Images";
 
 export default class WelcomeCard extends Component {
     render() {

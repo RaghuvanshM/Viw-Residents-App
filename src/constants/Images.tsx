@@ -47,4 +47,5 @@ export default {
   arrowRight,
 
   cardimage1,
+  vgnature
 }

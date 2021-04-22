@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     Image,
     View,
@@ -12,7 +11,7 @@ import {
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
-import { sunset, partlyCloudy, wellnessHeaderImg, logo } from '../constants/images';
+import { sunset, partlyCloudy, wellnessHeaderImg, logo } from '../constants/Images';
 
 import RoomCard from '../componets/RoomCard'
 import WelcomeCard from '../componets/WelcomeCard'

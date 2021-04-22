@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Text, View, ImageBackground, Image, StyleSheet } from 'react-native';
-import { wellnessHeaderImg, sunset, tint1, arrowRight, cardimage1 } from "../constants/images";
+import { wellnessHeaderImg, sunset, tint1, arrowRight, cardimage1 } from "../constants/Images";
 export default class RoomCard extends Component {
     render() {
         return (
