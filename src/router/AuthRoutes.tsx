@@ -1,12 +1,14 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {View, Image} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeControlScreen from '../screens/HomeControlScreen';
+import HomeControlScreen from '../screens/ControlScreens/HomeControlScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import images from '../assets/images';
+import MyViewScreen from '../screens/MyViewScreens/MyView';
+import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 
 const HomeStack = createStackNavigator();
 
@@ -41,6 +43,17 @@ const WellnessStackScreen = () => {
   );
 };
 
+const MyViewStack = createStackNavigator();
+
+const MyViewStackScreen = () => {
+  return (
+    <MyViewStack.Navigator screenOptions={{header: () => null}}>
+      <MyViewStack.Screen name="MyView" component={MyViewScreen} />
+      <MyViewStack.Screen name="ManageUsers" component={ManageUsers} />
+    </MyViewStack.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 
 export default function AuthRoutes() {
@@ -58,15 +71,20 @@ export default function AuthRoutes() {
           component={HomeStackScreen}
           options={{
             tabBarLabel: 'Control',
-            tabBarIcon: ({focused, color, size}) => (
-              <Image
-                style={{
-                  width: 55,
-                  resizeMode: 'contain',
-                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
-                }}
-                source={images.tabIcon1}
-              />
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  style={[
+                    {
+                      width: 60,
+                      height: 25,
+                      resizeMode: 'contain',
+                    },
+                    !focused && {tintColor: 'rgba(255, 255,255,0.3)'},
+                  ]}
+                  source={images.tabIcon1}
+                />
+              </View>
             ),
           }}
         />
@@ -75,16 +93,20 @@ export default function AuthRoutes() {
           component={WellnessStackScreen}
           options={{
             tabBarLabel: 'Wellness',
-            tabBarIcon: ({focused, color, size}) => (
-              <Image
-                style={{
-                  width: 60,
-                  height: 25,
-                  resizeMode: 'contain',
-                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
-                }}
-                source={images.tabIcon2}
-              />
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  style={[
+                    {
+                      width: 60,
+                      height: 25,
+                      resizeMode: 'contain',
+                    },
+                    !focused && {tintColor: 'rgba(255, 255,255,0.3)'},
+                  ]}
+                  source={images.tabIcon2}
+                />
+              </View>
             ),
           }}
         />
@@ -93,34 +115,42 @@ export default function AuthRoutes() {
           component={SettingsStackScreen}
           options={{
             tabBarLabel: 'Schedule',
-            tabBarIcon: ({focused, color, size}) => (
-              <Image
-                style={{
-                  width: 60,
-                  height: 25,
-                  resizeMode: 'contain',
-                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
-                }}
-                source={images.tabIcon3}
-              />
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  style={[
+                    {
+                      width: 60,
+                      height: 25,
+                      resizeMode: 'contain',
+                    },
+                    !focused && {tintColor: 'rgba(255, 255,255,0.3)'},
+                  ]}
+                  source={images.tabIcon3}
+                />
+              </View>
             ),
           }}
         />
         <Tab.Screen
           name="MyView"
-          component={SettingsStackScreen}
+          component={MyViewStackScreen}
           options={{
             tabBarLabel: 'My View',
-            tabBarIcon: ({focused, color, size}) => (
-              <Image
-                style={{
-                  width: 60,
-                  height: 25,
-                  resizeMode: 'contain',
-                  tintColor: focused ? 'white' : 'rgba(255,255,255, 0.3)',
-                }}
-                source={images.tabIcon4}
-              />
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                  style={[
+                    {
+                      width: 60,
+                      height: 25,
+                      resizeMode: 'contain',
+                    },
+                    !focused && {tintColor: 'rgba(255, 255,255,0.3)'},
+                  ]}
+                  source={images.tabIcon4}
+                />
+              </View>
             ),
           }}
         />

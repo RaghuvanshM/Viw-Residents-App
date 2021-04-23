@@ -1,21 +1,21 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import InitialScreen from '../screens/Startwindow';
-import CarouselScreen from '../screens/CarouselScreen';
+import InitialScreen from '../screens/BeforeAuthScreens/Startwindow';
+import Intro from '../screens/BeforeAuthScreens/Intro';
 
 const PreLoginStack = createStackNavigator();
 
 export default function NoAuthRoutes() {
   return (
     <NavigationContainer>
-      <PreLoginStack.Navigator>
+      <PreLoginStack.Navigator screenOptions={{headerShown: false}}>
         <PreLoginStack.Screen
           name="Initial"
           component={InitialScreen}
           options={{headerShown: false}}
         />
-        <PreLoginStack.Screen name="Carousel" component={CarouselScreen} />
+        <PreLoginStack.Screen name="Introduction" component={Intro} />
       </PreLoginStack.Navigator>
     </NavigationContainer>
   );

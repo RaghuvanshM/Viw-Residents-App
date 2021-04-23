@@ -1,4 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
+import {RouteProp} from '@react-navigation/native';
 
 export type AuthRootStackParamList = {
   HomeControl: undefined;
@@ -6,10 +7,11 @@ export type AuthRootStackParamList = {
   Details: undefined;
   Settings: undefined;
   MyView: undefined;
+  ManageUsers: undefined;
 };
 type ScreenRouteProp = RouteProp<AuthRootStackParamList, 'HomeControl'>;
 
-type ScreenNavigationProp = StackNavigationProp<
+export type ScreenNavigationProp = StackNavigationProp<
   AuthRootStackParamList,
   'HomeControl'
 >;

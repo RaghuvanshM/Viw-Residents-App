@@ -21,5 +21,18 @@ const images = {
   tabIcon2: require('./tabIcon2.png'),
   tabIcon3: require('./tabIcon3.png'),
   tabIcon4: require('./tabIcon4.png'),
+  contacts: require('./images/contact.png'),
+  logout: require('./images/logout.png'),
+  appearance: require('./images/Appearance.png'),
+  manage: require('./images/Manage.png'),
+  help: require('./images/Help.png'),
+  privacy: require('./images/Privacy.png'),
+  intelligence: require('./images/Intelligence.png'),
+  notification: require('./images/Notification.png'),
+  backIcon: require('./images/backIcon.png'),
+  newUser: require('./images/newUser.png'),
+  userDetailsChecked: require('./images/userDetailsChecked.png'),
+  editUser: require('./images/editUser.png'),
+  contactBlue: require('./images/contactBlue.png'),
 };
 export default images;

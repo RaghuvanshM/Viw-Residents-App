@@ -5,6 +5,7 @@ import {Store} from './module/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
 import Router from './router';
+import {StatusBar} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import {Provider as PaperProvider} from 'react-native-paper';
 enableScreens();
@@ -19,6 +20,7 @@ const App = () => {
 
   return (
     <AppContext.Provider value={{}}>
+      <StatusBar translucent backgroundColor="transparent" />
       <PaperProvider>
         <Provider store={Store}>
           <PersistGate

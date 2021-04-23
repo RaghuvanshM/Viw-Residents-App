@@ -4,11 +4,10 @@ import Animated from 'react-native-reanimated';
 
 interface LabelProps {
   count: number;
-  size: number;
   isHorizontal: boolean;
   allColors: string[];
 }
-export default ({count, size, isHorizontal, allColors}: LabelProps) => {
+export default ({count, isHorizontal, allColors}: LabelProps) => {
   return (
     <View
       style={{
