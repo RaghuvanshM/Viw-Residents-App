@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingVertical: 20,
     backgroundColor: 'white',
-    width: '100%',
+    width: '95%',
   },
   cardContactWrapper: {flexDirection: 'row', width: '100%'},
   cardContactImageWrapper: {flex: 1, alignItems: 'center'},

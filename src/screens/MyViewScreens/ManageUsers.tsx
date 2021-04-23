@@ -1,12 +1,11 @@
 import React, {useRef} from 'react';
 import {StatusBar, StyleSheet, View, FlatList} from 'react-native';
 import {Props} from '../types/auth';
-import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import ManageUserCard from '../../components/ManagerUsers/ManageUserCard';
 import MyViewHeader from '../../components/MyViewHeader';
 
 const ManageUsers: React.FC<Props> = ({navigation}) => {
-  const taabHeight = useBottomTabBarHeight();
+  const tabHeight = 50;
   const usersData = useRef([
     {
       name: 'Emily Jackson',
@@ -57,10 +56,11 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
         headerTitle={'Manage Users'}
         hasAddIcon
       />
-      <View style={{width: '95%'}}>
+      <View style={{width: '100%'}}>
         <FlatList
           data={usersData.current}
           keyExtractor={(item, index) => item.email + '_index_' + index}
+          contentContainerStyle={{alignItems: "center"}}
           renderItem={({item, index}) => (
             <ManageUserCard
               name={item.name}
@@ -71,7 +71,7 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
                 console.log('On Edit Callrd ' + item);
               }}
               isLastElement={index === usersData.current.length - 1}
-              lastElementHeight={taabHeight}
+              lastElementHeight={tabHeight}
             />
           )}
         />
