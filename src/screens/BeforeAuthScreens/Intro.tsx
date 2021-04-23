@@ -6,22 +6,19 @@ import {
   Text,
   ImageBackground,
   SafeAreaView,
-  Dimensions,
+  StatusBar,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {
-  ScrollView,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {useDispatch} from 'react-redux';
-import {authUser} from '../module/actions';
-import images from '../assets/images';
+import {authUser} from '../../module/actions';
+import images from '../../assets/images';
+import {useKeyboardStatus} from '../../module/utils/useKeyboardStatus';
 
 const slides = [
   {
@@ -100,8 +97,11 @@ const theme = {
 };
 const Intro: FC = () => {
   const dispatch = useDispatch();
+  const isKeyboardOpen = useKeyboardStatus();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  console.log(email);
+  console.log(password);
   const onSigninPress = () => {
     dispatch(
       authUser({
@@ -118,30 +118,33 @@ const Intro: FC = () => {
         <View key={item.key} style={styles.slide2}>
           <View
             style={{
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               flex: 1,
-              marginVertical: hp('10%'),
             }}>
             <View>
               <Text style={styles.title2}>{item.title}</Text>
             </View>
             <View>
-              <Text style={styles.description2}>{item.description}</Text>
+              <Text style={[styles.description2, {marginVertical: 0}]}>
+                {item.description}
+              </Text>
             </View>
             <View>
               <Image
                 source={item.image1}
-                style={{height: 70, alignSelf: 'center'}}
+                style={{width: '100%', height: 96, alignSelf: 'center'}}
                 resizeMode="contain"
               />
             </View>
             <View>
-              <Text style={styles.description2}>{item.subtitle1}</Text>
+              <Text style={[styles.description2, {marginVertical: 0}]}>
+                {item.subtitle1}
+              </Text>
             </View>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'space-around',
                 marginHorizontal: wp('5%'),
               }}>
               <Image
@@ -150,7 +153,7 @@ const Intro: FC = () => {
                 resizeMode="contain"
               />
               <View>
-                <View style={{flexDirection: 'row'}}>
+                <View style={styles.checkboxList}>
                   <Image
                     source={item.check}
                     resizeMode="contain"
@@ -158,7 +161,7 @@ const Intro: FC = () => {
                   />
                   <Text style={{...styles.checktext}}>{item.weekly}</Text>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <View style={styles.checkboxList}>
                   <Image
                     source={item.check}
                     style={styles.checkimge}
@@ -166,7 +169,7 @@ const Intro: FC = () => {
                   />
                   <Text style={{...styles.checktext}}>{item.circadian}</Text>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <View style={styles.checkboxList}>
                   <Image
                     source={item.check}
                     style={styles.checkimge}
@@ -174,7 +177,7 @@ const Intro: FC = () => {
                   />
                   <Text style={{...styles.checktext}}>{item.wfhmod}</Text>
                 </View>
-                <View style={{flexDirection: 'row'}}>
+                <View style={styles.checkboxList}>
                   <Image
                     source={item.check}
                     style={styles.checkimge}
@@ -192,25 +195,28 @@ const Intro: FC = () => {
         <View key={item.key} style={styles.slide2}>
           <View
             style={{
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               flex: 1,
-              marginVertical: hp('10%'),
             }}>
             <View>
               <Text style={styles.title2}>{item.title} </Text>
             </View>
             <View>
-              <Text style={styles.description2}>{item.description}</Text>
+              <Text style={[styles.description2, {marginVertical: 0}]}>
+                {item.description}
+              </Text>
             </View>
             <View>
               <Image
                 source={item.image1}
-                style={{height: 70, alignSelf: 'center'}}
+                style={{height: 155, alignSelf: 'center'}}
                 resizeMode="contain"
               />
             </View>
             <View>
-              <Text style={styles.description2}>{item.subtitle1}</Text>
+              <Text style={[styles.description2, {marginVertical: 0}]}>
+                {item.subtitle1}
+              </Text>
             </View>
             <View>
               <Image
@@ -224,96 +230,106 @@ const Intro: FC = () => {
       );
     } else if (item.key == 4) {
       return (
-        <View key={item.key} style={styles.slide}>
+        <View key={item.key} style={styles.slide2}>
           <View
             style={{
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               flex: 1,
             }}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <View>
-                <Text style={styles.title2}>{item.title} </Text>
-              </View>
-              <View>
-                <Text style={styles.description2}>{item.description}</Text>
-              </View>
-              <View>
-                <View style={styles.formcontainer}>
-                  <Image
-                    source={item.image2}
-                    style={{...styles.image, marginTop: 10}}
-                    resizeMode="contain"
-                  />
-                  <View style={{marginTop: 10}}>
-                    <TextInput
-                      label="Email"
-                      mode="outlined"
-                      style={styles.textinput}
-                      onChangeText={text => setEmail(text)}
-                      theme={theme}
-                    />
-                    <TextInput
-                      label="Password"
-                      mode="outlined"
-                      style={styles.textinput}
-                      secureTextEntry={true}
-                      onChangeText={text => setPassword(text)}
-                      theme={theme}
-                    />
-                    <View
-                      style={{
-                        alignSelf: 'center',
-                        flexDirection: 'row',
-                        marginVertical: 10,
-                      }}>
-                      <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
-                      <TouchableOpacity>
-                        <Text
-                          style={{...styles.formsubtitle, fontWeight: 'bold'}}>
-                          {item.subtitle4}
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity
-                      style={styles.signinbutton}
-                      onPress={onSigninPress}>
-                      <Text style={styles.signtext}>SIGN IN</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-              <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-                <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
-                <TouchableOpacity>
-                  <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
-                    {item.subtitle2}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View>
+            <View>
+              <Text style={styles.title2}>{item.title} </Text>
+            </View>
+            <View>
+              <Text style={styles.description2}>{item.description}</Text>
+            </View>
+            <View>
+              <View style={styles.formcontainer}>
                 <Image
-                  source={item.image3}
-                  style={{height: 60, alignSelf: 'center'}}
+                  source={item.image2}
+                  style={{...styles.image, marginTop: 10}}
                   resizeMode="contain"
                 />
+                <View style={{marginTop: 10}}>
+                  <TextInput
+                    label="Email"
+                    mode="outlined"
+                    placeholderTextColor={'#333'}
+                    style={styles.textinput}
+                    onChangeText={text => setEmail(text)}
+                    theme={theme}
+                  />
+                  <TextInput
+                    label="Password"
+                    mode="outlined"
+                    style={styles.textinput}
+                    secureTextEntry={true}
+                    onChangeText={text => setPassword(text)}
+                    theme={theme}
+                  />
+                  <View
+                    style={{
+                      alignSelf: 'center',
+                      flexDirection: 'row',
+                      marginVertical: 10,
+                    }}>
+                    <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
+                    <TouchableOpacity>
+                      <Text
+                        style={{...styles.formsubtitle, fontWeight: 'bold'}}>
+                        {item.subtitle4}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                  <TouchableOpacity
+                    style={styles.signinbutton}
+                    onPress={onSigninPress}>
+                    <Text style={styles.signtext}>SIGN IN</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </ScrollView>
+            </View>
+            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+              <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
+              <TouchableOpacity>
+                <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
+                  {item.subtitle2}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       );
     }
     return (
       <View key={item.key} style={styles.slide}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
-        <Image style={styles.image} resizeMode="contain" source={item.image1} />
-        <Text style={styles.subtitle}>{item.subtitle1}</Text>
-        <Image style={styles.image} resizeMode="contain" source={item.image2} />
-        <Text style={styles.subtitle}>{item.subtitle2}</Text>
-        <Image style={styles.image} resizeMode="contain" source={item.image3} />
-        <Text style={styles.subtitle}>{item.subtitle3}</Text>
-        <Image style={styles.image} resizeMode="contain" source={item.image4} />
-        <Text style={styles.subtitle}>{item.subtitle4}</Text>
+        <View style={{justifyContent: 'space-around', flex: 1}}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.description}>{item.description}</Text>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={item.image1}
+          />
+          <Text style={styles.subtitle}>{item.subtitle1}</Text>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={item.image2}
+          />
+          <Text style={styles.subtitle}>{item.subtitle2}</Text>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={item.image3}
+          />
+          <Text style={styles.subtitle}>{item.subtitle3}</Text>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={item.image4}
+          />
+          <Text style={styles.subtitle}>{item.subtitle4}</Text>
+        </View>
       </View>
     );
   };
@@ -324,13 +340,26 @@ const Intro: FC = () => {
       style={{height: '100%'}}
       resizeMode="cover"
       source={images.vbgNature}>
-      <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          marginTop: StatusBar.currentHeight,
+        }}>
         <AppIntroSlider
           nextLabel={false}
           doneLabel={false}
           data={slides}
-          dotStyle={{backgroundColor: 'gray', marginTop: 15}}
-          activeDotStyle={{marginTop: 15, backgroundColor: '#fff'}}
+          dotStyle={{
+            backgroundColor: isKeyboardOpen
+              ? 'transparent'
+              : 'rgba(255,255,255, 0.4)',
+            marginTop: 15,
+          }}
+          activeDotStyle={{
+            marginTop: 15,
+            backgroundColor: isKeyboardOpen ? 'transparent' : '#fff',
+          }}
           renderItem={_renderItem}
           onDone={_onDone}
         />
@@ -374,7 +403,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSansRegular',
   },
   subtitle: {
     textAlign: 'center',
@@ -416,6 +445,7 @@ const styles = StyleSheet.create({
   },
   textinput: {
     width: wp('80%'),
+    height: 40,
     alignSelf: 'center',
     marginTop: 10,
   },
@@ -457,6 +487,10 @@ const styles = StyleSheet.create({
     color: 'rgb(52,101,127)',
     marginTop: 5,
     fontFamily: 'IBMPlexSans-Bold',
+  },
+  checkboxList: {
+    flexDirection: 'row',
+    marginVertical: 2.5,
   },
   donthaveacc: {
     lineHeight: 22,

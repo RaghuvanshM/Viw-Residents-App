@@ -1,8 +1,9 @@
-import React, {useRef, Fragment} from 'react';
+import React, {useRef, Fragment, useEffect} from 'react';
 import {
   Animated,
   Dimensions,
   Image,
+  StatusBar,
   StyleSheet,
   Text,
   View,
@@ -12,16 +13,29 @@ import {
   partlyCloudy,
   sunset,
   wellnessHeaderImg,
-} from '../constants/Images';
-import WelcomeCard from '../components/WelcomeCard';
-import RoomCard from '../components/RoomCard';
+} from '../../constants/Images';
+import WelcomeCard from '../../components/WelcomeCard';
+import RoomCard from '../../components/RoomCard';
+import {Props} from '../types/auth';
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const HomeControlScreen = () => {
+const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      console.log('I am focues in Homescreen');
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+      StatusBar.setBackgroundColor('transparent');
+    });
+
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -38,6 +52,11 @@ const HomeControlScreen = () => {
 
   return (
     <Fragment>
+      <StatusBar
+        barStyle={'light-content'}
+        translucent
+        backgroundColor="transparent"
+      />
       <Animated.ScrollView
         contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT}}
         scrollEventThrottle={16}
