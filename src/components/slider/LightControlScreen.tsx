@@ -77,7 +77,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View
-          style={{alignSelf: 'center', flexDirection: 'row', marginRight:wp('10%')}}>
+          style={{alignSelf: 'center', flexDirection: 'row', marginRight:wp('15%')}}>
           <View
             style={{justifyContent: 'space-between', marginVertical: hp('6%')}}>
             <Text style={styles.tinttext}>Dark</Text>

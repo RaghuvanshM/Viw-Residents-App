@@ -6,6 +6,7 @@ import CursorVertical from './CursorVertical';
 import Labels from './Labels';
 import {useState} from 'react';
 import StyleSheetFactory from './Stylesheet';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen'
 
 // const isHorizontal = false;
 interface SliderProps {
@@ -20,7 +21,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({
-  size = 600,
+  size =hp('60%'),
   isHorizontal = false,
   count = 4,
   backgroundColor = 'rgba(3,3,3,0.5)',
