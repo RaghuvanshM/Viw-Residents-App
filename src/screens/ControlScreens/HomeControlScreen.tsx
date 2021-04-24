@@ -6,6 +6,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {
@@ -126,12 +127,16 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           }
           buttonText="Got it"
         />
+        <TouchableOpacity
+        onPress={() => navigation.navigate('LightControl')}
+        >
         <RoomCard
           roomStatus={'Schedule'}
           controlStatus={'Clear'}
           roomSubText={'Weekday Wake Up'}
           roomName={'Living Room'}
         />
+        </TouchableOpacity>
         <RoomCard
           hasWakeupAlarm
           roomStatus={'Intelligence™'}

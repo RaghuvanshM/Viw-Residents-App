@@ -10,6 +10,7 @@ import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
+import LightControlScreen from '../components/slider/LightControlScreen'
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const StackNavigationScreens = () => {
     <Stack.Navigator screenOptions={{header: () => null}}>
       <Stack.Screen name="HomeControl" component={TabNavigation} />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="LightControl" component={LightControlScreen} />
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
