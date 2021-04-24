@@ -112,7 +112,7 @@ const Intro: FC = () => {
       }),
     );
   };
-  const _renderItem = ({item}) => {
+  const _renderItem = ({item}: any) => {
     if (item.key === 3) {
       return (
         <View key={item.key} style={styles.slide2}>
@@ -347,8 +347,8 @@ const Intro: FC = () => {
           marginTop: StatusBar.currentHeight,
         }}>
         <AppIntroSlider
-          nextLabel={false}
-          doneLabel={false}
+          nextLabel={""}
+          doneLabel={""}
           data={slides}
           dotStyle={{
             backgroundColor: isKeyboardOpen

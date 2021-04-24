@@ -61,3 +61,4 @@ buck-out/
 yarn.lock
 yark-error.log
 package-lock.json
+/ios/Podfile.lock

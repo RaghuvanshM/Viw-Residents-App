@@ -71,6 +71,11 @@
     "tslint-react-recommended": "^1.0.15",
     "typescript": "3.8.3"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn typecheck && yarn lint"
+    }
+  },
   "jest": {
     "preset": "react-native",
     "transform": {

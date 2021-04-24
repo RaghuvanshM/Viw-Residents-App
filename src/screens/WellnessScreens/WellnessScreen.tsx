@@ -75,7 +75,6 @@ const WellnessScreen = () => {
         />
 
         <Carousel
-          style="slides"
           itemsPerInterval={1}
           items={[
             {
