@@ -347,8 +347,8 @@ const Intro: FC = () => {
           marginTop: StatusBar.currentHeight,
         }}>
         <AppIntroSlider
-          nextLabel={""}
-          doneLabel={""}
+          nextLabel={''}
+          doneLabel={''}
           data={slides}
           dotStyle={{
             backgroundColor: isKeyboardOpen

@@ -9,7 +9,7 @@
     "test": "jest --coverage",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "lint:fix": "eslint --fix --ext .tsx,.ts,.js src/",
-    "lint": "eslint . && tslint -p \".\" -t stylish"
+    "lint": "eslint --ext .tsx,.ts,.js src/"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",

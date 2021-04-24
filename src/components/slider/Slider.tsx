@@ -61,11 +61,7 @@ const Slider: React.FC<SliderProps> = ({
   }
   return (
     <View style={style.container}>
-      <Labels
-        {...{count}}
-        isHorizontal={isHorizontal}
-        allColors={allColors}
-      />
+      <Labels {...{count}} isHorizontal={isHorizontal} allColors={allColors} />
       <CursorVertical
         size={size / count}
         {...{count}}
