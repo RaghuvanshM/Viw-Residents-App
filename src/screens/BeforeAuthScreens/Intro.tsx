@@ -113,7 +113,7 @@ const Intro: FC = () => {
     );
   };
   const _renderItem = ({item}) => {
-    if (item.key == 3) {
+    if (item.key === 3) {
       return (
         <View key={item.key} style={styles.slide2}>
           <View
@@ -190,7 +190,7 @@ const Intro: FC = () => {
           </View>
         </View>
       );
-    } else if (item.key == 2) {
+    } else if (item.key === 2) {
       return (
         <View key={item.key} style={styles.slide2}>
           <View
@@ -228,7 +228,7 @@ const Intro: FC = () => {
           </View>
         </View>
       );
-    } else if (item.key == 4) {
+    } else if (item.key === 4) {
       return (
         <View key={item.key} style={styles.slide2}>
           <View

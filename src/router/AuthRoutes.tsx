@@ -9,6 +9,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
+import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 
 const Stack = createStackNavigator();
 
@@ -58,7 +59,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Wellness"
-        component={SettingsScreen}
+        component={WellnessScreen}
         options={{
           tabBarLabel: 'Wellness',
           tabBarIcon: ({focused}) => (

@@ -8,11 +8,11 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import images from '../assets/images';
-import WelcomeCard from '../components/WelcomeCard';
-import WellnessCard from '../components/WellnessCard';
+import images from '../../assets/images';
+import WelcomeCard from '../../components/WelcomeCard';
+import WellnessCard from '../../components/WellnessCard';
 
-import Carousel from '../components/Carousel';
+import Carousel from '../../components/Carousel';
 // import RNSpeedometer from 'react-native-speedometer'
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.2;

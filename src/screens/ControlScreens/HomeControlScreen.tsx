@@ -1,4 +1,4 @@
-import React, { useRef, Fragment , useEffect} from 'react';
+import React, {useRef, Fragment, useEffect} from 'react';
 import {
   Animated,
   Dimensions,
@@ -58,11 +58,11 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
         backgroundColor="transparent"
       />
       <Animated.ScrollView
-        contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT }}
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT}}
         scrollEventThrottle={16}
         onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollAnim.current } } }],
-          { useNativeDriver: true },
+          [{nativeEvent: {contentOffset: {y: scrollAnim.current}}}],
+          {useNativeDriver: true},
         )}>
         <View
           style={{
@@ -73,12 +73,12 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
             paddingHorizontal: 10,
             justifyContent: 'space-between',
           }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
-              style={{ width: 20, height: 20, marginRight: 10 }}
+              style={{width: 20, height: 20, marginRight: 10}}
               source={sunset}
             />
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{flexDirection: 'row'}}>
               <Text
                 style={{
                   color: '#fff',
@@ -97,7 +97,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
               </Text>
             </View>
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text
               style={{
                 color: '#fff',
@@ -156,19 +156,19 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
       <Animated.View
         style={[
           styles.header,
-          { transform: [{ translateY: headerTranslateY() }] },
+          {transform: [{translateY: headerTranslateY()}]},
         ]}>
         <Animated.Image
           style={[
             styles.headerBackground,
             {
-              transform: [{ translateY: imageTranslateY() }],
+              transform: [{translateY: imageTranslateY()}],
             },
           ]}
           source={wellnessHeaderImg}
         />
 
-        <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
+        <View style={{position: 'absolute', bottom: 0, width: '100%'}}>
           <Image
             source={logo}
             style={{

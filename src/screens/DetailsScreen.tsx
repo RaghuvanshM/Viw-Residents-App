@@ -1,14 +1,14 @@
 import {Image, Text, View} from 'react-native';
 import React from 'react';
 import FadedComponent from '../components/FadedComponent';
-import images from "../assets/images";
+import images from '../assets/images';
 
 const DetailsScreen = () => {
   return (
     <View>
       <Image
         resizeMode="cover"
-        style={{height: 200, width: '100%', backgroundColor: "red"}}
+        style={{height: 200, width: '100%', backgroundColor: 'red'}}
         source={images.vbgNature}
       />
       <View
@@ -25,7 +25,7 @@ const DetailsScreen = () => {
             style={{
               padding: 10,
               flexDirection: 'row',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}>
             <Text style={{color: 'white'}}>Hellow</Text>
           </View>

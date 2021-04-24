@@ -60,15 +60,15 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
         <FlatList
           data={usersData.current}
           keyExtractor={(item, index) => item.email + '_index_' + index}
-          contentContainerStyle={{alignItems: "center"}}
+          contentContainerStyle={{alignItems: 'center'}}
           renderItem={({item, index}) => (
             <ManageUserCard
               name={item.name}
               email={item.email}
               checkedList={item.checkedList}
               isMainUser={item.isMainUser}
-              onEdit={item => {
-                console.log('On Edit Callrd ' + item);
+              onEdit={() => {
+                console.log('On Edit Called ' + item);
               }}
               isLastElement={index === usersData.current.length - 1}
               lastElementHeight={tabHeight}

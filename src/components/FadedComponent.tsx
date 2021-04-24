@@ -29,48 +29,49 @@ const FadedComponent: React.FC<FadedComponentProps> = ({
 
   useEffect(() => {
     let i;
+    const collections = [];
     if (direction === 'up') {
       setPixelsStyle({...pixelsStyle, bottom: 0});
-      collection.push(0);
+      collections.push(0);
       i = pi;
       while (i < 1) {
-        collection.push(i);
+        collections.push(i);
         i += pi;
       }
-      collection.push(1);
+      collections.push(1);
     } else {
       setPixelsStyle({...pixelsStyle, top: 0});
-      collection.push(1);
+      collections.push(1);
       i = 1.0;
       while (i > 0) {
-        collection.push(i);
+        collections.push(i);
         i -= pi;
       }
-      collection.push(0);
+      collections.push(0);
     }
-    let r = 0;
-    let g = 0;
-    let b = 0;
+    let red = 0;
+    let green = 0;
+    let blue = 0;
     const colors: any = hexToRgb(color);
     if (colors) {
-      r = colors.r;
-      g = colors.g;
-      b = colors.b;
+      red = colors.r;
+      green = colors.g;
+      blue = colors.b;
     }
-    setCollection(collection);
-    setR(r);
-    setG(g);
-    setB(b);
-  }, [direction]);
+    setCollection(collections);
+    setR(red);
+    setG(green);
+    setB(blue);
+  }, [direction, color, pixelsStyle]);
 
   const hexToRgb = (hex: string) => {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-      return r + r + g + g + b + b;
+    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, (m, red, green, blue) => {
+      return red + red + green + green + blue + blue;
     });
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
           r: parseInt(result[1], 16),

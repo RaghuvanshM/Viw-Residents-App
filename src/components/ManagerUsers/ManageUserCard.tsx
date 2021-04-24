@@ -43,11 +43,7 @@ const ManageUserCard: React.FC<ManageUserCardProps> = ({
             </Text>
           </View>
         </View>
-        <TouchableOpacity
-          onPress={() =>
-            onEdit && onEdit({name, email, isMainUser, checkedList})
-          }
-          style={{flex: 0.6}}>
+        <TouchableOpacity onPress={onEdit} style={{flex: 0.6}}>
           <Image source={images.editUser} style={styles.cardContactImage} />
         </TouchableOpacity>
       </View>

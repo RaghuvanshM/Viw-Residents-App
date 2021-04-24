@@ -1,15 +1,21 @@
-import React, { FC } from 'react';
-import { TouchableOpacity, Text, View, StyleSheet, Image } from 'react-native';
-import images from '../assets/images';
+import React, {FC} from 'react';
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  ImageSourcePropType,
+} from 'react-native';
 
 interface WelcomeCardProps {
   cardTitle: string;
   header?: boolean;
   cardDescription: string;
-  headerBgColor: string;
-  buttonBgColor: string;
+  headerBgColor?: string;
+  buttonBgColor?: string;
   buttonText: string;
-  imageUrl: Object,
+  imageUrl?: ImageSourcePropType;
 }
 const WelcomeCard: FC<WelcomeCardProps> = ({
   header = false,
@@ -23,10 +29,9 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
   return (
     <View style={styles.shadowWrap}>
       <View style={styles.card}>
-        {
-          imageUrl &&
-          <Image style={{ height: 150, width: "100%" }} source={imageUrl} />
-        }
+        {imageUrl && (
+          <Image style={{height: 150, width: '100%'}} source={imageUrl} />
+        )}
         <View
           style={{
             backgroundColor: headerBgColor ? headerBgColor : 'transparent',
@@ -47,7 +52,11 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
 
         <Text style={styles.description}>{cardDescription}</Text>
 
-        <TouchableOpacity style={[styles.btn, { backgroundColor: buttonBgColor || 'rgb(88,166,232)' }]}>
+        <TouchableOpacity
+          style={[
+            styles.btn,
+            {backgroundColor: buttonBgColor || 'rgb(88,166,232)'},
+          ]}>
           <Text style={styles.btnText}>{buttonText}</Text>
         </TouchableOpacity>
       </View>
