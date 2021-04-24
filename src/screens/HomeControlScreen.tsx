@@ -1,4 +1,4 @@
-import React, {useRef, Fragment} from 'react';
+import React, { useRef, Fragment } from 'react';
 import {
   Animated,
   Dimensions,
@@ -39,11 +39,11 @@ const HomeControlScreen = () => {
   return (
     <Fragment>
       <Animated.ScrollView
-        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT}}
+        contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT }}
         scrollEventThrottle={16}
         onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollAnim.current}}}],
-          {useNativeDriver: true},
+          [{ nativeEvent: { contentOffset: { y: scrollAnim.current } } }],
+          { useNativeDriver: true },
         )}>
         <View
           style={{
@@ -54,12 +54,12 @@ const HomeControlScreen = () => {
             paddingHorizontal: 10,
             justifyContent: 'space-between',
           }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Image
-              style={{width: 20, height: 20, marginRight: 10}}
+              style={{ width: 20, height: 20, marginRight: 10 }}
               source={sunset}
             />
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Text
                 style={{
                   color: '#fff',
@@ -78,11 +78,11 @@ const HomeControlScreen = () => {
               </Text>
             </View>
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text
               style={{
                 color: '#fff',
-                fontFamily: 'IBMPlexSans-Regular',
+                fontFamily: 'IBMPlexSans',
                 fontSize: 14,
               }}>
               Outside Air Quality{' '}
@@ -105,6 +105,7 @@ const HomeControlScreen = () => {
           cardDescription={
             'Your windows are automatically tinting based on our real-time intelligence to provide reduced glare. You can adjust your tint level by tapping on a room and then using the slider.'
           }
+          buttonText="Got it"
         />
         <RoomCard
           roomStatus={'Schedule'}
@@ -136,19 +137,19 @@ const HomeControlScreen = () => {
       <Animated.View
         style={[
           styles.header,
-          {transform: [{translateY: headerTranslateY()}]},
+          { transform: [{ translateY: headerTranslateY() }] },
         ]}>
         <Animated.Image
           style={[
             styles.headerBackground,
             {
-              transform: [{translateY: imageTranslateY()}],
+              transform: [{ translateY: imageTranslateY() }],
             },
           ]}
           source={wellnessHeaderImg}
         />
 
-        <View style={{position: 'absolute', bottom: 0, width: '100%'}}>
+        <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
           <Image
             source={logo}
             style={{
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
     fontSize: 14,
   },
   avatar: {

@@ -1,18 +1,19 @@
 import React from 'react';
-import {Image} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeControlScreen from '../screens/HomeControlScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import images from '../assets/images';
+import WellnessScreen from '../screens/WellnessScreen';
 
 const HomeStack = createStackNavigator();
 
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator screenOptions={{header: () => null}}>
+    <HomeStack.Navigator screenOptions={{ header: () => null }}>
       <HomeStack.Screen name="HomeControl" component={HomeControlScreen} />
       <HomeStack.Screen name="Details" component={DetailsScreen} />
     </HomeStack.Navigator>
@@ -34,8 +35,8 @@ const WellnessStack = createStackNavigator();
 
 const WellnessStackScreen = () => {
   return (
-    <WellnessStack.Navigator>
-      <WellnessStack.Screen name="Settings" component={SettingsScreen} />
+    <WellnessStack.Navigator screenOptions={{ header: () => null }}>
+      <WellnessStack.Screen name="wellnessHome" component={WellnessScreen} />
       <WellnessStack.Screen name="Details" component={DetailsScreen} />
     </WellnessStack.Navigator>
   );
@@ -48,8 +49,8 @@ export default function AuthRoutes() {
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
-          style: {backgroundColor: 'black'},
-          labelStyle: {fontSize: 12, fontFamily: 'IBMPlexSans-Medium'},
+          style: { backgroundColor: 'black' },
+          labelStyle: { fontSize: 12, fontFamily: 'IBMPlexSans-Medium' },
           inactiveTintColor: 'rgba(255,255,255, 0.3)',
           activeTintColor: '#fff',
         }}>
@@ -58,7 +59,7 @@ export default function AuthRoutes() {
           component={HomeStackScreen}
           options={{
             tabBarLabel: 'Control',
-            tabBarIcon: ({focused, color, size}) => (
+            tabBarIcon: ({ focused, color, size }) => (
               <Image
                 style={{
                   width: 55,
@@ -75,7 +76,7 @@ export default function AuthRoutes() {
           component={WellnessStackScreen}
           options={{
             tabBarLabel: 'Wellness',
-            tabBarIcon: ({focused, color, size}) => (
+            tabBarIcon: ({ focused, color, size }) => (
               <Image
                 style={{
                   width: 60,
@@ -93,7 +94,7 @@ export default function AuthRoutes() {
           component={SettingsStackScreen}
           options={{
             tabBarLabel: 'Schedule',
-            tabBarIcon: ({focused, color, size}) => (
+            tabBarIcon: ({ focused, color, size }) => (
               <Image
                 style={{
                   width: 60,
@@ -111,7 +112,7 @@ export default function AuthRoutes() {
           component={SettingsStackScreen}
           options={{
             tabBarLabel: 'My View',
-            tabBarIcon: ({focused, color, size}) => (
+            tabBarIcon: ({ focused, color, size }) => (
               <Image
                 style={{
                   width: 60,

@@ -1,22 +1,35 @@
-import React, {FC} from 'react';
-import {TouchableOpacity, Text, View, StyleSheet} from 'react-native';
+import React, { FC } from 'react';
+import { TouchableOpacity, Text, View, StyleSheet, Image } from 'react-native';
+import images from '../assets/images';
 
 interface WelcomeCardProps {
   cardTitle: string;
-  savings?: boolean;
+  header?: boolean;
   cardDescription: string;
+  headerBgColor: string;
+  buttonBgColor: string;
+  buttonText: string;
+  imageUrl: Object,
 }
 const WelcomeCard: FC<WelcomeCardProps> = ({
-  savings = false,
+  header = false,
   cardTitle,
   cardDescription,
+  headerBgColor,
+  buttonBgColor,
+  buttonText,
+  imageUrl,
 }) => {
   return (
     <View style={styles.shadowWrap}>
       <View style={styles.card}>
+        {
+          imageUrl &&
+          <Image style={{ height: 150, width: "100%" }} source={imageUrl} />
+        }
         <View
           style={{
-            backgroundColor: savings ? 'rgb(135,191,43)' : 'transparent',
+            backgroundColor: headerBgColor ? headerBgColor : 'transparent',
             marginBottom: 5,
             paddingVertical: 5,
           }}>
@@ -24,8 +37,8 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
             style={[
               styles.title,
               {
-                color: savings ? '#fff' : 'rgb(52,101,127)',
-                paddingTop: !savings ? 10 : 0,
+                color: headerBgColor ? '#fff' : 'rgb(52,101,127)',
+                paddingTop: !header ? 10 : 0,
               },
             ]}>
             {cardTitle}
@@ -34,8 +47,8 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
 
         <Text style={styles.description}>{cardDescription}</Text>
 
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.btnText}>Got it</Text>
+        <TouchableOpacity style={[styles.btn, { backgroundColor: buttonBgColor || 'rgb(88,166,232)' }]}>
+          <Text style={styles.btnText}>{buttonText}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,7 +82,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
     color: 'rgb(52,101,127)',
     textAlign: 'center',
     paddingHorizontal: 20,
@@ -77,7 +90,6 @@ const styles = StyleSheet.create({
   btn: {
     alignSelf: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgb(88,166,232)',
     borderRadius: 50,
     paddingHorizontal: 30,
     paddingVertical: 10,

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     color: 'white',
-    fontFamily: 'GothamMedium',
+    fontFamily: 'Gotham-Medium',
   },
   taptostarttext: {
     fontSize: 20,

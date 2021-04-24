@@ -3,7 +3,10 @@ const images = {
   blueDarkBtn: require('./images/btnDark.png'),
   blueLightBtn: require('./images/btnLight.png'),
   blueMediumBtn: require('./images/btnMedium.png'),
+  arrowRight: require('./images/arrow-right.png'),
   sun: require('./images/sun.png'),
+  sunset: require('./images/sunset.png'),
+  partlyCloudy: require('./images/partlyCloudy.png'),
   landscape: require('./images/landscape.png'),
   sunGlasses: require('./images/sun-glasses.png'),
   highTemperature: require('./images/high-temperature.png'),
@@ -16,10 +19,16 @@ const images = {
   calendar: require('./images/calendar.png'),
   check: require('./images/check.png'),
   viewLogo: require('./images/logo-view-logo.png'),
-  vbgNature: require('./images/vbg-nature.png'),
+  viewLogoWhite: require('./images/logo-view-logo-white.png'),
   tabIcon1: require('./tabIcon1.png'),
   tabIcon2: require('./tabIcon2.png'),
   tabIcon3: require('./tabIcon3.png'),
   tabIcon4: require('./tabIcon4.png'),
+  
+  //landscape images
+  vbgNature: require('./images/vbg-nature.png'),
+  wellnessHeader: require('./images/wellnessHeader.png'),
+  femaleHikerBg: require('./images/female-hiker-at-dolly-sods-wilderness--west-virgin.png'),
+  femaleHikerBg2: require('./images/pexels-noelle-otto.png'),
 };
 export default images;
