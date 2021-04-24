@@ -66,9 +66,9 @@ const Carousel: React.FC<CarouselProps> = ({items, itemsPerInterval}) => {
         scrollEventThrottle={200}
         pagingEnabled
         decelerationRate="fast">
-        {items.map(item => {
+        {items.map((item, index) => {
           return (
-            <View style={styles.slide}>
+            <View style={styles.slide} key={index}>
               <Text style={styles.slideTitle}>{item.title}</Text>
               <Text style={{...styles.slideText}}>{item.text}</Text>
             </View>
@@ -125,13 +125,13 @@ const styles = StyleSheet.create({
     fontFamily: 'DesertDogHmk',
     color: 'rgb(96, 96, 96)',
     marginBottom: 0,
-    fontSize: 32,
+    fontSize: 37,
   },
   slideText: {
     width: '100%',
     textAlign: 'center',
     color: 'rgb(96, 96, 96)',
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: 'IBMPlexSans',
   },
   stat: {

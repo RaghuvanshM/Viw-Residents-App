@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   backIcon: {height: 28, width: 28, resizeMode: 'contain'},
   backText: {
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
     fontSize: 18,
     color: 'rgb(52,101,127)',
   },

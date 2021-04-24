@@ -210,8 +210,9 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     paddingVertical: 5,
-    backgroundColor: 'rgba(0,0,0,0.4)',
     width: '100%',
+    position: 'absolute',
+    bottom: '5%',
   },
   card: {
     flexDirection: 'row',

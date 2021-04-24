@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import {Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import images from '../assets/images';
 interface WellnessCardProps {}
 const WellnessCard: FC<WellnessCardProps> = ({}) => {
@@ -17,6 +17,7 @@ const WellnessCard: FC<WellnessCardProps> = ({}) => {
           <Text
             style={{
               padding: 10,
+              fontFamily: 'SFProDisplay-Bold',
               backgroundColor: 'rgb(171,65,221)',
               color: '#fff',
               fontSize: 20,
@@ -37,10 +38,12 @@ const WellnessCard: FC<WellnessCardProps> = ({}) => {
                 <Text style={styles.rowSubtitle}>Moderate 7 mile hike</Text>
               </View>
             </View>
-            <Image
-              style={{tintColor: '#fff', width: 14, height: 14}}
-              source={images.arrowRight}
-            />
+            <TouchableOpacity>
+              <Image
+                style={{tintColor: '#fff', height: 14}}
+                source={images.arrowRight}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -66,12 +69,12 @@ const styles = StyleSheet.create({
   rowTitle: {
     color: '#fff',
     fontSize: 16,
-    fontFamily: 'IBMPlexSans',
+    fontFamily: 'SFProDisplay-Bold',
   },
   rowSubtitle: {
-    color: 'rgb(144, 194, 221)',
+    color: 'rgba(144, 194, 221, 0.6)',
     fontSize: 14,
-    fontFamily: 'IBMPlexSans',
+    fontFamily: 'SFProDisplay-Regular',
   },
   shadowWrap: {
     shadowColor: '#000',

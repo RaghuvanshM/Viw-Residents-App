@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   simpleUser: {
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
     fontSize: 14,
     color: 'rgb(106,187,255)',
     marginVertical: 2,

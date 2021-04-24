@@ -29,9 +29,15 @@ const FadedComponent: React.FC<FadedComponentProps> = ({
 
   useEffect(() => {
     let i;
+    const pStyle = {
+      width: '100%',
+      position: 'absolute',
+      height,
+      flexDirection: 'column',
+    };
     const collections = [];
     if (direction === 'up') {
-      setPixelsStyle({...pixelsStyle, bottom: 0});
+      setPixelsStyle({...pStyle, bottom: 0});
       collections.push(0);
       i = pi;
       while (i < 1) {
@@ -40,7 +46,7 @@ const FadedComponent: React.FC<FadedComponentProps> = ({
       }
       collections.push(1);
     } else {
-      setPixelsStyle({...pixelsStyle, top: 0});
+      setPixelsStyle({...pStyle, top: 0});
       collections.push(1);
       i = 1.0;
       while (i > 0) {
@@ -62,7 +68,7 @@ const FadedComponent: React.FC<FadedComponentProps> = ({
     setR(red);
     setG(green);
     setB(blue);
-  }, [direction, color, pixelsStyle]);
+  }, [direction, color, height]);
 
   const hexToRgb = (hex: string) => {
     // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
