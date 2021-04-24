@@ -73,7 +73,7 @@ const RoomCard: FC<RoomCardProps> = ({
                       style={{
                         color: '#fff',
                         fontSize: 14,
-                        fontFamily: 'IBMPlexSans-Regular',
+                        fontFamily: 'IBMPlexSans',
                       }}>
                       {roomStatus + ' '}
                     </Text>
@@ -95,7 +95,7 @@ const RoomCard: FC<RoomCardProps> = ({
                           ? 'rgb(170, 170, 170)'
                           : 'rgb(255,255,255)',
                       fontSize: 12,
-                      fontFamily: 'IBMPlexSans-Regular',
+                      fontFamily: 'IBMPlexSans',
                     }}>
                     {roomSubText}
                   </Text>
@@ -132,7 +132,7 @@ const RoomCard: FC<RoomCardProps> = ({
               style={{
                 color: 'gray',
                 fontSize: 16,
-                fontFamily: 'IBMPlexSans-Regular',
+                fontFamily: 'IBMPlexSans',
               }}>
               Schedules
             </Text>
@@ -147,7 +147,7 @@ const RoomCard: FC<RoomCardProps> = ({
                 style={{
                   color: 'rgb(52,101,127)',
                   fontSize: 14,
-                  fontFamily: 'IBMPlexSans-Regular',
+                  fontFamily: 'IBMPlexSans',
                 }}>
                 + Add Schedule
               </Text>

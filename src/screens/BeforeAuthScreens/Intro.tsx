@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSansRegular',
+    fontFamily: 'IBMPlexSans',
   },
   subtitle: {
     textAlign: 'center',
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 18,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
   },
 
   image2: {
@@ -498,6 +498,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans-Regular',
+    fontFamily: 'IBMPlexSans',
   },
 });
