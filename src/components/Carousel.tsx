@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Platform} from 'react-native';
 
 interface CarouselItemProps {
   title: string;
@@ -132,7 +132,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'rgb(96, 96, 96)',
     fontSize: 16,
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
   stat: {
     paddingHorizontal: 20,
@@ -153,7 +156,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#8cb2bc',
     fontSize: 15,
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
   statHold: {
     width: '100%',

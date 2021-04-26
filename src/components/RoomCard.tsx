@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {Switch} from 'react-native';
+import {Platform, Switch} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {Text, View, ImageBackground, Image, StyleSheet} from 'react-native';
 import {sunset, tint1, arrowRight, cardimage1} from '../constants/Images';
@@ -73,7 +73,10 @@ const RoomCard: FC<RoomCardProps> = ({
                       style={{
                         color: '#fff',
                         fontSize: 14,
-                        fontFamily: 'IBMPlexSans',
+                        ...Platform.select({
+                          ios: {fontFamily: 'IBMPlexSans'},
+                          android: {fontFamily: 'IBMPlexSans-Regular'},
+                        }),
                       }}>
                       {roomStatus + ' '}
                     </Text>
@@ -95,7 +98,10 @@ const RoomCard: FC<RoomCardProps> = ({
                           ? 'rgb(170, 170, 170)'
                           : 'rgb(255,255,255)',
                       fontSize: 12,
-                      fontFamily: 'IBMPlexSans',
+                      ...Platform.select({
+                        ios: {fontFamily: 'IBMPlexSans'},
+                        android: {fontFamily: 'IBMPlexSans-Regular'},
+                      }),
                     }}>
                     {roomSubText}
                   </Text>
@@ -132,7 +138,10 @@ const RoomCard: FC<RoomCardProps> = ({
               style={{
                 color: 'gray',
                 fontSize: 16,
-                fontFamily: 'IBMPlexSans',
+                ...Platform.select({
+                  ios: {fontFamily: 'IBMPlexSans'},
+                  android: {fontFamily: 'IBMPlexSans-Regular'},
+                }),
               }}>
               Schedules
             </Text>

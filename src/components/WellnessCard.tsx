@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     margin: 10,
+    marginHorizontal: 15,
   },
   bottomRow: {
     justifyContent: 'space-between',

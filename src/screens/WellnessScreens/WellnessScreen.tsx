@@ -1,19 +1,25 @@
 import React, {Fragment, useEffect, useRef} from 'react';
 import {
   Dimensions,
-  Image,
   StyleSheet,
   Text,
   View,
   StatusBar,
   Animated,
+  Platform,
 } from 'react-native';
 import WelcomeCard from '../../components/WelcomeCard';
 
 import {Props} from '../types/auth';
 import images from '../../assets/images';
 import WellnessCard from '../../components/WellnessCard';
-import Carousel from '../../components/Carousel';
+import AnimatedCircle from '../../components/AnimatedCircle';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+import LinearGradient from 'react-native-linear-gradient';
+import AppIntroSlider from 'react-native-app-intro-slider';
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
@@ -24,7 +30,6 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('I am focues in Homescreen');
       StatusBar.setBarStyle('light-content');
       StatusBar.setTranslucent(true);
       StatusBar.setBackgroundColor('transparent');
@@ -37,6 +42,13 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
       outputRange: [0, -HEADER_SCROLL_DISTANCE],
+      extrapolate: 'clamp',
+    });
+
+  const sunsetTextAndImageTranslateY = () =>
+    scrollAnim.current.interpolate({
+      inputRange: [0, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, -HEADER_SCROLL_DISTANCE + hp('15%')],
       extrapolate: 'clamp',
     });
 
@@ -68,6 +80,74 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
           [{nativeEvent: {contentOffset: {y: scrollAnim.current}}}],
           {useNativeDriver: true},
         )}>
+        <View
+          style={{
+            paddingVertical: 20,
+            paddingHorizontal: '5%',
+            backgroundColor: '#FFF',
+          }}>
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Text
+              style={{
+                fontSize: 18,
+                paddingVertical: 20,
+                color: 'rgba(23,23,23, 0.5)',
+                ...Platform.select({
+                  ios: {fontFamily: 'IBMPlexSans'},
+                  android: {fontFamily: 'IBMPlexSans-Regular'},
+                }),
+              }}>
+              The air outside is Great!
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                marginBottom: hp('7%'),
+              }}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: 'rgb(23,23,23)',
+                  fontFamily: 'IBMPlexSans-Bold',
+                }}>
+                AQI(US)
+              </Text>
+              <Text>AQI(US)</Text>
+            </View>
+          </View>
+          <AnimatedCircle
+            airQuality={500}
+            speed={2}
+            radius={wp('35%')}
+            minNumber={0}
+            maxNumber={500}
+          />
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <Text
+              style={{
+                fontSize: 25,
+                paddingVertical: 20,
+                color: 'rgb(23,23,23)',
+                fontFamily: 'IBMPlexSans-Bold',
+              }}>
+              Good Air Quality
+            </Text>
+            <Text
+              style={{
+                fontSize: 22,
+                color: 'rgb(23,23,23)',
+                ...Platform.select({
+                  ios: {fontFamily: 'IBMPlexSans'},
+                  android: {fontFamily: 'IBMPlexSans-Regular'},
+                }),
+              }}>
+              Same as usual
+            </Text>
+          </View>
+        </View>
         <WellnessCard />
         <WelcomeCard
           imageUrl={images.femaleHikerBg2}
@@ -81,31 +161,53 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
           buttonText="Learn More"
         />
 
-        <Carousel
-          itemsPerInterval={1}
-          items={[
-            {
-              title: 'Breathe',
-              text:
-                'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
-            },
-            {
-              title: 'Breathe',
-              text:
-                'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
-            },
-            {
-              title: 'Breathe',
-              text:
-                'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
-            },
-            {
-              title: 'Breathe',
-              text:
-                'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
-            },
-          ]}
-        />
+        <View style={{paddingBottom: 45}}>
+          <AppIntroSlider
+            nextLabel={''}
+            doneLabel={''}
+            keyExtractor={(item, index) => 'carousel_index_' + index}
+            data={[
+              {
+                title: 'Breathe',
+                text:
+                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+              },
+              {
+                title: 'Breathe',
+                text:
+                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+              },
+              {
+                title: 'Breathe',
+                text:
+                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+              },
+              {
+                title: 'Breathe',
+                text:
+                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+              },
+            ]}
+            dotStyle={{
+              borderColor: 'rgba(180,180,180, 1)',
+              borderWidth: 1,
+              marginTop: 85,
+            }}
+            activeDotStyle={{
+              marginTop: 85,
+              backgroundColor: 'rgba(96,96,96, 1)',
+            }}
+            renderItem={({item, index}: any) => {
+              return (
+                <View style={styles.slide} key={index + '_carousel'}>
+                  <Text style={styles.slideTitle}>{item.title}</Text>
+                  <Text style={{...styles.slideText}}>{item.text}</Text>
+                </View>
+              );
+            }}
+            onDone={() => {}}
+          />
+        </View>
       </Animated.ScrollView>
       <Animated.View
         style={[
@@ -120,7 +222,17 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
           source={images.wellnessHeader}
         />
 
-        <View style={{position: 'absolute', height: '100%', width: '100%'}}>
+        <LinearGradient
+          colors={[
+            'transparent',
+            'transparent',
+            'transparent',
+            'transparent',
+            'transparent',
+            'transparent',
+            'rgba(255,255,255, 1)',
+          ]}
+          style={{position: 'absolute', height: '100%', width: '100%'}}>
           <View
             style={{
               justifyContent: 'center',
@@ -166,26 +278,79 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
                 alignSelf: 'center',
                 flexDirection: 'row',
                 alignItems: 'center',
+                width: '100%',
+                justifyContent: 'space-around',
               }}>
-              <Image
-                source={images.sunset}
+              <View
                 style={{
-                  marginRight: 10,
-                  width: 30,
-                  height: 30,
-                  resizeMode: 'contain',
-                }}
-              />
-              <View style={{flexDirection: 'row'}}>
-                <Text style={styles.headerText}>Sunset at </Text>
-                <Text
-                  style={[styles.headerText, {fontFamily: 'IBMPlexSans-Bold'}]}>
-                  7:21pm
-                </Text>
+                  alignSelf: 'center',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <Animated.Image
+                  source={images.sunset}
+                  style={[
+                    {
+                      marginRight: 10,
+                      width: 30,
+                      height: 30,
+                      resizeMode: 'contain',
+                    },
+                    {
+                      transform: [{translateY: sunsetTextAndImageTranslateY()}],
+                    },
+                  ]}
+                />
+                <Animated.View
+                  style={[
+                    {flexDirection: 'row'},
+                    {
+                      transform: [{translateY: sunsetTextAndImageTranslateY()}],
+                    },
+                  ]}>
+                  <Text style={styles.headerText}>Sunset at </Text>
+                  <Text
+                    style={[
+                      styles.headerText,
+                      {fontFamily: 'IBMPlexSans-Bold'},
+                    ]}>
+                    7:21pm
+                  </Text>
+                </Animated.View>
               </View>
+              <Animated.View
+                style={[
+                  {
+                    flexDirection: 'row',
+                    alignSelf: 'center',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  },
+                  {
+                    transform: [{translateY: sunsetTextAndImageTranslateY()}],
+                  },
+                ]}>
+                <Animated.Text style={styles.outsideAirQualityText}>
+                  Outside Air Quality{' '}
+                </Animated.Text>
+                <Animated.Image
+                  source={images.greenDot}
+                  style={[
+                    {
+                      marginRight: 10,
+                      width: 14,
+                      height: 14,
+                      resizeMode: 'contain',
+                    },
+                    {
+                      transform: [{translateY: sunsetTextAndImageTranslateY()}],
+                    },
+                  ]}
+                />
+              </Animated.View>
             </View>
           </View>
-        </View>
+        </LinearGradient>
       </Animated.View>
     </Fragment>
   );
@@ -200,7 +365,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     width: '100%',
     position: 'absolute',
-    bottom: '8%',
+    bottom: '15%',
   },
   card: {
     flexDirection: 'row',
@@ -271,7 +436,47 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 14.1,
     fontFamily: 'IBMPlexSans-Light',
+  },
+  outsideAirQualityText: {
+    color: '#fff',
+    fontSize: 14.1,
+    fontFamily: 'IBMPlexSans-Regular',
+  },
+  slide: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    flexBasis: '100%',
+    flex: 1,
+    maxWidth: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    minHeight: 150,
+  },
+  slideTitle: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontFamily: 'DesertDogHmk',
+    color: 'rgb(96, 96, 96)',
+    marginBottom: 0,
+    fontSize: 37,
+  },
+  slideText: {
+    width: '100%',
+    textAlign: 'center',
+    color: 'rgb(96, 96, 96)',
+    fontSize: 16,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'IBMPlexSans',
+      },
+      android: {
+        fontFamily: 'IBMPlexSans-Regular',
+      },
+    }),
   },
 });

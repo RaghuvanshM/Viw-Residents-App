@@ -1,53 +1,52 @@
 import React, {useRef} from 'react';
-import {StatusBar, StyleSheet, View, FlatList} from 'react-native';
+import {StatusBar, StyleSheet, View, FlatList, Platform} from 'react-native';
 import {Props} from '../types/auth';
-import ManageUserCard from '../../components/ManagerUsers/ManageUserCard';
 import MyViewHeader from '../../components/MyViewHeader';
+import AddEditUser from '../../components/ManagerUsers/AddEditUser';
+import ManagerUserFlatListComponent from '../../components/ManagerUsers/ManagerUserFlatListComponent';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  getShowAddUserManagement,
+  getUserManagementList,
+} from '../../module/selectors';
+import {
+  addUserManagement,
+  editUserManagement,
+  toggleAddNewUser,
+} from '../../module/actions';
 
 const ManageUsers: React.FC<Props> = ({navigation}) => {
   const tabHeight = 50;
-  const usersData = useRef([
-    {
-      name: 'Emily Jackson',
-      email: 'emilyjackson298@gmail.com',
-      checkedList: [
-        'Add and manage users',
-        'Create and edit schedules',
-        'Override windows',
-      ],
-      isMainUser: true,
-    },
-    {
-      name: 'Will Smith',
-      email: 'willsmith99@gmail.com',
-      checkedList: ['Create and edit schedules', 'Override windows'],
-      isMainUser: false,
-    },
-    {
-      name: 'Sara Jackson',
-      email: 'saraJJJJJ99@gmail.com',
-      checkedList: ['Create and edit schedules', 'Override windows'],
-      isMainUser: false,
-    },
-    {
-      name: 'Sara Jackson',
-      email: 'saraJJJJ9@gmail.com',
-      checkedList: ['Create and edit schedules', 'Override windows'],
-      isMainUser: false,
-    },
-    {
-      name: 'Sara Jackson',
-      email: 'saraJJJJ9@gmail.com',
-      checkedList: ['Create and edit schedules', 'Override windows'],
-      isMainUser: false,
-    },
-    {
-      name: 'Sara Jackson',
-      email: 'saraJJ99@gmail.com',
-      checkedList: ['Create and edit schedules', 'Override windows'],
-      isMainUser: false,
-    },
-  ]);
+  const usersData = useSelector(getUserManagementList);
+  const showAdd = useSelector(getShowAddUserManagement);
+  const newUser = useRef({
+    name: '',
+    email: '',
+    checkedList: [
+      {
+        label: 'Add and manage users',
+        key: 'addAndManageUser',
+        value: false,
+      },
+      {
+        label: 'Create and edit schedules',
+        key: 'createAndEditSchedules',
+        value: false,
+      },
+      {
+        label: 'Override windows',
+        key: 'overrideAllWindows',
+        value: false,
+      },
+      {
+        label: 'Configure apartment',
+        key: 'configApartments',
+        value: false,
+      },
+    ],
+    isMainUser: false,
+  });
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.base}>
@@ -55,24 +54,33 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
         navigation={navigation}
         headerTitle={'Manage Users'}
         hasAddIcon
+        addIconPress={() => dispatch(toggleAddNewUser(true))}
       />
       <View style={{width: '100%'}}>
         <FlatList
-          data={usersData.current}
+          data={usersData}
           keyExtractor={(item, index) => item.email + '_index_' + index}
           contentContainerStyle={{alignItems: 'center'}}
           renderItem={({item, index}) => (
-            <ManageUserCard
-              name={item.name}
-              email={item.email}
-              checkedList={item.checkedList}
-              isMainUser={item.isMainUser}
-              onEdit={() => {
-                console.log('On Edit Called ' + item);
-              }}
-              isLastElement={index === usersData.current.length - 1}
-              lastElementHeight={tabHeight}
-            />
+            <>
+              {index === 0 && showAdd && (
+                <AddEditUser
+                  isCreate={true}
+                  userData={newUser.current}
+                  toggleAddEdit={() => dispatch(toggleAddNewUser(!showAdd))}
+                  saveUserData={(data: any) =>
+                    dispatch(addUserManagement(data))
+                  }
+                />
+              )}
+              <ManagerUserFlatListComponent
+                userData={item}
+                key={index}
+                saveUserData={(data: any) => dispatch(editUserManagement(data))}
+                isLastElement={index === usersData.length - 1}
+                tabHeight={tabHeight}
+              />
+            </>
           )}
         />
       </View>
@@ -103,8 +111,11 @@ const styles = StyleSheet.create({
   },
   backIcon: {height: 28, width: 28, resizeMode: 'contain'},
   backText: {
-    fontFamily: 'IBMPlexSans',
     fontSize: 18,
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
     color: 'rgb(52,101,127)',
   },
   headerTitle: {flexDirection: 'row'},

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import images from '../../assets/images';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
@@ -30,5 +30,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
-  checkedText: {fontFamily: 'IBMPlexSans-Regular', fontSize: 14},
+  checkedText: {
+    fontSize: 14,
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
+  },
 });

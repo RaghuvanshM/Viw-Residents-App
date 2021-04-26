@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   ImageSourcePropType,
+  Platform,
 } from 'react-native';
 
 interface WelcomeCardProps {
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
     margin: 10,
+    marginHorizontal: 15,
     backgroundColor: '#fff',
     // paddingHorizontal: 20,
     overflow: 'hidden',
@@ -91,7 +93,10 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
     color: 'rgb(52,101,127)',
     textAlign: 'center',
     paddingHorizontal: 20,
