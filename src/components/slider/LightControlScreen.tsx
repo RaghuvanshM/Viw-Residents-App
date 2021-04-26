@@ -17,20 +17,20 @@ import {
 } from 'react-native-responsive-screen';
 interface Props {
   navigation: any;
-  data: any;
 }
-const LightControl: React.FC<Props> = ({navigation, data}) => {
+const LightControl: React.FC<Props> = ({navigation}) => {
   const route: any = useRoute();
+  console.log(route)
   const [selectedIndex, setSelectedIndex] = useState(
-    route.params.controlStatus === 'Clear'
+    route.params.roomControl === 'Clear'
       ? 3
-      : route.params.controlStatus === 'Light'
+      : route.params.roomControl === 'Light'
       ? 2
-      : route.params.controlStatus === 'Medium'
+      : route.params.roomControl === 'Medium'
       ? 1
       : 0,
   );
-  const [tintText, setTintText] = useState(route.params.roomStatus);
+  const [tintText, setTintText] = useState(route.params.roomControlStatus);
   return (
     <ImageBackground source={image.vbgNature} style={{height: '100%'}}>
       <View
@@ -96,7 +96,7 @@ const LightControl: React.FC<Props> = ({navigation, data}) => {
             alignSelf: 'center',
             flexDirection: 'row',
             marginRight: wp('15%'),
-            marginTop:10
+            marginTop: 10,
           }}>
           <View
             style={{justifyContent: 'space-between', marginVertical: hp('5%')}}>
@@ -163,7 +163,7 @@ const LightControl: React.FC<Props> = ({navigation, data}) => {
           </Slider>
         </View>
         <View>
-          {tintText == 'Override' ? (
+          {tintText === 'Override' ? (
             <View>
               <Image
                 source={image.overridegreen}
@@ -176,37 +176,30 @@ const LightControl: React.FC<Props> = ({navigation, data}) => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   marginHorizontal: wp('10%'),
-                  marginRight:30
+                  marginRight: 30,
                 }}>
-                    <TouchableOpacity
-                 style={{alignSelf:'center'}}
-                >
-                <Image
-                  source={image.minusbutton}
-                  resizeMode="contain"
-                  style={{alignSelf: 'center', height: 30}}
-                />
+                <TouchableOpacity style={{alignSelf: 'center'}}>
+                  <Image
+                    source={image.minusbutton}
+                    resizeMode="contain"
+                    style={{alignSelf: 'center', height: 30}}
+                  />
                 </TouchableOpacity>
                 <Text style={styles.timing}>1:00</Text>
-                <TouchableOpacity
-                 style={{alignSelf:'center'}}
-                >
-                <Image
-                  source={image.plusbutton}
-                  resizeMode="contain"
-                  style={{height: 30}}
-                />
+                <TouchableOpacity style={{alignSelf: 'center'}}>
+                  <Image
+                    source={image.plusbutton}
+                    resizeMode="contain"
+                    style={{height: 30}}
+                  />
                 </TouchableOpacity>
               </View>
               <TouchableOpacity
                 onPress={() => {
-                 setTintText('Intelligence™')
+                  setTintText('Intelligence™');
                 }}
                 style={styles.cancelbutton}>
-                <Text
-                  style={styles.canceltext}>
-                  cancel
-                </Text>
+                <Text style={styles.canceltext}>cancel</Text>
               </TouchableOpacity>
             </View>
           ) : (
@@ -216,7 +209,9 @@ const LightControl: React.FC<Props> = ({navigation, data}) => {
                 resizeMode="contain"
                 style={{alignSelf: 'center', marginTop: 20}}
               />
-              <Text style={{...styles.intelligencetext,marginTop:20}}>{tintText}</Text>
+              <Text style={{...styles.intelligencetext, marginTop: 20}}>
+                {tintText}
+              </Text>
               <Text style={styles.Preventingtext}>
                 Preventing morning glare
               </Text>
@@ -224,16 +219,14 @@ const LightControl: React.FC<Props> = ({navigation, data}) => {
           )}
         </View>
         <TouchableOpacity style={styles.touchableButton}>
-            <ArrowBack
-              name="image"
-              size={20}
-              color="white"
-              style={{ marginBottom: 10}}
-            />
-           
-          </TouchableOpacity>
+          <ArrowBack
+            name="image"
+            size={20}
+            color="white"
+            style={{marginBottom: 10}}
+          />
+        </TouchableOpacity>
       </View>
-  
     </ImageBackground>
   );
 };
@@ -259,8 +252,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'IBMPlexSans-Bold',
     alignSelf: 'center',
-    marginTop:10,
-  marginLeft:10
+    marginTop: 10,
+    marginLeft: 10,
   },
   Preventingtext: {
     fontSize: 18,
@@ -281,7 +274,7 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Bold',
     marginVertical: 10,
     alignSelf: 'center',
-    marginLeft:40
+    marginLeft: 40,
   },
   cancelbutton: {
     width: 170,
@@ -290,10 +283,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignSelf: 'center',
   },
-  canceltext:{fontSize: 20, 
-    color: 'white', 
+  canceltext: {
+    fontSize: 20,
+    color: 'white',
     alignSelf: 'center',
-    fontFamily:'IBMPlexSans-Bold',
-    padding:8
-  }
+    fontFamily: 'IBMPlexSans-Bold',
+    padding: 8,
+  },
 });

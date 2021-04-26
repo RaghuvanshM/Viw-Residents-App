@@ -126,7 +126,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           }
           buttonText="Got it"
         />
-        
+
         <RoomCard
           roomStatus={'Schedule'}
           controlStatus={'Clear'}
@@ -139,7 +139,6 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           controlStatus={'Light'}
           roomSubText={'Preventing morning glare'}
           roomName={'Living Room'}
-          
         />
         <RoomCard
           roomStatus={'Schedule'}

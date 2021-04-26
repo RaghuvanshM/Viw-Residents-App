@@ -7,7 +7,6 @@ import Labels from './Labels';
 import {useState} from 'react';
 import StyleSheetFactory from './Stylesheet';
 
-
 // const isHorizontal = false;
 interface SliderProps {
   size?: any;

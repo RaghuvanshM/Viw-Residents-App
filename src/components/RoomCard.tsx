@@ -10,14 +10,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {sunset, tint1, arrowRight, cardimage1} from '../constants/Images';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 interface RoomCardProps {
   hasWakeupAlarm?: boolean;
   roomStatus: 'Intelligence™' | 'Override' | 'Schedule';
   controlStatus: 'Light' | 'Dark' | 'Clear' | 'Medium';
   roomSubText: string;
   roomName: string;
- 
 }
 const RoomCard: FC<RoomCardProps> = ({
   roomSubText,
@@ -25,21 +24,22 @@ const RoomCard: FC<RoomCardProps> = ({
   roomStatus,
   roomName,
   hasWakeupAlarm = false,
-
 }) => {
   const [value, setValue] = useState(false);
   const navigation = useNavigation();
 
-  const navigateToLightCOntrol = (controlStatus:String,roomStatus:String): void => {
-    navigation.navigate('LightControl', { controlStatus,roomStatus });
-    
+  const navigateToLightCOntrol = (
+    roomControl: String,
+    roomControlStatus: String,
+  ): void => {
+    navigation.navigate('LightControl', {roomControl, roomControlStatus});
   };
 
   return (
     <View style={styles.shadowWrap}>
       <View style={styles.card}>
         <TouchableOpacity
-          onPress={() => navigateToLightCOntrol(controlStatus,roomStatus)}>
+          onPress={() => navigateToLightCOntrol(controlStatus, roomStatus)}>
           <ImageBackground
             style={{
               width: '100%',
