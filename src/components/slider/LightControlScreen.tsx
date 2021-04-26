@@ -10,12 +10,27 @@ import {
 import image from '../../assets/images';
 import Slider from './Slider';
 import ArrowBack from 'react-native-vector-icons/MaterialIcons';
-import {heightPercentageToDP as hp,widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {useRoute} from '@react-navigation/native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 interface Props {
   navigation: any;
+  data: any;
 }
-const LightControl: React.FC<Props> = ({navigation}) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+const LightControl: React.FC<Props> = ({navigation, data}) => {
+  const route: any = useRoute();
+  const [selectedIndex, setSelectedIndex] = useState(
+    route.params.controlStatus === 'Clear'
+      ? 3
+      : route.params.controlStatus === 'Light'
+      ? 2
+      : route.params.controlStatus === 'Medium'
+      ? 1
+      : 0,
+  );
+  const [tintText, setTintText] = useState(route.params.roomStatus);
   return (
     <ImageBackground source={image.vbgNature} style={{height: '100%'}}>
       <View
@@ -35,7 +50,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginVertical: 10,
+            marginTop: 10,
           }}>
           <TouchableOpacity
             style={styles.touchableButton}
@@ -64,7 +79,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           style={{
             flexDirection: 'row',
             alignSelf: 'center',
-            marginVertical: 10,
+            marginVertical: 5,
           }}>
           <Text style={styles.livingroomtext}>Living Room</Text>
           <TouchableOpacity>
@@ -77,9 +92,14 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View
-          style={{alignSelf: 'center', flexDirection: 'row', marginRight:wp('15%')}}>
+          style={{
+            alignSelf: 'center',
+            flexDirection: 'row',
+            marginRight: wp('15%'),
+            marginTop:10
+          }}>
           <View
-            style={{justifyContent: 'space-between', marginVertical: hp('6%')}}>
+            style={{justifyContent: 'space-between', marginVertical: hp('5%')}}>
             <Text style={styles.tinttext}>Dark</Text>
             <Text style={styles.tinttext}>Medium</Text>
             <Text style={styles.tinttext}>Light</Text>
@@ -88,7 +108,8 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           <Slider
             isHorizontal={false}
             changeSelectedIndex={setSelectedIndex}
-            defaultIndex={2}>
+            size={hp('50%')}
+            defaultIndex={selectedIndex}>
             <Fragment>
               {selectedIndex === 3 && (
                 <Image
@@ -141,14 +162,78 @@ const LightControl: React.FC<Props> = ({navigation}) => {
             </Fragment>
           </Slider>
         </View>
-        <Image
-          source={image.intelligence}
-          resizeMode="contain"
-          style={{alignSelf: 'center', marginTop: 20}}
-        />
-        <Text style={styles.intelligencetext}>INTELLIGENCE</Text>
-        <Text style={styles.Preventingtext}>Preventing morning glare</Text>
+        <View>
+          {tintText == 'Override' ? (
+            <View>
+              <Image
+                source={image.overridegreen}
+                resizeMode="contain"
+                style={{alignSelf: 'center', height: 35, marginTop: 10}}
+              />
+              <Text style={styles.intelligencetext}>{tintText}</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginHorizontal: wp('10%'),
+                  marginRight:30
+                }}>
+                    <TouchableOpacity
+                 style={{alignSelf:'center'}}
+                >
+                <Image
+                  source={image.minusbutton}
+                  resizeMode="contain"
+                  style={{alignSelf: 'center', height: 30}}
+                />
+                </TouchableOpacity>
+                <Text style={styles.timing}>1:00</Text>
+                <TouchableOpacity
+                 style={{alignSelf:'center'}}
+                >
+                <Image
+                  source={image.plusbutton}
+                  resizeMode="contain"
+                  style={{height: 30}}
+                />
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                onPress={() => {
+                 setTintText('Intelligence™')
+                }}
+                style={styles.cancelbutton}>
+                <Text
+                  style={styles.canceltext}>
+                  cancel
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View>
+              <Image
+                source={image.intelligence}
+                resizeMode="contain"
+                style={{alignSelf: 'center', marginTop: 20}}
+              />
+              <Text style={{...styles.intelligencetext,marginTop:20}}>{tintText}</Text>
+              <Text style={styles.Preventingtext}>
+                Preventing morning glare
+              </Text>
+            </View>
+          )}
+        </View>
+        <TouchableOpacity style={styles.touchableButton}>
+            <ArrowBack
+              name="image"
+              size={20}
+              color="white"
+              style={{ marginBottom: 10}}
+            />
+           
+          </TouchableOpacity>
       </View>
+  
     </ImageBackground>
   );
 };
@@ -161,7 +246,7 @@ const styles = StyleSheet.create({
   },
   touchableButton: {
     flexDirection: 'row',
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 30,
   },
   livingroomtext: {
@@ -174,6 +259,8 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'IBMPlexSans-Bold',
     alignSelf: 'center',
+    marginTop:10,
+  marginLeft:10
   },
   Preventingtext: {
     fontSize: 18,
@@ -187,4 +274,26 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingRight: 10,
   },
+  timing: {
+    fontSize: 24,
+    color: 'green',
+    fontWeight: 'bold',
+    fontFamily: 'IBMPlexSans-Bold',
+    marginVertical: 10,
+    alignSelf: 'center',
+    marginLeft:40
+  },
+  cancelbutton: {
+    width: 170,
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 30,
+    alignSelf: 'center',
+  },
+  canceltext:{fontSize: 20, 
+    color: 'white', 
+    alignSelf: 'center',
+    fontFamily:'IBMPlexSans-Bold',
+    padding:8
+  }
 });
