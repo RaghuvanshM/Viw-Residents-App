@@ -88,7 +88,7 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
           width: '100%',
         }}>
         <Text style={styles.viewInc}>
-          View, Inc. ${currentDate.current.getFullYear()}
+          View, Inc. {currentDate.current.getFullYear()}
         </Text>
       </View>
     </View>
