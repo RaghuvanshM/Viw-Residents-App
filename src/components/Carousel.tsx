@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Platform} from 'react-native';
 
 interface CarouselItemProps {
   title: string;
@@ -66,9 +66,9 @@ const Carousel: React.FC<CarouselProps> = ({items, itemsPerInterval}) => {
         scrollEventThrottle={200}
         pagingEnabled
         decelerationRate="fast">
-        {items.map(item => {
+        {items.map((item, index) => {
           return (
-            <View style={styles.slide}>
+            <View style={styles.slide} key={index}>
               <Text style={styles.slideTitle}>{item.title}</Text>
               <Text style={{...styles.slideText}}>{item.text}</Text>
             </View>
@@ -125,14 +125,17 @@ const styles = StyleSheet.create({
     fontFamily: 'DesertDogHmk',
     color: 'rgb(96, 96, 96)',
     marginBottom: 0,
-    fontSize: 32,
+    fontSize: 37,
   },
   slideText: {
     width: '100%',
     textAlign: 'center',
     color: 'rgb(96, 96, 96)',
-    fontSize: 15,
-    fontFamily: 'IBMPlexSans',
+    fontSize: 16,
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
   stat: {
     paddingHorizontal: 20,
@@ -153,7 +156,10 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#8cb2bc',
     fontSize: 15,
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
   statHold: {
     width: '100%',

@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import images from '../assets/images';
 import {ScreenNavigationProp} from '../screens/types/auth';
@@ -56,17 +57,20 @@ const styles = StyleSheet.create({
   },
   headerWrapper: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-start',
   },
   backIcon: {height: 28, width: 28, resizeMode: 'contain'},
   backText: {
-    fontFamily: 'IBMPlexSans-Regular',
     fontSize: 18,
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
     color: 'rgb(52,101,127)',
   },
-  headerTitle: {flexDirection: 'row', flex: 1},
+  headerTitle: {alignItems: 'center', flexDirection: 'row', flex: 1},
   headerTitleText: {
     fontFamily: 'IBMPlexSans-Bold',
     fontSize: 18,

@@ -8,6 +8,7 @@ import Router from './router';
 import {StatusBar} from 'react-native';
 import {enableScreens} from 'react-native-screens';
 import {Provider as PaperProvider} from 'react-native-paper';
+import {SplashScreen} from './screens/SplashScreen';
 enableScreens();
 const persistor = persistStore(Store);
 
@@ -25,8 +26,12 @@ const App = () => {
         <Provider store={Store}>
           <PersistGate
             persistor={persistor}
-            children={() => {
-              return <Router />;
+            children={bootstrapped => {
+              if (bootstrapped) {
+                return <Router />;
+              } else {
+                return <SplashScreen />;
+              }
             }}
           />
         </Provider>

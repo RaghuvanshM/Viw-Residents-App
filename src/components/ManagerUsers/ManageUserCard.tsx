@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import images from '../../assets/images';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import CheckBoxList from './CheckboxList';
@@ -8,7 +15,11 @@ interface ManageUserCardProps {
   email: string;
   onEdit?: (item: any) => void;
   isMainUser: boolean;
-  checkedList: string[];
+  checkedList: {
+    label: string;
+    key: string;
+    value: boolean;
+  }[];
   isLastElement: boolean;
   lastElementHeight: number;
 }
@@ -47,9 +58,11 @@ const ManageUserCard: React.FC<ManageUserCardProps> = ({
           <Image source={images.editUser} style={styles.cardContactImage} />
         </TouchableOpacity>
       </View>
-      {checkedList.map((x, index) => (
-        <CheckBoxList text={x} key={index} />
-      ))}
+      {checkedList
+        .filter(x => x.value)
+        .map((x, index) => (
+          <CheckBoxList text={x.key} key={index} />
+        ))}
     </View>
   );
 };
@@ -77,8 +90,11 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   simpleUser: {
-    fontFamily: 'IBMPlexSans-Regular',
     fontSize: 14,
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
     color: 'rgb(106,187,255)',
     marginVertical: 2,
   },

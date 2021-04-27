@@ -3,11 +3,12 @@ import {StyleSheet, View} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 interface LabelProps {
+  size: number;
   count: number;
   isHorizontal: boolean;
   allColors: string[];
 }
-export default ({count, isHorizontal, allColors}: LabelProps) => {
+export default ({size, count, isHorizontal, allColors}: LabelProps) => {
   return (
     <View
       style={{
@@ -50,6 +51,17 @@ export default ({count, isHorizontal, allColors}: LabelProps) => {
             <Animated.View
               style={isHorizontal ? style.horizontalLine2 : style.verticalLine2}
             />
+            {i < count - 1 && (
+              <Animated.View
+                style={{
+                  position: 'absolute',
+                  width: 1,
+                  top: '65%',
+                  height: size / 5.55,
+                  backgroundColor: '#fff',
+                }}
+              />
+            )}
           </View>
         );
       })}

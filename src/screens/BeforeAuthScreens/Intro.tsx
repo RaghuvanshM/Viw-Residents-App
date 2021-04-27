@@ -7,6 +7,7 @@ import {
   ImageBackground,
   SafeAreaView,
   StatusBar,
+  Platform,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -403,7 +404,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
   subtitle: {
     textAlign: 'center',
@@ -474,7 +478,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 18,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
 
   image2: {
@@ -498,6 +505,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     color: 'rgb(52,101,127)',
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
   },
 });

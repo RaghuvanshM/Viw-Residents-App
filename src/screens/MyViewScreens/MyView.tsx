@@ -59,6 +59,7 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
             <Text style={[styles.mainUser]}>Main User</Text>
           </View>
           <View style={styles.logoutWrapper}>
+            <View style={styles.flexView} />
             <TouchableOpacity style={styles.logoutButton} onPress={LogoutUser}>
               <Image source={images.logout} style={styles.logoutLogo} />
               <Text style={styles.logout}>Log Out</Text>
@@ -174,6 +175,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 10,
     position: 'relative',
+  },
+  flexView: {
+    flex: 2,
   },
   logoutButton: {
     flexDirection: 'row',

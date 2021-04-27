@@ -45,5 +45,10 @@ const images = {
   userDetailsChecked: require('./images/userDetailsChecked.png'),
   editUser: require('./images/editUser.png'),
   contactBlue: require('./images/contactBlue.png'),
+  greenDot: require('./images/greenDot.png'),
+  close: require('./images/close.png'),
+  checkBox: require('./images/checkBox.png'),
+  checkBoxUnchecked: require('./images/checkBoxUnchecked.png'),
+  delete: require('./images/delete.png'),
 };
 export default images;

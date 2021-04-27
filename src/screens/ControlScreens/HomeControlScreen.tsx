@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   Image,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -101,7 +102,10 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
             <Text
               style={{
                 color: '#fff',
-                fontFamily: 'IBMPlexSans',
+                ...Platform.select({
+                  ios: {fontFamily: 'IBMPlexSans'},
+                  android: {fontFamily: 'IBMPlexSans-Regular'},
+                }),
                 fontSize: 14,
               }}>
               Outside Air Quality{' '}
@@ -211,8 +215,9 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     paddingVertical: 5,
-    backgroundColor: 'rgba(0,0,0,0.4)',
     width: '100%',
+    position: 'absolute',
+    bottom: '5%',
   },
   card: {
     flexDirection: 'row',
@@ -262,7 +267,10 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontFamily: 'IBMPlexSans',
+    ...Platform.select({
+      ios: {fontFamily: 'IBMPlexSans'},
+      android: {fontFamily: 'IBMPlexSans-Regular'},
+    }),
     fontSize: 14,
   },
   avatar: {
