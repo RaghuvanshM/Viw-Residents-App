@@ -47,211 +47,232 @@ const LightControl: React.FC<Props> = ({navigation}) => {
         }}>
         <View
           style={{
-            flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: hp('4%'),
-          }}>
-          <TouchableOpacity
-            style={styles.touchableButton}
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <ArrowBack
-              name="arrow-back-ios"
-              size={20}
-              color="white"
-              style={{marginTop: 5}}
-            />
-            <Text style={styles.backtext}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.touchableButton}>
-            <ArrowBack
-              name="calendar-today"
-              size={20}
-              color="white"
-              style={{marginTop: 2, marginRight: 10}}
-            />
-            <Text style={styles.backtext}>Schedule</Text>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignSelf: 'center',
-            marginVertical: 5,
-          }}>
-          <Text style={styles.livingroomtext}>Living Room</Text>
-          <TouchableOpacity>
-            <ArrowBack
-              name="edit"
-              size={25}
-              color="white"
-              style={{marginLeft: 20}}
-            />
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            alignSelf: 'center',
-            flexDirection: 'row',
-            marginRight: wp('15%'),
-            marginTop: 10,
+            flex: 1,
+            marginVertical: 20,
           }}>
           <View
-            style={{justifyContent: 'space-between', marginVertical: hp('5%')}}>
-            <Text style={styles.tinttext}>Dark</Text>
-            <Text style={styles.tinttext}>Medium</Text>
-            <Text style={styles.tinttext}>Light</Text>
-            <Text style={styles.tinttext}>clear</Text>
-          </View>
-          <Slider
-            isHorizontal={false}
-            changeSelectedIndex={setSelectedIndex}
-            size={hp('50%')}
-            defaultIndex={selectedIndex}>
-            <Fragment>
-              {selectedIndex === 3 && (
-                <Image
-                  source={image.blueClearBtn}
-                  resizeMode={'cover'}
-                  style={{
-                    borderWidth: 2,
-                    width: 150,
-                    height: 150,
-                    marginTop: 40,
-                  }}
-                />
-              )}
-              {selectedIndex === 2 && (
-                <Image
-                  source={image.blueLightBtn}
-                  resizeMode={'cover'}
-                  style={{
-                    borderWidth: 2,
-                    width: 150,
-                    height: 150,
-                    marginTop: 40,
-                  }}
-                />
-              )}
-              {selectedIndex === 1 && (
-                <Image
-                  source={image.blueMediumBtn}
-                  resizeMode={'cover'}
-                  style={{
-                    borderWidth: 2,
-                    width: 150,
-                    height: 150,
-                    marginTop: 40,
-                  }}
-                />
-              )}
-              {selectedIndex === 0 && (
-                <Image
-                  source={image.blueDarkBtn}
-                  resizeMode={'cover'}
-                  style={{
-                    borderWidth: 2,
-                    width: 150,
-                    height: 150,
-                    marginTop: 30,
-                  }}
-                />
-              )}
-            </Fragment>
-          </Slider>
-        </View>
-        <View>
-          {tintText === 'Override' ? (
-            <View>
-              <Image
-                source={image.overridegreen}
-                resizeMode="contain"
-                style={{alignSelf: 'center',height:50,width:50, marginTop: 10}}
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 20,
+            }}>
+            <TouchableOpacity
+              style={styles.touchableButton}
+              onPress={() => {
+                navigation.goBack();
+              }}>
+              <ArrowBack
+                name="arrow-back-ios"
+                size={20}
+                color="white"
+                style={{marginTop: 5}}
               />
-              <Text style={styles.intelligencetext}>{tintText}</Text>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginHorizontal: wp('10%'),
-                  marginRight: 30,
-                }}>
-                <TouchableOpacity style={{alignSelf: 'center'}}>
+              <Text style={styles.backtext}>Back</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.touchableButton}>
+              <ArrowBack
+                name="calendar-today"
+                size={20}
+                color="white"
+                style={{marginTop: 2, marginRight: 10}}
+              />
+              <Text style={styles.backtext}>Schedule</Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignSelf: 'center',
+            }}>
+            <Text style={styles.livingroomtext}>Living Room</Text>
+            <TouchableOpacity>
+              <ArrowBack
+                name="edit"
+                size={25}
+                color="white"
+                style={{marginTop: 5, marginLeft: 10}}
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignSelf: 'center',
+              marginRight: '23%',
+            }}>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                marginVertical: hp('5%'),
+              }}>
+              <Text style={styles.tinttext}>Dark</Text>
+              <Text style={{...styles.tinttext, paddingRight: 20}}>Medium</Text>
+              <Text style={styles.tinttext}>Light</Text>
+              <Text style={styles.tinttext}>clear</Text>
+            </View>
+            <Slider
+              isHorizontal={false}
+              changeSelectedIndex={setSelectedIndex}
+              size={hp('55%')}
+              defaultIndex={selectedIndex}>
+              <Fragment>
+                {selectedIndex === 3 && (
                   <Image
-                    source={image.minusbutton}
-                    resizeMode="contain"
-                    style={{alignSelf: 'center', height: 30}}
+                    source={image.blueClearBtn}
+                    resizeMode={'cover'}
+                    style={{
+                      borderWidth: 2,
+                      width: 150,
+                      height: 150,
+                      marginTop: 40,
+                    }}
                   />
-                </TouchableOpacity>
-                <Text style={styles.timing}>1:00</Text>
-                <TouchableOpacity style={{alignSelf: 'center'}}>
+                )}
+                {selectedIndex === 2 && (
                   <Image
-                    source={image.plusbutton}
-                    resizeMode="contain"
-                    style={{height: 30}}
+                    source={image.blueLightBtn}
+                    resizeMode={'cover'}
+                    style={{
+                      borderWidth: 2,
+                      width: 150,
+                      height: 150,
+                      marginTop: 40,
+                    }}
                   />
+                )}
+                {selectedIndex === 1 && (
+                  <Image
+                    source={image.blueMediumBtn}
+                    resizeMode={'cover'}
+                    style={{
+                      borderWidth: 2,
+                      width: 150,
+                      height: 150,
+                      marginTop: 40,
+                    }}
+                  />
+                )}
+                {selectedIndex === 0 && (
+                  <Image
+                    source={image.blueDarkBtn}
+                    resizeMode={'cover'}
+                    style={{
+                      borderWidth: 2,
+                      width: 150,
+                      height: 150,
+                      marginTop: 30,
+                    }}
+                  />
+                )}
+              </Fragment>
+            </Slider>
+          </View>
+          <View style={{marginRight: '4%', marginTop: '1%'}}>
+            {tintText === 'Override' ? (
+              <View>
+                <Image
+                  source={image.overridegreen}
+                  resizeMode="contain"
+                  style={{
+                    alignSelf: 'center',
+                    height: 40,
+                    width: 40,
+                  }}
+                />
+                <Text style={styles.intelligencetext}>{tintText}</Text>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginHorizontal: wp('10%'),
+                    marginRight: 30,
+                  }}>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                    <Image
+                      source={image.minusbutton}
+                      resizeMode="contain"
+                      style={{alignSelf: 'center', height: 30}}
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.timing}>1:00</Text>
+                  <TouchableOpacity style={{alignSelf: 'center'}}>
+                    <Image
+                      source={image.plusbutton}
+                      resizeMode="contain"
+                      style={{height: 30}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    setTintText('Intelligence™');
+                  }}
+                  style={styles.cancelbutton}>
+                  <Text style={styles.canceltext}>cancel</Text>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                onPress={() => {
-                  setTintText('Intelligence™');
-                }}
-                style={styles.cancelbutton}>
-                <Text style={styles.canceltext}>cancel</Text>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <View>
-              <Image
-                source={image.intelligence}
-                resizeMode="contain"
-                style={{alignSelf: 'center', marginTop: 20,height:50,width:50}}
-              />
-              <Text style={{...styles.intelligencetext, marginTop: 20}}>
-                {tintText}
-              </Text>
-              <Text style={styles.Preventingtext}>
-                Preventing morning glare
-              </Text>
-            </View>
-          )}
+            ) : (
+              <View>
+                <Image
+                  source={image.intelligence}
+                  resizeMode="contain"
+                  style={{
+                    alignSelf: 'center',
+                    height: 60,
+                    width: 60,
+                  }}
+                />
+                <Text style={{...styles.intelligencetext}}>
+                  {tintText.toUpperCase()}
+                </Text>
+                <Text style={styles.Preventingtext}>
+                  Preventing morning glare
+                </Text>
+              </View>
+            )}
+          </View>
+          <View>
+            <TouchableOpacity style={styles.touchableButton}>
+              <ArrowBack name="image" size={30} color="white" />
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity style={styles.touchableButton}>
-          <ArrowBack
-            name="image"
-            size={20}
-            color="white"
-            style={{marginBottom: 10}}
-          />
-        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
 };
 export default LightControl;
+
 const styles = StyleSheet.create({
+  touchableButton: {
+    flexDirection: 'row',
+    marginHorizontal: 30,
+  },
   backtext: {
     fontSize: 18,
     color: 'white',
     fontFamily: 'IBMPlexSans-Regular',
   },
-  touchableButton: {
-    flexDirection: 'row',
-    marginVertical: 10,
-    marginHorizontal: 30,
-  },
   livingroomtext: {
-    fontSize: 20,
-    color: 'white',
+    fontSize: 24,
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
     fontFamily: 'IBMPlexSans-Bold',
+  },
+  tinttext: {
+    fontSize: 18,
+    fontFamily: 'IBMPlexSans-Regular',
+    color: 'white',
   },
   intelligencetext: {
     fontSize: 18,
     color: 'white',
     fontFamily: 'IBMPlexSans-Bold',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 5,
     marginLeft: 10,
   },
   Preventingtext: {
@@ -260,24 +281,18 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Regular',
     alignSelf: 'center',
   },
-  tinttext: {
-    fontSize: 18,
-    fontFamily: 'IBMPlexSans-Regular',
-    color: 'white',
-    paddingRight: 10,
-  },
   timing: {
     fontSize: 24,
     color: 'green',
     fontWeight: 'bold',
     fontFamily: 'IBMPlexSans-Bold',
-    marginVertical: 10,
+    marginVertical: 5,
     alignSelf: 'center',
-    marginLeft: 40,
+    marginLeft: 30,
   },
   cancelbutton: {
     width: 170,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'white',
     borderRadius: 30,
     alignSelf: 'center',
@@ -287,6 +302,6 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'center',
     fontFamily: 'IBMPlexSans-Bold',
-    padding: 8,
+    padding: 6,
   },
 });
