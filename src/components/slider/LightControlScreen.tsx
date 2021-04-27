@@ -100,7 +100,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignSelf: 'center',
-              marginRight: '23%',
+              marginRight: '21%',
             }}>
             <View
               style={{
@@ -181,7 +181,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     width: 40,
                   }}
                 />
-                <Text style={styles.intelligencetext}>{tintText}</Text>
+                <Text style={styles.intelligencetext}>{tintText.toUpperCase()}</Text>
                 <View
                   style={{
                     flexDirection: 'row',
@@ -212,6 +212,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                   style={styles.cancelbutton}>
                   <Text style={styles.canceltext}>cancel</Text>
                 </TouchableOpacity>
+              
               </View>
             ) : (
               <View>
@@ -295,13 +296,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 30,
-    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent:'center',
+    alignSelf:'center',
+    marginTop:'1%'
   },
   canceltext: {
     fontSize: 20,
     color: 'white',
-    alignSelf: 'center',
     fontFamily: 'IBMPlexSans-Bold',
-    padding: 6,
+    padding:6
   },
 });
