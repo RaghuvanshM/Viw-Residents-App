@@ -20,7 +20,6 @@ interface Props {
 }
 const LightControl: React.FC<Props> = ({navigation}) => {
   const route: any = useRoute();
-  console.log(route)
   const [selectedIndex, setSelectedIndex] = useState(
     route.params.roomControl === 'Clear'
       ? 3
@@ -50,7 +49,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: 10,
+            marginTop: hp('4%'),
           }}>
           <TouchableOpacity
             style={styles.touchableButton}
@@ -168,7 +167,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               <Image
                 source={image.overridegreen}
                 resizeMode="contain"
-                style={{alignSelf: 'center', height: 35, marginTop: 10}}
+                style={{alignSelf: 'center',height:50,width:50, marginTop: 10}}
               />
               <Text style={styles.intelligencetext}>{tintText}</Text>
               <View
@@ -207,7 +206,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               <Image
                 source={image.intelligence}
                 resizeMode="contain"
-                style={{alignSelf: 'center', marginTop: 20}}
+                style={{alignSelf: 'center', marginTop: 20,height:50,width:50}}
               />
               <Text style={{...styles.intelligencetext, marginTop: 20}}>
                 {tintText}
