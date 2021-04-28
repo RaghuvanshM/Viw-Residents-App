@@ -24,6 +24,9 @@ const images = {
   tabIcon3: require('./tabIcon3.png'),
   tabIcon4: require('./tabIcon4.png'),
   viewLogoWhite: require('./images/logo-view-logo-white.png'),
+  overridegreen: require('./images/overridegreen.png'),
+  plusbutton: require('./images/plus-btn.png'),
+  minusbutton: require('./images/minus-btn.png'),
   //landscape images
   vbgNature: require('./images/vbg-nature.png'),
   wellnessHeader: require('./images/wellnessHeader.png'),

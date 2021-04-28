@@ -130,6 +130,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           }
           buttonText="Got it"
         />
+
         <RoomCard
           roomStatus={'Schedule'}
           controlStatus={'Clear'}
