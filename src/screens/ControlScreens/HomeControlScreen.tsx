@@ -28,7 +28,6 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('I am focues in Homescreen');
       StatusBar.setBarStyle('light-content');
       StatusBar.setTranslucent(true);
       StatusBar.setBackgroundColor('transparent');

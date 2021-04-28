@@ -19,7 +19,6 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
   const currentDate = useRef(new Date());
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('I am focues in MyView');
       StatusBar.setBarStyle('dark-content');
       StatusBar.setBackgroundColor('white');
       StatusBar.setTranslucent(true);

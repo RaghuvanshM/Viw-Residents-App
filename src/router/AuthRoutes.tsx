@@ -10,7 +10,7 @@ import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
-import LightControlScreen from '../components/slider/LightControlScreen';
+import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
 
 const Stack = createStackNavigator();
 

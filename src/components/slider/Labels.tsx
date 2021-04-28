@@ -1,14 +1,23 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 interface LabelProps {
   size: number;
   count: number;
+  selected: number;
   isHorizontal: boolean;
   allColors: string[];
 }
-export default ({size, count, isHorizontal, allColors}: LabelProps) => {
+const Texts = ['Dark', 'Medium', 'Light', 'Clear'];
+export default ({
+  size,
+  count,
+  isHorizontal,
+  allColors,
+  selected,
+}: LabelProps) => {
   return (
     <View
       style={{
@@ -27,6 +36,28 @@ export default ({size, count, isHorizontal, allColors}: LabelProps) => {
               justifyContent: 'center',
               flexDirection: isHorizontal ? 'column' : 'row',
             }}>
+            <Text
+              style={{
+                textAlign: 'right',
+                fontSize: 14,
+                position: 'absolute',
+                right: wp('28%'),
+                ...Platform.select({
+                  ios: {
+                    fontFamily:
+                      selected === i ? 'IBMPlexSans-Bold' : 'IBMPlexSans',
+                  },
+                  android: {
+                    fontFamily:
+                      selected === i
+                        ? 'IBMPlexSans-Bold'
+                        : 'IBMPlexSans-Regular',
+                  },
+                }),
+                color: 'white',
+              }}>
+              {Texts[i]}
+            </Text>
             <Animated.View
               style={isHorizontal ? style.horizontalLine1 : style.verticalLine1}
             />

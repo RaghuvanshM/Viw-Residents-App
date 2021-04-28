@@ -9,7 +9,7 @@ import StyleSheetFactory from './Stylesheet';
 
 // const isHorizontal = false;
 interface SliderProps {
-  size?: any;
+  size: any;
   isHorizontal?: boolean;
   count?: number;
   backgroundColor?: string;
@@ -47,6 +47,7 @@ const Slider: React.FC<SliderProps> = ({
         <Labels
           {...{count}}
           size={size}
+          selected={selectedIndex}
           isHorizontal={isHorizontal}
           allColors={allColors}
         />
@@ -65,6 +66,7 @@ const Slider: React.FC<SliderProps> = ({
       <Labels
         {...{count}}
         size={size}
+        selected={selectedIndex}
         isHorizontal={isHorizontal}
         allColors={allColors}
       />
