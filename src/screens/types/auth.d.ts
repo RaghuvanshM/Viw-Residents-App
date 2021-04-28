@@ -8,6 +8,7 @@ export type AuthRootStackParamList = {
   Settings: undefined;
   MyView: undefined;
   ManageUsers: undefined;
+  LightControl: undefined;
 };
 type ScreenRouteProp = RouteProp<AuthRootStackParamList, 'HomeControl'>;
 

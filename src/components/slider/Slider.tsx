@@ -9,7 +9,7 @@ import StyleSheetFactory from './Stylesheet';
 
 // const isHorizontal = false;
 interface SliderProps {
-  size?: number;
+  size?: any;
   isHorizontal?: boolean;
   count?: number;
   backgroundColor?: string;
@@ -20,7 +20,7 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({
-  size = 600,
+  size,
   isHorizontal = false,
   count = 4,
   backgroundColor = 'rgba(3,3,3,0.5)',
