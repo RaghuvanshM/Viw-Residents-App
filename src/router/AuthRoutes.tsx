@@ -11,6 +11,8 @@ import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
+import Appearance from "../screens/MyViewScreens/Appearance";
+import AppearancePreview from "../screens/MyViewScreens/AppearancePreview";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,8 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="LightControl" component={LightControlScreen} />
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Appearance" component={Appearance} />
+      <Stack.Screen name="AppearancePreview" component={AppearancePreview} />
     </Stack.Navigator>
   );
 };

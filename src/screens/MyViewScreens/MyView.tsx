@@ -72,7 +72,11 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
           textString={'Manage Users'}
           onPress={() => navigation.navigate('ManageUsers')}
         />
-        <TextWithIcon icon={images.appearance} textString={'Appearance'} />
+        <TextWithIcon
+          icon={images.appearance}
+          textString={'Appearance'}
+          onPress={() => navigation.navigate('Appearance')}
+        />
         <TextWithIcon icon={images.intelligence} textString={'Intelligence™'} />
         <TextWithIcon icon={images.notification} textString={'Notifications'} />
         <TextWithIcon icon={images.privacy} textString={'About'} />
