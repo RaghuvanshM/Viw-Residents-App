@@ -70,7 +70,12 @@ const styles = StyleSheet.create({
     }),
     color: 'rgb(52,101,127)',
   },
-  headerTitle: {alignItems: 'center', justifyContent: "center", flexDirection: 'row', flex: 1},
+  headerTitle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flex: 1,
+  },
   headerTitleText: {
     fontFamily: 'IBMPlexSans-Bold',
     fontSize: 18,

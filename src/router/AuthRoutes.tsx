@@ -11,8 +11,8 @@ import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
-import Appearance from "../screens/MyViewScreens/Appearance";
-import AppearancePreview from "../screens/MyViewScreens/AppearancePreview";
+import Appearance from '../screens/MyViewScreens/Appearance';
+import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
 
 const Stack = createStackNavigator();
 

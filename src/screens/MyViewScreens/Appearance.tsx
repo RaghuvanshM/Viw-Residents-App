@@ -7,7 +7,7 @@ import AppearanceTile from '../../components/AppearanceTile';
 import images from '../../assets/images';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {window} from '../ControlScreens/LightControlScreen';
-import AppearancePreviewCardComponent from "../../components/AppearancePreviewCard";
+import AppearancePreviewCardComponent from '../../components/AppearancePreviewCard';
 const Appearance: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.base}>
@@ -28,24 +28,32 @@ const Appearance: React.FC<Props> = ({navigation}) => {
             <AppearanceTile
               name={'My Photos'}
               image={images.myPhotosMaskGroup}
-              onPress={() => navigation.navigate('AppearancePreview', {name: "My Photos"})}
+              onPress={() =>
+                navigation.navigate('AppearancePreview', {name: 'My Photos'})
+              }
             />
             <AppearanceTile
               name={'Exo Reston'}
               image={images.exoRestonMaskGroup}
-              onPress={() => navigation.navigate('AppearancePreview', {name: "Exo Reston"})}
+              onPress={() =>
+                navigation.navigate('AppearancePreview', {name: 'Exo Reston'})
+              }
             />
           </View>
           <View style={{width: '100%', flexDirection: 'row'}}>
             <AppearanceTile
               name={'Wellness'}
               image={images.wellnessMaskGroup}
-              onPress={() => navigation.navigate('AppearancePreview', {name: "Wellness"})}
+              onPress={() =>
+                navigation.navigate('AppearancePreview', {name: 'Wellness'})
+              }
             />
             <AppearanceTile
               name={'Patterns'}
               image={images.patternMaskGroup}
-              onPress={() => navigation.navigate('AppearancePreview', {name: "Patterns"})}
+              onPress={() =>
+                navigation.navigate('AppearancePreview', {name: 'Patterns'})
+              }
             />
           </View>
         </View>

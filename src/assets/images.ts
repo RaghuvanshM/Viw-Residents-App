@@ -1,4 +1,4 @@
-const images = {
+const images: any = {
   blueClearBtn: require('./images/btnClear.png'),
   blueDarkBtn: require('./images/btnDark.png'),
   blueLightBtn: require('./images/btnLight.png'),
@@ -57,5 +57,10 @@ const images = {
   checkBox: require('./images/checkBox.png'),
   checkBoxUnchecked: require('./images/checkBoxUnchecked.png'),
   delete: require('./images/delete.png'),
+  initialWelnessHeader: require('./wellness_header.png'),
+  wellnessMaskGroup: require('./images/wellnessMaskGroup.png'),
+  patternMaskGroup: require('./images/patternMaskGroup.png'),
+  exoRestonMaskGroup: require('./images/exoRestonMaskGroup.png'),
+  myPhotosMaskGroup: require('./images/myPhotosMaskGroup.png'),
 };
 export default images;

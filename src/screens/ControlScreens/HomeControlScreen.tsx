@@ -13,8 +13,8 @@ import images from '../../assets/images';
 import WelcomeCard from '../../components/WelcomeCard';
 import RoomCard from '../../components/RoomCard';
 import {Props} from '../types/auth';
-import {useSelector} from "react-redux";
-import {getSelectedImage, getIsInternalImage} from "../../module/selectors";
+import {useSelector} from 'react-redux';
+import {getSelectedImage, getIsInternalImage} from '../../module/selectors';
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
@@ -169,7 +169,13 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
               transform: [{translateY: imageTranslateY()}],
             },
           ]}
-          source={isInternalImage ? selectedImage ? images[selectedImage] : images.initialWelnessHeader : { uri: selectedImage }}
+          source={
+            isInternalImage
+              ? selectedImage
+                ? images[selectedImage]
+                : images.initialWelnessHeader
+              : {uri: selectedImage}
+          }
         />
 
         <View style={{position: 'absolute', bottom: 0, width: '100%'}}>

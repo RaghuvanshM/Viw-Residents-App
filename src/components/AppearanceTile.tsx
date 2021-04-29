@@ -1,11 +1,21 @@
 import React, {FC} from 'react';
-import {Text, View, Image, StyleSheet, Platform, TouchableOpacity} from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import {window} from '../screens/ControlScreens/LightControlScreen';
 interface AppearanceTileProps {
-    name: string;
-    image: any;
-    onPress: () => void;
+  name: string;
+  image: any;
+  onPress: () => void;
 }
 
 const ratio = window.height / window.width;
