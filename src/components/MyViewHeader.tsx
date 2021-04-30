@@ -15,6 +15,7 @@ interface MyViewHeaderProps {
   navigation: ScreenNavigationProp;
   headerTitle: string;
   hasAddIcon?: boolean;
+  hasAttachedWithHeader?: boolean;
   addIconPress?: () => void;
 }
 
@@ -22,10 +23,15 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
   navigation,
   headerTitle,
   addIconPress,
+  hasAttachedWithHeader = false,
   hasAddIcon,
 }) => {
   return (
-    <View style={styles.headerText}>
+    <View
+      style={[
+        styles.headerText,
+        hasAttachedWithHeader && {height: 85 - (StatusBar.currentHeight || 0)},
+      ]}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={styles.headerWrapper}>

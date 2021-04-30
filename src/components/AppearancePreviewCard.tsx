@@ -1,15 +1,19 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {Text, View, Image, StyleSheet, Platform} from 'react-native';
 import images from '../assets/images';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-interface AppearancePreviewCardProps {}
-const AppearancePreviewCardComponent: FC<AppearancePreviewCardProps> = ({}) => {
+interface AppearancePreviewCardProps {
+  backgroundImage: any;
+}
+const AppearancePreviewCardComponent: FC<AppearancePreviewCardProps> = ({backgroundImage}) => {
+  const [hasLoadingError, setLoadingError] = useState(false);
   return (
     <View style={styles.cardWrapper}>
       <View style={{}}>
         <Image
-          source={images.initialWelnessHeader}
+          source={hasLoadingError ? images.initialWelnessHeader : backgroundImage || images.initialWelnessHeader}
+          onError={() => setLoadingError(true)}
           style={styles.backgroundImage}
         />
       </View>

@@ -6,12 +6,14 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {window} from '../screens/ControlScreens/LightControlScreen';
+const window = Dimensions.get('window');
+
 interface AppearanceTileProps {
   name: string;
   image: any;
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
   tileWrapper: {
     // flex: 1,
     justifyContent: 'center',
+    marginVertical: hp('2%'),
     alignItems: 'center',
     width: '50%',
   },

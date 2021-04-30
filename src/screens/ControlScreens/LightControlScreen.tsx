@@ -19,8 +19,10 @@ import {
 } from 'react-native-responsive-screen';
 import images from '../../assets/images';
 import APPCONSTANTS from '../../constants/constants';
+import {useSelector} from "react-redux";
+import {getIsInternalImage, getSelectedImage} from "../../module/selectors";
 
-export const window = Dimensions.get('window');
+const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 interface Props {
   navigation: any;
@@ -37,8 +39,14 @@ const LightControl: React.FC<Props> = ({navigation}) => {
       : 0,
   );
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
-  return (
-    <ImageBackground source={image.vbgNature} style={{height: '100%'}}>
+    const selectedImage = useSelector(getSelectedImage);
+    const isInternalImage = useSelector(getIsInternalImage);
+    return (
+    <ImageBackground source={isInternalImage
+        ? selectedImage
+            ? images[selectedImage]
+            : images.initialWelnessHeader
+        : {uri: selectedImage}} style={{height: '100%'}}>
       <View
         style={{
           flex: 1,

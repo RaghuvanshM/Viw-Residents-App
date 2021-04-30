@@ -1,14 +1,41 @@
-import React from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import React, {useRef} from 'react';
+import {Dimensions, FlatList, StatusBar, StyleSheet, View} from 'react-native';
 import {Props} from '../types/auth';
 import MyViewHeader from '../../components/MyViewHeader';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import AppearanceTile from '../../components/AppearanceTile';
 import images from '../../assets/images';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {window} from '../ControlScreens/LightControlScreen';
 import AppearancePreviewCardComponent from '../../components/AppearancePreviewCard';
+import {useSelector} from 'react-redux';
+import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
+
 const Appearance: React.FC<Props> = ({navigation}) => {
+  const mainGallery = useRef([
+    {
+      id: 1,
+      image: images.myPhotosMaskGroup,
+      name: 'My Photos',
+    },
+    {
+      id: 2,
+      image: images.exoRestonMaskGroup,
+      name: 'Exo Reston',
+    },
+    {
+      id: 3,
+      image: images.wellnessMaskGroup,
+      name: 'Wellness',
+    },
+    {
+      id: 4,
+      image: images.patternMaskGroup,
+      name: 'Pattern',
+    },
+  ]);
+  const selectedImage = useSelector(getSelectedImage);
+  const isInternalImage = useSelector(getIsInternalImage);
+
   return (
     <View style={styles.base}>
       <MyViewHeader
@@ -17,14 +44,44 @@ const Appearance: React.FC<Props> = ({navigation}) => {
         hasAddIcon={false}
       />
       <View style={styles.screenBodyWrapper}>
-        <AppearancePreviewCardComponent />
+        <AppearancePreviewCardComponent
+          backgroundImage={
+            isInternalImage
+              ? selectedImage
+                ? images[selectedImage]
+                : images.initialWelnessHeader
+              : {uri: selectedImage}
+          }
+        />
         <View
           style={{
             justifyContent: 'flex-start',
             alignItems: 'center',
-            height: ratio >= 2 ? hp('65%') : hp('55%'),
+            marginTop: hp('4.5%'),
+            height: ratio >= 2 ? hp('55%') : hp('50%'),
           }}>
-          <View style={{width: '100%', flexDirection: 'row', height: '50%'}}>
+          <FlatList
+            data={mainGallery.current}
+            contentContainerStyle={styles.flatListContentContainer}
+            renderItem={({item}) => {
+              return (
+                <AppearanceTile
+                  name={item.name}
+                  image={item.image}
+                  onPress={() =>
+                    navigation.navigate({
+                      name: 'AppearancePreview',
+                      params: {name: item.name},
+                    })
+                  }
+                />
+              );
+            }}
+            //Setting the number of column
+            numColumns={2}
+            keyExtractor={(item, index) => index.toString()}
+          />
+          {/*<View style={{width: '100%', flexDirection: 'row', height: '50%'}}>
             <AppearanceTile
               name={'My Photos'}
               image={images.myPhotosMaskGroup}
@@ -55,12 +112,14 @@ const Appearance: React.FC<Props> = ({navigation}) => {
                 navigation.navigate('AppearancePreview', {name: 'Patterns'})
               }
             />
-          </View>
+          </View>*/}
         </View>
       </View>
     </View>
   );
 };
+
+const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 
 const styles = StyleSheet.create({
@@ -71,7 +130,7 @@ const styles = StyleSheet.create({
   },
   screenBodyWrapper: {
     width: '93%',
-    height: hp(ratio >= 2 ? '90' : '85%'),
+    height: hp(ratio >= 2 ? '88' : '85%'),
     // flex: 1,
     marginVertical: wp(ratio >= 2 ? '4%' : '2%'),
     paddingVertical: wp(ratio >= 2 ? '2%' : '1%'),
@@ -79,6 +138,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFF',
     borderRadius: 10,
+  },
+  flatListContentContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
 });
 
