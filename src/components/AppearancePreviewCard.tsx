@@ -6,13 +6,19 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 interface AppearancePreviewCardProps {
   backgroundImage: any;
 }
-const AppearancePreviewCardComponent: FC<AppearancePreviewCardProps> = ({backgroundImage}) => {
+const AppearancePreviewCardComponent: FC<AppearancePreviewCardProps> = ({
+  backgroundImage,
+}) => {
   const [hasLoadingError, setLoadingError] = useState(false);
   return (
     <View style={styles.cardWrapper}>
       <View style={{}}>
         <Image
-          source={hasLoadingError ? images.initialWelnessHeader : backgroundImage || images.initialWelnessHeader}
+          source={
+            hasLoadingError
+              ? images.initialWelnessHeader
+              : backgroundImage || images.initialWelnessHeader
+          }
           onError={() => setLoadingError(true)}
           style={styles.backgroundImage}
         />

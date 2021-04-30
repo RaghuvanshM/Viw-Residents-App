@@ -178,7 +178,14 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           }
         />
 
-        <View style={{position: 'absolute', bottom: 0, width: '100%'}}>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: '55%',
+            justifyContent: 'center',
+          }}>
           <Image
             source={images.viewLogoWhite}
             style={{
