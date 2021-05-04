@@ -83,6 +83,7 @@ const AddEditUser: React.FC<AddEditUserProps> = ({
               onChangeText={text => setEmail(text)}
               defaultValue={userData.email}
               value={email}
+              placeholderTextColor={'rgb(83,154,180)'}
               style={styles.allTextFieldWrapper}
               placeholder="Email"
               autoCompleteType={'email'}

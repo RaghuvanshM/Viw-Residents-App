@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {StatusBar, StyleSheet, View, FlatList, Platform} from 'react-native';
 import {Props} from '../types/auth';
 import MyViewHeader from '../../components/MyViewHeader';
@@ -19,6 +19,7 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
   const tabHeight = 50;
   const usersData = useSelector(getUserManagementList);
   const showAdd = useSelector(getShowAddUserManagement);
+  const dispatch = useDispatch();
   const newUser = useRef({
     name: '',
     email: '',
@@ -46,7 +47,13 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
     ],
     isMainUser: false,
   });
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const componentDidMount = () => {
+      dispatch(toggleAddNewUser(false));
+    };
+    componentDidMount();
+  }, [dispatch]);
 
   return (
     <View style={styles.base}>

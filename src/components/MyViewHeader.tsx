@@ -15,7 +15,6 @@ interface MyViewHeaderProps {
   navigation: ScreenNavigationProp;
   headerTitle: string;
   hasAddIcon?: boolean;
-  hasAttachedWithHeader?: boolean;
   addIconPress?: () => void;
 }
 
@@ -23,15 +22,10 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
   navigation,
   headerTitle,
   addIconPress,
-  hasAttachedWithHeader = false,
   hasAddIcon,
 }) => {
   return (
-    <View
-      style={[
-        styles.headerText,
-        hasAttachedWithHeader && {height: 85 - (StatusBar.currentHeight || 0)},
-      ]}>
+    <View style={styles.headerText}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         style={styles.headerWrapper}>
@@ -60,10 +54,12 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   headerWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
+    alignSelf: 'center',
     flex: 1,
     justifyContent: 'flex-start',
   },
@@ -74,6 +70,7 @@ const styles = StyleSheet.create({
       ios: {fontFamily: 'IBMPlexSans'},
       android: {fontFamily: 'IBMPlexSans-Regular'},
     }),
+    marginBottom: 3,
     color: 'rgb(52,101,127)',
   },
   headerTitle: {

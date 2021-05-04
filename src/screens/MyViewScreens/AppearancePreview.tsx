@@ -58,7 +58,6 @@ const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
         navigation={navigation}
         headerTitle={'Preview'}
         hasAddIcon={false}
-        hasAttachedWithHeader={true}
       />
       <View style={styles.screenBodyWrapper}>
         <AppearancePreviewCardComponent
@@ -114,28 +113,9 @@ const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
         <FlatList
           data={galleryData.current}
           contentContainerStyle={styles.flatListContentContainer}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  setLocalImageSelected(item.image);
-                }}
-                style={styles.cardWrapper}>
-                <Image
-                  style={styles.imageThumbnail}
-                  onError={(
-                    error: NativeSyntheticEvent<ImageErrorEventData>,
-                  ) => {
-                    console.log('ERROR IN LOADING === ', error);
-                  }}
-                  defaultSource={images.initialWelnessHeader}
-                  source={{
-                    uri: item.image,
-                  }}
-                />
-              </TouchableOpacity>
-            );
-          }}
+          renderItem={({item}) => (
+            <Tile item={item} setLocalImageSelected={setLocalImageSelected} />
+          )}
           //Setting the number of column
           numColumns={2}
           keyExtractor={(item, index) => index.toString()}
@@ -240,3 +220,36 @@ const styles = StyleSheet.create({
 });
 
 export default AppearancePreview;
+
+interface TileProps {
+  setLocalImageSelected: (image: string) => void;
+  item: {id: number; image: string};
+}
+const Tile: React.FC<TileProps> = ({setLocalImageSelected, item}) => {
+  const [hasErrorInImage, setHasErrorInImage] = useState(false);
+  const [loadingEnd, setLoadingEnd] = useState(false);
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        if (!hasErrorInImage) {
+          setLocalImageSelected(item.image);
+        }
+      }}
+      disabled={hasErrorInImage && loadingEnd}
+      style={styles.cardWrapper}>
+      <Image
+        style={styles.imageThumbnail}
+        onError={(error: NativeSyntheticEvent<ImageErrorEventData>) => {
+          console.log(error);
+          setHasErrorInImage(true);
+        }}
+        onLoadEnd={() => {
+          console.log('Loading end...');
+          setLoadingEnd(true);
+        }}
+        loadingIndicatorSource={images.spinner}
+        source={hasErrorInImage ? images.noImage : {uri: item.image}}
+      />
+    </TouchableOpacity>
+  );
+};

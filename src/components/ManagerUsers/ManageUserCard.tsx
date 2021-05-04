@@ -61,7 +61,7 @@ const ManageUserCard: React.FC<ManageUserCardProps> = ({
       {checkedList
         .filter(x => x.value)
         .map((x, index) => (
-          <CheckBoxList text={x.key} key={index} />
+          <CheckBoxList text={x.label} key={index} />
         ))}
     </View>
   );

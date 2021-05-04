@@ -62,5 +62,7 @@ const images: any = {
   patternMaskGroup: require('./images/patternMaskGroup.png'),
   exoRestonMaskGroup: require('./images/exoRestonMaskGroup.png'),
   myPhotosMaskGroup: require('./images/myPhotosMaskGroup.png'),
+  spinner: require('./images/spinner.gif'),
+  noImage: require('./images/no-image.png'),
 };
 export default images;
