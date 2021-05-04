@@ -13,6 +13,7 @@ import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
 import Appearance from '../screens/MyViewScreens/Appearance';
 import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
+import Schedules from '../screens/ScheduleScreens/Schedules';
 
 const Stack = createStackNavigator();
 
@@ -87,7 +88,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Schedule"
-        component={SettingsScreen}
+        component={Schedules}
         options={{
           tabBarLabel: 'Schedule',
           tabBarIcon: ({focused}) => (
