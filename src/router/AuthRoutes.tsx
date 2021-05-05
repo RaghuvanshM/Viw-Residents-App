@@ -14,6 +14,7 @@ import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
 import Appearance from '../screens/MyViewScreens/Appearance';
 import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
 import Schedules from '../screens/ScheduleScreens/Schedules';
+import CreateEditSchedule from "../screens/ScheduleScreens/CreateEditSchedule";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Appearance" component={Appearance} />
       <Stack.Screen name="AppearancePreview" component={AppearancePreview} />
+      <Stack.Screen name="CreateEditSchedule" component={CreateEditSchedule} />
     </Stack.Navigator>
   );
 };
