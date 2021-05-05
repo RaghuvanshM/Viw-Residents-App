@@ -38,7 +38,7 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
   const [isActive, setActive] = useState(false);
   const [roomTypes, setRoomType] = useState([] as any[]);
   const [activeDays, setActiveDays] = useState([] as any[]);
-  const [repeatType, setRepeatType] = useState("Weekly");
+  const [repeatType, setRepeatType] = useState('Weekly');
 
   return (
     <View style={styles.base}>
@@ -90,9 +90,14 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
                   changeChecked={() => {
                     setRoomType(prevRoomTypes => {
                       const rooms = cloneDeep(prevRoomTypes);
-                      const index = rooms.findIndex(r => r === room);
-                      if (index !== -1) rooms.splice(index, 1);
-                      else rooms.push(room);
+                      const selectedRoomIndex = rooms.findIndex(
+                        r => r === room,
+                      );
+                      if (selectedRoomIndex !== -1) {
+                        rooms.splice(selectedRoomIndex, 1);
+                      } else {
+                        rooms.push(room);
+                      }
                       return rooms;
                     });
                   }}
@@ -107,16 +112,21 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
             <View style={styles.daysRow}>
               {days.current.map((day, index) => (
                 <TouchableOpacity
-                    onPress={() => {
-                        setActiveDays((activeDays) => {
-                            const adays = cloneDeep(activeDays);
-                            const index = adays.findIndex(r => r === day);
-                            if (index !== -1) adays.splice(index, 1);
-                            else adays.push(day);
-                            return adays;
-                        })
-                        // setActiveDays
-                    }}
+                  onPress={() => {
+                    setActiveDays(prevActiveDays => {
+                      const adays = cloneDeep(prevActiveDays);
+                      const selectedAcDayIndex = adays.findIndex(
+                        r => r === day,
+                      );
+                      if (selectedAcDayIndex !== -1) {
+                        adays.splice(selectedAcDayIndex, 1);
+                      } else {
+                        adays.push(day);
+                      }
+                      return adays;
+                    });
+                    // setActiveDays
+                  }}
                   key={index}
                   style={[
                     styles.daysViewWrapper,
@@ -144,8 +154,16 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
               <Text style={styles.commonLabelStyle}>Repeat</Text>
             </View>
             <View style={{flexDirection: 'row', marginTop: 10}}>
-              <RadioButton selected={repeatType === 'Weekly'} text={'Repeat Weekly'} changeRadio={() => setRepeatType("Weekly")}/>
-              <RadioButton selected={repeatType === 'Custom'} text={'Custom'} changeRadio={() => setRepeatType("Custom")}/>
+              <RadioButton
+                selected={repeatType === 'Weekly'}
+                text={'Repeat Weekly'}
+                changeRadio={() => setRepeatType('Weekly')}
+              />
+              <RadioButton
+                selected={repeatType === 'Custom'}
+                text={'Custom'}
+                changeRadio={() => setRepeatType('Custom')}
+              />
             </View>
           </View>
           <View style={{paddingVertical: hp('2%')}}>

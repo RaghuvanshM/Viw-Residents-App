@@ -14,7 +14,7 @@ import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
 import Appearance from '../screens/MyViewScreens/Appearance';
 import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
 import Schedules from '../screens/ScheduleScreens/Schedules';
-import CreateEditSchedule from "../screens/ScheduleScreens/CreateEditSchedule";
+import CreateEditSchedule from '../screens/ScheduleScreens/CreateEditSchedule';
 
 const Stack = createStackNavigator();
 
