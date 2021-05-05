@@ -4,5 +4,7 @@ const APPCONSTANTS = {
   controlStatusLightRate: 0.25,
   controlStatusMediumRate: 0.5,
   controlStatusDarkRate: 0.75,
+  days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  roomTypes: ['Living Room', 'Main Bedroom', 'Guest Bedroom'],
 };
 export default APPCONSTANTS;

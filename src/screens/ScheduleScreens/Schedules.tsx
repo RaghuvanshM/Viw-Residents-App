@@ -1,5 +1,6 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
+  FlatList,
   StatusBar,
   StyleSheet,
   Text,
@@ -11,6 +12,44 @@ import NoScheduleAvailable from '../../components/Schedule/NoSchduleAvailable';
 import SchedulesCard from '../../components/Schedule/ScheduleCard';
 const Schedules: React.FC<Props> = ({navigation}) => {
   const noSchedule = useRef(false);
+  const [data, setData] = useState([
+    {
+      id: 1,
+      title: 'Weekday Wake Up',
+      startTime: '6:30am',
+      endTime: '7:30am',
+      repeat: 'Repeat Weekly',
+      activeDays: ['Mon', 'Thu', 'Sat', 'Sun'],
+      activeRooms: ['Main Bedroom', 'Living Room'],
+      tint: 1,
+      duration: 60,
+      isActive: true,
+    },
+    {
+      id: 2,
+      title: 'Weekday Sleep',
+      startTime: '6:30am',
+      endTime: '7:30am',
+      repeat: 'Repeat Weekly',
+      activeDays: ['Thu', 'Fri', 'Sat'],
+      activeRooms: ['Main Bedroom', 'Living Room'],
+      tint: 2,
+      duration: 60,
+      isActive: false,
+    },
+    {
+      id: 3,
+      title: 'Weekend Meditation',
+      startTime: '6:30am',
+      endTime: '7:30am',
+      repeat: 'Repeat Weekly',
+      activeDays: ['Thu', 'Fri', 'Sat'],
+      activeRooms: ['Main Bedroom', 'Living Room'],
+      tint: 2,
+      duration: 60,
+      isActive: true,
+    },
+  ]);
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('dark-content');
@@ -33,10 +72,34 @@ const Schedules: React.FC<Props> = ({navigation}) => {
         translucent
         backgroundColor="transparent"
       />
-      <SchedulesCard />
-      <SchedulesCard />
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => item.id + '_index_' + index}
+        style={{
+          width: '100%',
+          height: '70%',
+          paddingTop: (StatusBar.currentHeight || 0) + 10,
+        }}
+        contentContainerStyle={{
+          width: '100%',
+          paddingBottom: (StatusBar.currentHeight || 0) + 20,
+        }}
+        renderItem={({item, index}) => (
+          <SchedulesCard
+            scheduleData={item}
+            key={index}
+            saveData={savingData => {
+              const clonedData = [...data];
+              clonedData[index] = savingData;
+              setData(clonedData);
+            }}
+          />
+        )}
+      />
       <View style={styles.newScheduleMainWrapper}>
-        <TouchableOpacity style={styles.newScheduleWrapper}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('CreateEditSchedule')}
+          style={styles.newScheduleWrapper}>
           <Text style={styles.newScheduleText}>+</Text>
           <Text style={styles.newScheduleText}>New Schedule</Text>
         </TouchableOpacity>
@@ -50,7 +113,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'rgb(241,241,241)',
-    marginTop: (StatusBar.currentHeight || 0) + 10,
   },
   newScheduleMainWrapper: {
     flex: 0.5,

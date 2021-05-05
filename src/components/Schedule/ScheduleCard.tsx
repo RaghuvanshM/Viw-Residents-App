@@ -1,25 +1,99 @@
 import React, {useRef} from 'react';
 import {StyleSheet, Text, View, Image, Switch, Platform} from 'react-native';
 import images from '../../assets/images';
+interface SchedulesCardProps {
+  saveData: (data: any) => void;
+  scheduleData: {
+    title: string;
+    startTime: string;
+    endTime: string;
+    repeat: string;
+    activeDays: string[];
+    activeRooms: string[];
+    tint: number;
+    duration: number;
+    isActive: boolean;
+  };
+}
 
-const SchedulesCard: React.FC = () => {
+const SchedulesCard: React.FC<SchedulesCardProps> = ({
+  saveData,
+  scheduleData: {
+    title,
+    startTime,
+    endTime,
+    repeat,
+    activeDays,
+    activeRooms,
+    tint,
+    duration,
+    isActive,
+  },
+}) => {
   const days = useRef(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
+  const tints = useRef(['Clear', 'Light', 'Medium', 'Dark']);
+  const tintImaages = useRef([
+    images.blueClearBtn,
+    images.blueLightBtn,
+    images.blueMediumBtn,
+    images.blueDarkBtn,
+  ]);
   return (
     <View style={styles.mainCard}>
       <View style={styles.titleRow}>
         <View style={{flex: 4}}>
-          <Text style={styles.titleText}>Weekday Wake Up</Text>
+          <Text style={[styles.titleText, !isActive && styles.inActiveColor]}>
+            {title}
+          </Text>
         </View>
         <View style={{flex: 1}}>
-          <Switch />
+          <Switch
+            value={isActive}
+            onValueChange={isActiveFlag =>
+              saveData({
+                title,
+                startTime,
+                endTime,
+                repeat,
+                activeDays,
+                activeRooms,
+                tint,
+                duration,
+                isActive: isActiveFlag,
+              })
+            }
+            trackColor={{
+              false: 'rgba(120, 120, 128, 0.16)',
+              true: 'rgb(126,211,33)',
+            }}
+            thumbColor={'#ffffff'}
+          />
         </View>
       </View>
       <View style={styles.scheduleTimeRow}>
-        <View style={{flex: 0.5}}>
-          <Text style={styles.timeText}>6:30am - 7:30am</Text>
+        <View
+          style={{
+            flex: 0.6,
+            borderRightWidth: 0.5,
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            borderRightColor: 'rgb(196,196,196)',
+          }}>
+          <Text style={[styles.timeText, !isActive && styles.inActiveColor]}>
+            {startTime} - {endTime}
+          </Text>
         </View>
-        <View style={{flex: 0.5}}>
-          <Text style={styles.repeatText}>Repeat Weekly</Text>
+        <View
+          style={{
+            flex: 0.6,
+            borderLeftWidth: 0.5,
+            justifyContent: 'center',
+            borderRightColor: 'rgb(196,196,196)',
+            alignItems: 'center',
+          }}>
+          <Text style={[styles.repeatText, !isActive && styles.inActiveColor]}>
+            {repeat}
+          </Text>
         </View>
         <View style={{flex: 0.5}} />
       </View>
@@ -29,10 +103,19 @@ const SchedulesCard: React.FC = () => {
             key={index}
             style={[
               styles.daysViewWrapper,
-              index % 2 === 0 && styles.daysViewActiveWrapper,
+              activeDays.indexOf(x) !== -1 &&
+                (isActive
+                  ? styles.daysViewActiveWrapper
+                  : styles.inActiveBackgroundColor),
+              !isActive && styles.inActiveBorderColorColor,
             ]}>
             <Text
-              style={[styles.dayText, index % 2 === 0 && styles.dayActiveText]}>
+              style={[
+                styles.dayText,
+                activeDays.indexOf(x) !== -1
+                  ? styles.dayActiveText
+                  : !isActive && styles.inActiveColor,
+              ]}>
               {x}
             </Text>
           </View>
@@ -40,23 +123,33 @@ const SchedulesCard: React.FC = () => {
       </View>
       <View style={styles.summaryRow}>
         <View style={styles.summaryLeftSideWrapper}>
-          <View>
-            <Text style={styles.summaryText}>Main Bedroom </Text>
-          </View>
-          <View>
-            <Text style={styles.summaryText}>Living Room</Text>
-          </View>
+          {activeRooms.map((room, index) => (
+            <View key={index}>
+              <Text
+                style={[styles.summaryText, !isActive && styles.inActiveColor]}>
+                {room}
+              </Text>
+            </View>
+          ))}
         </View>
         <View style={{flex: 1}}>
           <View style={styles.summaryRightSideWrapper}>
-            <Text style={styles.tintText}>Clear Tint</Text>
+            <Text style={[styles.tintText, !isActive && styles.inActiveColor]}>
+              {tints.current[tint]} Tint
+            </Text>
             <Image
-              source={images.blueLightBtn}
-              style={{width: 45, height: 45}}
+              source={tintImaages.current[tint]}
+              style={{
+                width: 45,
+                height: 45,
+              }}
             />
           </View>
           <View style={styles.summaryRightSide}>
-            <Text style={styles.summaryText}>Duratiom 1h </Text>
+            <Text
+              style={[styles.summaryText, !isActive && styles.inActiveColor]}>
+              Duration {Math.round(duration / 60)}h{' '}
+            </Text>
           </View>
         </View>
       </View>
@@ -68,6 +161,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1,
     maxHeight: 210,
+    minHeight: 210,
     marginHorizontal: '3%',
     paddingHorizontal: '2.5%',
     borderRadius: 8,
@@ -130,6 +224,7 @@ const styles = StyleSheet.create({
   dayText: {
     color: 'rgba(52,101,127, 1)',
     textAlign: 'center',
+    paddingBottom: 2,
     fontFamily: 'IBMPlexSans-Bold',
     fontSize: 12,
   },
@@ -167,6 +262,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  inActiveColor: {
+    color: 'rgb(188,188,188)',
+  },
+  inActiveBackgroundColor: {
+    backgroundColor: 'rgb(188,188,188)',
+  },
+  inActiveBorderColorColor: {
+    borderColor: 'rgb(188,188,188)',
   },
 });
 
