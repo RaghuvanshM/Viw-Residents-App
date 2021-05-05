@@ -1,4 +1,4 @@
-import {IStoreState} from '../types';
+import { IStoreState } from '../types';
 
 export const getUserManagementList = (state: IStoreState) =>
   state.userManagement.users;

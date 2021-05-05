@@ -5,12 +5,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeControlScreen from '../screens/ControlScreens/HomeControlScreen';
 import DetailsScreen from '../screens/DetailsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/Schedule/ScheduleScreen';
 import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../components/slider/LightControlScreen';
+import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule'
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="LightControl" component={LightControlScreen} />
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="NewSchedule" component={AddNewScheduleScreen} />
     </Stack.Navigator>
   );
 };

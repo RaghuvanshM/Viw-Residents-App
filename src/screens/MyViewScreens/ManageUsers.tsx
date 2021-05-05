@@ -55,6 +55,7 @@ const ManageUsers: React.FC<Props> = ({navigation}) => {
         headerTitle={'Manage Users'}
         hasAddIcon
         addIconPress={() => dispatch(toggleAddNewUser(true))}
+        isIcon={true}
       />
       <View style={{width: '100%'}}>
         <FlatList

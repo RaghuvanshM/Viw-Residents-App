@@ -40,6 +40,7 @@ const AddEditUser: React.FC<AddEditUserProps> = ({
   removeItem,
   saveUserData,
 }) => {
+   console.log(userData)
   const [checkList, setCheckList] = useState(cloneDeep(userData.checkedList));
   const [name, setName] = useState(userData.name);
   const [email, setEmail] = useState(userData.email);
