@@ -1,18 +1,25 @@
 import React from 'react';
-import {
-  FlatList,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import images from '../../assets/images';
+import {FlatList, Image, Platform, StyleSheet, Text, View} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import WeekdayCard from './Weekdays';
 import RoomTypeList from './Roomtype';
 import {tint1} from '../../constants/Images';
+interface ItemProps {
+  ScheduleName: string;
+  time: string;
+  Repeat: string;
+  checkedList: {
+    label: string;
+    key: string;
+    value: boolean;
+  }[];
+  days: {
+    label: string;
+    key: string;
+    value: boolean;
+  }[];
+  tintcolor: string;
+}
 interface UserScheduleCardProps {
   userData: ItemProps;
 }
@@ -31,23 +38,20 @@ const ScheduleCard: React.FC<UserScheduleCardProps> = ({userData}) => {
       </View>
       <View style={{flexDirection: 'row', marginLeft: '5%'}}>
         <Text style={styles.timetext}>{userData.time}</Text>
-        <View style={styles.verticleLine}></View>
+        <View style={styles.verticleLine} />
         <Text style={styles.timetext}>{userData.Repeat}</Text>
       </View>
       <View style={{marginLeft: '3%'}}>
         <FlatList
           data={userData.days}
           horizontal={true}
+          keyExtractor={(item: any, index: any) =>
+            item.value + '_index_' + index
+          }
+          contentContainerStyle={{alignItems: 'center'}}
           renderItem={({item, index}) => (
             <>
-              <WeekdayCard
-                weekday={item}
-                key={index}
-                keyExtractor={(item: any, index: any) =>
-                  item.value + '_index_' + index
-                }
-                contentContainerStyle={{alignItems: 'center'}}
-              />
+              <WeekdayCard weekday={item} key={index} />
             </>
           )}
         />
@@ -61,12 +65,12 @@ const ScheduleCard: React.FC<UserScheduleCardProps> = ({userData}) => {
         <View>
           {userData.checkedList
             .filter(x => x.value)
-            .map((x, index) => (
+            .map((x: any, index: any) => (
               <RoomTypeList text={x.label} key={index} />
             ))}
         </View>
         <View>
-          <View style={{flexDirection:'row'}}>
+          <View style={{flexDirection: 'row'}}>
             <Text style={styles.tinttext}>Clear Tint</Text>
             <Image
               source={tint1}
@@ -146,9 +150,9 @@ const styles = StyleSheet.create({
     fontFamily: 'IBMPlexSans-Bold',
     color: 'rgb(88, 166 ,232)',
   },
-  durationtext:{
-    fontSize:18,
-    fontFamily:'Roboto-Regular',
-    color:'rgb(52, 101, 127)'
-  }
+  durationtext: {
+    fontSize: 18,
+    fontFamily: 'Roboto-Regular',
+    color: 'rgb(52, 101, 127)',
+  },
 });

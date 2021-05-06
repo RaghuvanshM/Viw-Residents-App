@@ -1,13 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Switch,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {Props} from '../types/auth';
 import {getUser} from '../../module/selectors';
 import {useSelector} from 'react-redux';
@@ -20,20 +12,19 @@ const ScheduleScreen: React.FC<Props> = ({navigation}) => {
       <FlatList
         data={usersData}
         style={{marginBottom: '5%'}}
+        keyExtractor={(item: any, index: any) =>
+          item.ScheduleName + '_index_' + index
+        }
+        contentContainerStyle={{alignItems: 'center'}}
         renderItem={({item, index}) => (
           <>
-            <ScheduleCardComponet
-              userData={item}
-              key={index}
-              keyExtractor={(item: any, index: any) =>
-                item.ScheduleName + '_index_' + index
-              }
-              contentContainerStyle={{alignItems: 'center'}}
-            />
+            <ScheduleCardComponet userData={item} key={index} />
           </>
         )}
       />
-      <TouchableOpacity onPress={() =>navigation.navigate('NewSchedule')} style={styles.fab}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('NewSchedule')}
+        style={styles.fab}>
         <Plusicon name="plus" color="white" size={30} />
         <Text style={styles.fabIcon}> New schedule</Text>
       </TouchableOpacity>

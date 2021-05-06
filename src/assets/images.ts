@@ -27,6 +27,7 @@ const images = {
   overridegreen: require('./images/overridegreen.png'),
   plusbutton: require('./images/plus-btn.png'),
   minusbutton: require('./images/minus-btn.png'),
+  clocksecond: require('./images/clocksecond.png'),
   //landscape images
   vbgNature: require('./images/vbg-nature.png'),
   wellnessHeader: require('./images/wellnessHeader.png'),
@@ -50,5 +51,6 @@ const images = {
   checkBox: require('./images/checkBox.png'),
   checkBoxUnchecked: require('./images/checkBoxUnchecked.png'),
   delete: require('./images/delete.png'),
+
 };
 export default images;

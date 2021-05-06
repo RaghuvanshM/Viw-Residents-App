@@ -1,8 +1,5 @@
 import React from 'react';
-import {Image, Platform, StyleSheet, Text, View} from 'react-native';
-import images from '../../assets/images';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { color } from 'react-native-reanimated';
+import {StyleSheet, Text, View} from 'react-native';
 
 interface RoomtypeProps {
   text: string;
@@ -10,7 +7,7 @@ interface RoomtypeProps {
 const RoomTypeList: React.FC<RoomtypeProps> = ({text}) => {
   return (
     <View style={{flexDirection: 'row', marginTop: 5}}>
-      <View style={styles.points}></View>
+      <View style={styles.points} />
       <Text style={styles.roomTypeText}>{text}</Text>
     </View>
   );
@@ -22,12 +19,12 @@ const styles = StyleSheet.create({
     width: 10,
     borderRadius: 5,
     backgroundColor: 'rgb(52, 101, 127)',
-    marginVertical:'5%',
-    marginHorizontal:'6%'
+    marginVertical: '5%',
+    marginHorizontal: '6%',
   },
   roomTypeText: {
     fontSize: 18,
-    fontFamily:'Roboto-Regular',
-    color:'rgb(52, 101, 127)'
+    fontFamily: 'Roboto-Regular',
+    color: 'rgb(52, 101, 127)',
   },
 });

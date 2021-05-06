@@ -1,9 +1,7 @@
-import { createReducer } from 'redux-act';
-import {
-  addSchedule,
-} from '../actions';
+import {createReducer} from 'redux-act';
+import {addSchedule} from '../actions';
 import cloneDeep from 'lodash/cloneDeep';
-export interface ICheckedListProps {
+export interface ICheckListProps {
   label: string;
   key: string;
   value: boolean;
@@ -14,15 +12,13 @@ export interface IDaysListProps {
   value: boolean;
 }
 
-
 export interface IScheduleManagement {
   ScheduleName: string;
   time: string;
   Repeat: string;
-  days: IDaysListProps[]
-  checkedList: ICheckedListProps[];
-  tintcolor: string
-
+  days: IDaysListProps[];
+  checkedList: ICheckListProps[];
+  tintcolor: string;
 }
 
 export interface IScheduleManagementReducer {
@@ -71,7 +67,6 @@ const initialState: IScheduleManagementReducer = {
           key: 'sat',
           value: true,
         },
-
       ],
       checkedList: [
         {
@@ -85,7 +80,7 @@ const initialState: IScheduleManagementReducer = {
           value: true,
         },
       ],
-      tintcolor: 'Clear Tint'
+      tintcolor: 'Clear Tint',
     },
     {
       ScheduleName: 'Weekday Wake Up',
@@ -127,7 +122,6 @@ const initialState: IScheduleManagementReducer = {
           key: 'sat',
           value: false,
         },
-
       ],
       checkedList: [
         {
@@ -141,7 +135,7 @@ const initialState: IScheduleManagementReducer = {
           value: true,
         },
       ],
-      tintcolor: 'Clear Tint'
+      tintcolor: 'Clear Tint',
     },
     {
       ScheduleName: 'Weekday Wake Up',
@@ -183,7 +177,6 @@ const initialState: IScheduleManagementReducer = {
           key: 'sat',
           value: false,
         },
-
       ],
       checkedList: [
         {
@@ -197,7 +190,7 @@ const initialState: IScheduleManagementReducer = {
           value: true,
         },
       ],
-      tintcolor: 'Clear Tint'
+      tintcolor: 'Clear Tint',
     },
     {
       ScheduleName: 'Weekday Wake Up',
@@ -239,7 +232,6 @@ const initialState: IScheduleManagementReducer = {
           key: 'sat',
           value: false,
         },
-
       ],
       checkedList: [
         {
@@ -253,7 +245,7 @@ const initialState: IScheduleManagementReducer = {
           value: true,
         },
       ],
-      tintcolor: 'Clear Tint'
+      tintcolor: 'Clear Tint',
     },
     {
       ScheduleName: 'Weekday Wake Up',
@@ -295,7 +287,6 @@ const initialState: IScheduleManagementReducer = {
           key: 'sat',
           value: false,
         },
-
       ],
       checkedList: [
         {
@@ -309,9 +300,9 @@ const initialState: IScheduleManagementReducer = {
           value: true,
         },
       ],
-      tintcolor: 'Clear Tint'
+      tintcolor: 'Clear Tint',
     },
-  ]
+  ],
 };
 export const userSchedule = createReducer<IScheduleManagementReducer>(
   {},
@@ -329,4 +320,3 @@ userSchedule.on(
     };
   },
 );
-

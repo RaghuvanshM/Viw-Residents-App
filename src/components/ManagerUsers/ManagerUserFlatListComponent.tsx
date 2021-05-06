@@ -26,7 +26,7 @@ const ManagerUserFlatListComponent: React.FC<AddEditUserProps> = ({
 }) => {
   const [editMode, setEditMode] = useState(false);
   const SaveData = (data: any) => {
-    console.log(data)
+    console.log(data);
     setEditMode(false);
     saveUserData(data);
   };

@@ -1,13 +1,20 @@
 import React, {useState, useRef} from 'react';
 import MyViewHeader from '../../components/MyViewHeader';
-import {useSelector} from 'react-redux';
-import {getUser} from '../../module/selectors';
 import cloneDeep from 'lodash/cloneDeep';
-import {View, StyleSheet, StatusBar, Switch, TextInput, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  StatusBar,
+  Switch,
+  TextInput,
+  Text,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
 import RoomChecklistSelection from '../../components/Schedule/RoomChecklist';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-const AddNewScheduleScreen = ({navigation}) => {
-  const usersData = useSelector(getUser);
+import {Props} from '../types/auth';
+const AddNewScheduleScreen: React.FC<Props> = ({navigation}) => {
   const newUser = useRef({
     ScheduleName: '',
     time: '',
@@ -64,7 +71,6 @@ const AddNewScheduleScreen = ({navigation}) => {
         key: 'sat',
         value: false,
       },
-
     ],
   });
   const [name, setName] = useState('');
@@ -81,58 +87,66 @@ const AddNewScheduleScreen = ({navigation}) => {
         hasAddIcon
         isIcon={false}
       />
-      <View style={{justifyContent:'space-between'}}>
-      <View>
-        <View style={{flexDirection: 'row', margin: '3%'}}>
-          <TextInput
-            onChangeText={text => setName(text)}
-            style={styles.textInput}
-            value={name}
-            placeholderTextColor={'rgb(163, 163, 163)'}
-            placeholder="Schedule Name"
-            autoCompleteType={'name'}
-            autoCorrect={false}
-          />
-          <Switch
-            trackColor={{
-              false: 'rgb(197, 197 ,197)',
-              true: 'rgb(126, 211 ,128)',
-            }}
-            thumbColor={'white'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            style={{transform: [{scaleX: 2}, {scaleY: 2}]}}
-            value={isEnabled}
-          />
-        </View>
-        <View style={styles.horizontal}></View>
-      </View>
-      <View>
-        <Text style={styles.roomstext}>Rooms</Text>
-        {checkList &&
-          checkList.map((x, i) => (
-            <RoomChecklistSelection
-              key={i + '_checklist'}
-              text={x.label}
-              isSelected={x.value}
-              changeChecked={() => {
-                const checkListValue = [...checkList];
-                checkListValue[i].value = !checkListValue[i].value;
-                setCheckList(checkListValue);
-              }}
+      <View style={{justifyContent: 'space-between'}}>
+        <View>
+          <View style={{flexDirection: 'row', margin: '3%'}}>
+            <TextInput
+              onChangeText={text => setName(text)}
+              style={styles.textInput}
+              value={name}
+              placeholderTextColor={'rgb(163, 163, 163)'}
+              placeholder="Schedule Name"
+              autoCompleteType={'name'}
+              autoCorrect={false}
             />
-          ))}
-           <View style={{...styles.horizontal,marginTop:20}}></View>
-           <View>
-             {
-           newUser.current.days &&
-           newUser.current.days.map((x, i) => (
-            <TouchableOpacity style={x.value?styles.daysitem:styles.daysitemnotselected}>
-            <Text style={x.value?styles.weedaytext:styles.weedaytextnotselected}>{x.label}</Text>
-          </TouchableOpacity>
-                ))}
-           </View>
-      </View>
+            <Switch
+              trackColor={{
+                false: 'rgb(197, 197 ,197)',
+                true: 'rgb(126, 211 ,128)',
+              }}
+              thumbColor={'white'}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              style={{transform: [{scaleX: 2}, {scaleY: 2}]}}
+              value={isEnabled}
+            />
+          </View>
+          <View style={styles.horizontal} />
+        </View>
+        <View>
+          <Text style={styles.roomstext}>Rooms</Text>
+          {checkList &&
+            checkList.map((x, i) => (
+              <RoomChecklistSelection
+                key={i + '_checklist'}
+                text={x.label}
+                isSelected={x.value}
+                changeChecked={() => {
+                  const checkListValue = [...checkList];
+                  checkListValue[i].value = !checkListValue[i].value;
+                  setCheckList(checkListValue);
+                }}
+              />
+            ))}
+          <View style={{...styles.horizontal, marginTop: 20}} />
+          <View>
+            {newUser.current.days &&
+              newUser.current.days.map((x, i) => (
+                <TouchableOpacity
+                  key={i}
+                  style={
+                    x.value ? styles.daysitem : styles.daysitemnotselected
+                  }>
+                  <Text
+                    style={
+                      x.value ? styles.weedaytext : styles.weedaytextnotselected
+                    }>
+                    {x.label}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -149,12 +163,12 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
   },
-  roomstext:{
-    fontSize:18,
-    fontFamily:'IBMPlexSans-Regular',
-    color:'rgb(52, 101, 127)',
-    paddingHorizontal:'4%',
-    marginTop:'3%'
+  roomstext: {
+    fontSize: 18,
+    fontFamily: 'IBMPlexSans-Regular',
+    color: 'rgb(52, 101, 127)',
+    paddingHorizontal: '4%',
+    marginTop: '3%',
   },
   headerWrapper: {
     flexDirection: 'row',
@@ -187,29 +201,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 10,
     width: wp('11%'),
-    borderRadius:30,
-    backgroundColor:'rgb(52, 101, 127)'
+    borderRadius: 30,
+    backgroundColor: 'rgb(52, 101, 127)',
   },
-  daysitemnotselected:{
+  daysitemnotselected: {
     padding: 10,
     borderWidth: 1,
     marginLeft: 10,
     width: wp('11%'),
-    borderRadius:30,
-    borderColor:'rgb(52,101,127)'
+    borderRadius: 30,
+    borderColor: 'rgb(52,101,127)',
   },
   weedaytext: {
     fontFamily: 'IBMPlexSans-Bold',
     fontSize: 14,
-    color:'white',
-    justifyContent:'center',
-    alignSelf:'center'
+    color: 'white',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
-  weedaytextnotselected:{
+  weedaytextnotselected: {
     fontFamily: 'IBMPlexSans-Regular',
     fontSize: 14,
-    color:'rgb(52,101,127)',
-    justifyContent:'center',
-    alignSelf:'center'
-  }
+    color: 'rgb(52,101,127)',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
 });

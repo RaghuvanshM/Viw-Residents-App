@@ -16,7 +16,7 @@ interface MyViewHeaderProps {
   headerTitle: string;
   hasAddIcon?: boolean;
   addIconPress?: () => void;
-  isIcon:boolean
+  isIcon: boolean;
 }
 
 const MyViewHeader: React.FC<MyViewHeaderProps> = ({
@@ -24,7 +24,7 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
   headerTitle,
   addIconPress,
   hasAddIcon,
-  isIcon
+  isIcon,
 }) => {
   return (
     <View style={styles.headerText}>
@@ -37,12 +37,14 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
       <View style={styles.headerTitle}>
         <Text style={styles.headerTitleText}>{headerTitle}</Text>
       </View>
-      {isIcon?<TouchableOpacity
-        activeOpacity={hasAddIcon ? 0.2 : 1}
-        onPress={addIconPress}
-        style={[styles.addUserIcon, !hasAddIcon && {opacity: 0}]}>
-        <Image source={images.newUser} style={styles.addUserImage} />
-      </TouchableOpacity>:null}
+      {isIcon ? (
+        <TouchableOpacity
+          activeOpacity={hasAddIcon ? 0.2 : 1}
+          onPress={addIconPress}
+          style={[styles.addUserIcon, !hasAddIcon && {opacity: 0}]}>
+          <Image source={images.newUser} style={styles.addUserImage} />
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };

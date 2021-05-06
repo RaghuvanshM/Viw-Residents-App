@@ -11,10 +11,9 @@ import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../components/slider/LightControlScreen';
-import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule'
-
+import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule';
+import IntelligenceScreen from '../screens/MyViewScreens/Intelligence'
 const Stack = createStackNavigator();
-
 const StackNavigationScreens = () => {
   return (
     <Stack.Navigator screenOptions={{header: () => null}}>
@@ -24,6 +23,7 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="NewSchedule" component={AddNewScheduleScreen} />
+      <Stack.Screen name="Intelligence" component={IntelligenceScreen} />
     </Stack.Navigator>
   );
 };

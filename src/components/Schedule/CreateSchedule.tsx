@@ -1,9 +1,8 @@
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import React from 'react';
 const CreateScheduleScreen = () => {
   return (
     <View>
-     
       <View
         style={{
           flex: 1,
@@ -13,7 +12,7 @@ const CreateScheduleScreen = () => {
           left: 0,
           right: 0,
         }}>
-       <Text>this is create new screen </Text>
+        <Text>this is create new screen </Text>
       </View>
     </View>
   );

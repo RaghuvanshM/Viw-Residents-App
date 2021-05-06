@@ -35,14 +35,16 @@ const RoomChecklistSelection: React.FC<CheckBoxSelectionListProps> = ({
         activeOpacity={1}
         onPress={changeChecked}
         style={styles.checkBoxTextWrapper}>
-        <Text style={isSelected?styles.selected:styles.unselected}>{text}</Text>
+        <Text style={isSelected ? styles.selected : styles.unselected}>
+          {text}
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
 export default RoomChecklistSelection;
 const styles = StyleSheet.create({
-  checkListWrapper: {flexDirection: 'row',marginRight:'20%',marginTop:'3%'},
+  checkListWrapper: {flexDirection: 'row', marginRight: '20%', marginTop: '3%'},
   checkBoxWrapper: {
     flex: 1,
     justifyContent: 'center',
@@ -50,8 +52,18 @@ const styles = StyleSheet.create({
     marginVertical: hp('0.5%'),
   },
   checkBox: {height: 24, width: 24},
-  selected: {alignItems: 'center', color: 'rgb(52,101,127)',fontSize:18,fontFamily:'IBMPlexSans-Bold'},
-  unselected:{alignItems: 'center', color: 'rgb(52,101,127)',fontSize:18,fontFamily:'IBMPlexSans-Regular'},
+  selected: {
+    alignItems: 'center',
+    color: 'rgb(52,101,127)',
+    fontSize: 18,
+    fontFamily: 'IBMPlexSans-Bold',
+  },
+  unselected: {
+    alignItems: 'center',
+    color: 'rgb(52,101,127)',
+    fontSize: 18,
+    fontFamily: 'IBMPlexSans-Regular',
+  },
   checkBoxTextWrapper: {
     flex: 5,
     justifyContent: 'center',
