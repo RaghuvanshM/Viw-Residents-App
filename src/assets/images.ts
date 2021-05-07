@@ -51,6 +51,5 @@ const images = {
   checkBox: require('./images/checkBox.png'),
   checkBoxUnchecked: require('./images/checkBoxUnchecked.png'),
   delete: require('./images/delete.png'),
-
 };
 export default images;

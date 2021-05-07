@@ -12,6 +12,8 @@ export type AuthRootStackParamList = {
   NewSchedule: undefined;
   NewSchedule: undefined;
   Intelligence: undefined;
+  Notification: undefined;
+  NeedHelp: undefined;
 };
 type ScreenRouteProp = RouteProp<AuthRootStackParamList, 'HomeControl'>;
 export type ScreenNavigationProp = StackNavigationProp<

@@ -13,6 +13,8 @@ import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../components/slider/LightControlScreen';
 import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule';
 import IntelligenceScreen from '../screens/MyViewScreens/Intelligence'
+import NotificationScreen from '../screens/MyViewScreens/Notification'
+import HelpScreen from '../screens/MyViewScreens/HelpScreen';
 const Stack = createStackNavigator();
 const StackNavigationScreens = () => {
   return (
@@ -24,6 +26,8 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="NewSchedule" component={AddNewScheduleScreen} />
       <Stack.Screen name="Intelligence" component={IntelligenceScreen} />
+      <Stack.Screen name="Notification" component={NotificationScreen} />
+      <Stack.Screen name="NeedHelp" component={HelpScreen} />
     </Stack.Navigator>
   );
 };
