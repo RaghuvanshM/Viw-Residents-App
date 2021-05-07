@@ -24,40 +24,38 @@ const HelpScreen: React.FC<Props> = ({navigation}) => {
         />
       </View>
       <ScrollView>
-      <View style={{flex: 1, justifyContent: 'space-between'}}>
-        <Text style={styles.notificatintext}>
-          Get help from your building manager either by phone or send a message
-          here.
-        </Text>
-        <View>
-          <Text style={styles.buidiingmangertext}>Building Manger:</Text>
-          <Text style={styles.name}>Tom Wilson</Text>
-          <Text style={styles.number}>(213) 555-1212</Text>
-        </View>
-        <View style={{margin: '3%'}}>
-          <Text style={styles.description}>Description</Text>
-          <View style={styles.textAreaContainer}>
-            <TextInput
-              style={styles.textArea}
-              underlineColorAndroid="transparent"
-              placeholder="Enter your description or issue here."
-              placeholderTextColor="grey"
-              numberOfLines={10}
-              multiline={true}
-            />
-            <TouchableOpacity style={styles.sendbutton}>
-              <Text style={styles.sendtext}>Send</Text>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.bottomtext}>Product Design Note: </Text>
-          <Text style={styles.bottomtext}>
-            Instead of view support, this help request should go to the building
-            manager, who can then escalate to view.
+        <View style={{flex: 1, justifyContent: 'space-between'}}>
+          <Text style={styles.notificatintext}>
+            Get help from your building manager either by phone or send a
+            message here.
           </Text>
+          <View>
+            <Text style={styles.buidiingmangertext}>Building Manger:</Text>
+            <Text style={styles.name}>Tom Wilson</Text>
+            <Text style={styles.number}>(213) 555-1212</Text>
+          </View>
+          <View style={{margin: '3%'}}>
+            <Text style={styles.description}>Description</Text>
+            <View style={styles.textAreaContainer}>
+              <TextInput
+                style={styles.textArea}
+                underlineColorAndroid="transparent"
+                placeholder="Enter your description or issue here."
+                placeholderTextColor="grey"
+                numberOfLines={10}
+                multiline={true}
+              />
+              <TouchableOpacity style={styles.sendbutton}>
+                <Text style={styles.sendtext}>Send</Text>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.bottomtext}>Product Design Note: </Text>
+            <Text style={styles.bottomtext}>
+              Instead of view support, this help request should go to the
+              building manager, who can then escalate to view.
+            </Text>
+          </View>
         </View>
-      
-      </View>
-
       </ScrollView>
     </>
   );

@@ -15,33 +15,36 @@ import LinearGradient from 'react-native-linear-gradient';
 const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
   return (
     <>
-    <View style={{marginTop:StatusBar.currentHeight}}>
-      <MyViewHeader
-        navigation={navigation}
-        headerTitle={'Intelligence'}
-        hasAddIcon
-        isIcon={false}
-      />
+      <View style={{marginTop: StatusBar.currentHeight}}>
+        <MyViewHeader
+          navigation={navigation}
+          headerTitle={'Intelligence'}
+          hasAddIcon
+          isIcon={false}
+        />
       </View>
       <ScrollView>
         <View style={styles.base}>
           <LinearGradient
             colors={['#000000', '#193A4B', 'rgb(52, 101, 127)']}
             style={styles.linearGradient}>
-            <Image source={images.logo}  style={{
-              width: 140,
-              height: 100,
-              alignSelf: 'center',
-              marginTop:'4%',
-              resizeMode: 'contain',
-            }} />
-         
-          <View style={{marginTop: '5%'}}>
-            <Text style={styles.description}>
-              View’s Intelligence predictively controls the window tint based on
-              a number of inputs including the following:
-            </Text>
-          </View>
+            <Image
+              source={images.logo}
+              style={{
+                width: 140,
+                height: 100,
+                alignSelf: 'center',
+                marginTop: '4%',
+                resizeMode: 'contain',
+              }}
+            />
+
+            <View style={{marginTop: '5%'}}>
+              <Text style={styles.description}>
+                View’s Intelligence predictively controls the window tint based
+                on a number of inputs including the following:
+              </Text>
+            </View>
           </LinearGradient>
           <View style={{marginTop: '10%'}}>
             <Image
@@ -128,7 +131,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     width: '100%',
-    alignItems:'center',
+    alignItems: 'center',
   },
   description: {
     fontSize: 18,

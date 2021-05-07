@@ -1,6 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-
 export type AuthRootStackParamList = {
   HomeControl: undefined;
   Wellness: undefined;

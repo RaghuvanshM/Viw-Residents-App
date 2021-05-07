@@ -12,8 +12,8 @@ import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../components/slider/LightControlScreen';
 import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule';
-import IntelligenceScreen from '../screens/MyViewScreens/Intelligence'
-import NotificationScreen from '../screens/MyViewScreens/Notification'
+import IntelligenceScreen from '../screens/MyViewScreens/Intelligence';
+import NotificationScreen from '../screens/MyViewScreens/Notification';
 import HelpScreen from '../screens/MyViewScreens/HelpScreen';
 const Stack = createStackNavigator();
 const StackNavigationScreens = () => {
