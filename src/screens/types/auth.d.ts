@@ -8,8 +8,7 @@ export type AuthRootStackParamList = {
   MyView: undefined;
   ManageUsers: undefined;
   LightControl: undefined;
-  NewSchedule: undefined;
-  NewSchedule: undefined;
+  CreateEditSchedule: undefined;
   Intelligence: undefined;
   Notification: undefined;
   NeedHelp: undefined;

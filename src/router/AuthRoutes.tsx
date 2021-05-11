@@ -5,13 +5,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeControlScreen from '../screens/ControlScreens/HomeControlScreen';
 import DetailsScreen from '../screens/DetailsScreen';
-import SettingsScreen from '../screens/Schedule/ScheduleScreen';
 import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
 import LightControlScreen from '../components/slider/LightControlScreen';
-import AddNewScheduleScreen from '../screens/Schedule/AddNewSchedule';
+import ScheduleScreen from '../screens/ScheduleScreens/Schedules';
+import CreateNewScheduleScreen from '../screens/ScheduleScreens/CreateEditSchedule';
 import IntelligenceScreen from '../screens/MyViewScreens/Intelligence';
 import NotificationScreen from '../screens/MyViewScreens/Notification';
 import HelpScreen from '../screens/MyViewScreens/HelpScreen';
@@ -23,8 +23,7 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="LightControl" component={LightControlScreen} />
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name="NewSchedule" component={AddNewScheduleScreen} />
+      <Stack.Screen name="CreateEditSchedule" component={CreateNewScheduleScreen} />
       <Stack.Screen name="Intelligence" component={IntelligenceScreen} />
       <Stack.Screen name="Notification" component={NotificationScreen} />
       <Stack.Screen name="NeedHelp" component={HelpScreen} />
@@ -89,7 +88,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Schedule"
-        component={SettingsScreen}
+        component={ScheduleScreen}
         options={{
           tabBarLabel: 'Schedule',
           tabBarIcon: ({focused}) => (
