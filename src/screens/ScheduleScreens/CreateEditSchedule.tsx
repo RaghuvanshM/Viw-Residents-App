@@ -23,7 +23,7 @@ import {
 import RadioButton from '../../components/RadioButton';
 import APPCONSTANTS from '../../constants/constants';
 import {useSelector} from 'react-redux';
-import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
+import {getSelectedImage} from '../../module/selectors';
 import images from '../../assets/images';
 import Slider from '../../components/slider/Slider';
 import cloneDeep from 'lodash/cloneDeep';
@@ -32,7 +32,7 @@ const ratio = window.height / window.width;
 const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
   const days = useRef(APPCONSTANTS.days);
   const selectedImage = useSelector(getSelectedImage);
-  const isInternalImage = useSelector(getIsInternalImage);
+  // const isInternalImage = useSelector(getIsInternalImage);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scheduleRoomName, setScheduleRoomName] = useState('');
   const [isActive, setActive] = useState(false);
@@ -47,7 +47,11 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
         translucent
         backgroundColor="rgb(255,255,255)"
       />
-      <MyViewHeader navigation={navigation} headerTitle={'Create'} />
+      <MyViewHeader
+        navigation={navigation}
+        headerTitle={'Create'}
+        isIcon={false}
+      />
       <ScrollView style={styles.scrollStyle}>
         <View style={{paddingHorizontal: '5%'}}>
           <View style={styles.scrollContentStyle}>
@@ -82,11 +86,11 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
                   key={`room_type_${index}`}
                   text={room}
                   isSelected={roomTypes.some(r => r === room)}
-                  customTextStyle={
-                    roomTypes.indexOf(room) !== -1
-                      ? {fontFamily: 'IBMPlexSans-Bold', marginBottom: 5}
-                      : {opacity: 0.5, marginBottom: 5}
-                  }
+                  // customTextStyle={
+                  //   roomTypes.indexOf(room) !== -1
+                  //     ? {fontFamily: 'IBMPlexSans-Bold', marginBottom: 5}
+                  //     : {opacity: 0.5, marginBottom: 5}
+                  // }
                   changeChecked={() => {
                     setRoomType(prevRoomTypes => {
                       const rooms = cloneDeep(prevRoomTypes);
@@ -182,13 +186,7 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
         <View>
           <ImageBackground
             style={{height: hp('25%')}}
-            source={
-              isInternalImage
-                ? selectedImage
-                  ? images[selectedImage]
-                  : images.initialWelnessHeader
-                : {uri: selectedImage}
-            }>
+            source={{uri: selectedImage}}>
             <View
               style={{
                 flex: 1,

@@ -16,6 +16,7 @@ interface SliderProps {
   allColors?: string[];
   children: JSX.Element[] | JSX.Element;
   defaultIndex?: number;
+  texts:any
   changeSelectedIndex?: (index: number) => void;
 }
 

@@ -115,6 +115,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
             <Slider
               isHorizontal={false}
               changeSelectedIndex={setSelectedIndex}
+              texts={''}
               size={hp('55%')}
               defaultIndex={selectedIndex}>
               <Fragment>

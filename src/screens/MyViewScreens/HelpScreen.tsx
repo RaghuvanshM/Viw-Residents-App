@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textArea: {
-    height: hp('30%'),
+    height: hp('15%'),
     fontSize: 18,
     fontFamily: 'IBMPlexSans-Regular',
   },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(88, 166, 232)',
     width: 140,
     borderRadius: 30,
-    marginLeft: '55%',
+    marginLeft: '70%',
     margin: 20,
   },
   sendtext: {
