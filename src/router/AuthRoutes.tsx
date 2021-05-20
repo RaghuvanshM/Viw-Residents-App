@@ -15,7 +15,8 @@ import Appearance from '../screens/MyViewScreens/Appearance';
 import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
 import Schedules from '../screens/ScheduleScreens/Schedules';
 import CreateEditSchedule from '../screens/ScheduleScreens/CreateEditSchedule';
-
+import Intelligence from '../screens/MyViewScreens/Intelligence';
+import Notification from '../screens/MyViewScreens/Notification';
 const Stack = createStackNavigator();
 
 const StackNavigationScreens = () => {
@@ -29,6 +30,8 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="Appearance" component={Appearance} />
       <Stack.Screen name="AppearancePreview" component={AppearancePreview} />
       <Stack.Screen name="CreateEditSchedule" component={CreateEditSchedule} />
+      <Stack.Screen name="Intelligence" component={Intelligence} />
+      <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>
   );
 };
