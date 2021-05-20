@@ -1,5 +1,12 @@
 import React, {FC} from 'react';
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import images from '../constants/Images';
 
 export const SplashScreen: FC = () => {
@@ -27,7 +34,10 @@ const styles = StyleSheet.create({
   smartwindowtext: {
     fontSize: 18,
     letterSpacing: 2,
-    fontFamily: 'GothamMedium',
+    ...Platform.select({
+      ios: {fontFamily: 'Gotham-Medium'},
+      android: {fontFamily: 'GothamMedium'},
+    }),
     alignSelf: 'center',
     color: 'white',
   },
