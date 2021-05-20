@@ -1,4 +1,4 @@
-import React, {FC, useState,useEffect} from 'react';
+import React, {FC, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -20,7 +20,6 @@ import {useDispatch} from 'react-redux';
 import {authUser} from '../../module/actions';
 import images from '../../assets/images';
 import {useKeyboardStatus} from '../../module/utils/useKeyboardStatus';
-import axios from 'axios'
 const slides = [
   {
     key: 0,
