@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import images from '../../constants/Images';
 import {Props} from '../types/no.auth';
@@ -50,7 +51,10 @@ const styles = StyleSheet.create({
   smartwindowtext: {
     fontSize: 18,
     letterSpacing: 2,
-    fontFamily: 'GothamMedium',
+    ...Platform.select({
+      ios: {fontFamily: 'Gotham-Medium'},
+      android: {fontFamily: 'GothamMedium'},
+    }),
     alignSelf: 'center',
     color: 'white',
   },

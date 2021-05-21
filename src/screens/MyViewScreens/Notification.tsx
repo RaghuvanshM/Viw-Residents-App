@@ -6,12 +6,7 @@ const NotificationScreen: React.FC<Props> = ({navigation}) => {
   return (
     <>
       <View style={{marginVertical: StatusBar.currentHeight}}>
-        <MyViewHeader
-          navigation={navigation}
-          headerTitle={'Notifications'}
-          hasAddIcon
-          isIcon={false}
-        />
+        <MyViewHeader navigation={navigation} headerTitle={'Notifications'} isIcon={false} />
       </View>
       <Text style={styles.notificatintext}>Notifications on/off here</Text>
     </>

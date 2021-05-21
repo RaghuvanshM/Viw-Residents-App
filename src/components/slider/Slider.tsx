@@ -9,11 +9,12 @@ import StyleSheetFactory from './Stylesheet';
 
 // const isHorizontal = false;
 interface SliderProps {
-  size?: any;
+  size: any;
   isHorizontal?: boolean;
   count?: number;
   backgroundColor?: string;
   allColors?: string[];
+  texts?: string[];
   children: JSX.Element[] | JSX.Element;
   defaultIndex?: number;
   texts:any
@@ -28,6 +29,7 @@ const Slider: React.FC<SliderProps> = ({
   changeSelectedIndex,
   defaultIndex = 0,
   children,
+  texts,
   allColors = ['#033D65', '#3173A2', '#66ADE0', '#BBD9EF'],
 }) => {
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
@@ -48,6 +50,8 @@ const Slider: React.FC<SliderProps> = ({
         <Labels
           {...{count}}
           size={size}
+          texts={texts}
+          selected={selectedIndex}
           isHorizontal={isHorizontal}
           allColors={allColors}
         />
@@ -66,6 +70,8 @@ const Slider: React.FC<SliderProps> = ({
       <Labels
         {...{count}}
         size={size}
+        texts={texts}
+        selected={selectedIndex}
         isHorizontal={isHorizontal}
         allColors={allColors}
       />

@@ -22,6 +22,13 @@ export const arrowRight = require('../assets/chevron-right.png');
 
 export const cardimage1 = require('../assets/cardimg1.png');
 
+export const clocksecond = require('../assets/images/clock2.png');
+export const sun2 = require('../assets/images/sun-2.png');
+export const cloud3 = require('../assets/images/cloudsecond.png');
+export const angle1 = require('../assets/images/angle-2.png');
+export const landscape2 = require('../assets/images/landscape2.png');
+export const sunglasses2 = require('../assets/images/sun-glasses-2.png');
+export const hightemp2 = require('../assets/images/high-temperature-1.png');
 export default {
   logo,
   angle,
@@ -45,4 +52,11 @@ export default {
 
   cardimage1,
   vgnature,
+  clocksecond,
+  sun2,
+  cloud3,
+  angle1,
+  landscape2,
+  sunglasses2,
+  hightemp2,
 };

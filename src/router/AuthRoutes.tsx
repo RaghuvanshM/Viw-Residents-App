@@ -9,12 +9,13 @@ import images from '../assets/images';
 import MyViewScreen from '../screens/MyViewScreens/MyView';
 import ManageUsers from '../screens/MyViewScreens/ManageUsers';
 import WellnessScreen from '../screens/WellnessScreens/WellnessScreen';
-import LightControlScreen from '../components/slider/LightControlScreen';
-import ScheduleScreen from '../screens/ScheduleScreens/Schedules';
-import CreateNewScheduleScreen from '../screens/ScheduleScreens/CreateEditSchedule';
-import IntelligenceScreen from '../screens/MyViewScreens/Intelligence';
-import NotificationScreen from '../screens/MyViewScreens/Notification';
-import HelpScreen from '../screens/MyViewScreens/HelpScreen';
+import LightControlScreen from '../screens/ControlScreens/LightControlScreen';
+import Appearance from '../screens/MyViewScreens/Appearance';
+import AppearancePreview from '../screens/MyViewScreens/AppearancePreview';
+import Schedules from '../screens/ScheduleScreens/Schedules';
+import CreateEditSchedule from '../screens/ScheduleScreens/CreateEditSchedule';
+import Intelligence from '../screens/MyViewScreens/Intelligence';
+import Notification from '../screens/MyViewScreens/Notification';
 const Stack = createStackNavigator();
 const StackNavigationScreens = () => {
   return (
@@ -23,10 +24,12 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="LightControl" component={LightControlScreen} />
       <Stack.Screen name="ManageUsers" component={ManageUsers} />
-      <Stack.Screen name="CreateEditSchedule" component={CreateNewScheduleScreen} />
-      <Stack.Screen name="Intelligence" component={IntelligenceScreen} />
-      <Stack.Screen name="Notification" component={NotificationScreen} />
-      <Stack.Screen name="NeedHelp" component={HelpScreen} />
+      {/* <Stack.Screen name="Settings" component={Schedules} /> */}
+      <Stack.Screen name="Appearance" component={Appearance} />
+      <Stack.Screen name="AppearancePreview" component={AppearancePreview} />
+      <Stack.Screen name="CreateEditSchedule" component={CreateEditSchedule} />
+      <Stack.Screen name="Intelligence" component={Intelligence} />
+      <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>
   );
 };
@@ -88,7 +91,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Schedule"
-        component={ScheduleScreen}
+        component={Schedules}
         options={{
           tabBarLabel: 'Schedule',
           tabBarIcon: ({focused}) => (

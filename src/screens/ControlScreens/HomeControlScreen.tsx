@@ -9,15 +9,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import {
-  logo,
-  partlyCloudy,
-  sunset,
-  wellnessHeaderImg,
-} from '../../constants/Images';
+import images from '../../assets/images';
 import WelcomeCard from '../../components/WelcomeCard';
 import RoomCard from '../../components/RoomCard';
 import {Props} from '../types/auth';
+import {useSelector} from 'react-redux';
+import {getSelectedImage, getIsInternalImage} from '../../module/selectors';
 
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
@@ -26,9 +23,11 @@ const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
 
+  const selectedImage = useSelector(getSelectedImage);
+  const isInternalImage = useSelector(getIsInternalImage);
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('I am focues in Homescreen');
       StatusBar.setBarStyle('light-content');
       StatusBar.setTranslucent(true);
       StatusBar.setBackgroundColor('transparent');
@@ -77,7 +76,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Image
               style={{width: 20, height: 20, marginRight: 10}}
-              source={sunset}
+              source={images.sunset}
             />
             <View style={{flexDirection: 'row'}}>
               <Text
@@ -170,12 +169,25 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
               transform: [{translateY: imageTranslateY()}],
             },
           ]}
-          source={wellnessHeaderImg}
+          source={
+            isInternalImage
+              ? selectedImage
+                ? images[selectedImage]
+                : images.initialWelnessHeader
+              : {uri: selectedImage}
+          }
         />
 
-        <View style={{position: 'absolute', bottom: 0, width: '100%'}}>
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: '55%',
+            justifyContent: 'center',
+          }}>
           <Image
-            source={logo}
+            source={images.viewLogoWhite}
             style={{
               width: 140,
               height: 100,
@@ -191,7 +203,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
                 alignItems: 'center',
               }}>
               <Image
-                source={partlyCloudy}
+                source={images.partlyCloudy}
                 style={{
                   marginRight: 10,
                   width: 30,

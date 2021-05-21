@@ -1,14 +1,24 @@
 import * as React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import Animated from 'react-native-reanimated';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 interface LabelProps {
   size: number;
   count: number;
+  selected: number;
   isHorizontal: boolean;
   allColors: string[];
+  texts?: string[];
 }
-export default ({size, count, isHorizontal, allColors}: LabelProps) => {
+export default ({
+  size,
+  count,
+  isHorizontal,
+  allColors,
+  selected,
+  texts = ['Dark', 'Medium', 'Light', 'Clear'],
+}: LabelProps) => {
   return (
     <View
       style={{
@@ -27,13 +37,37 @@ export default ({size, count, isHorizontal, allColors}: LabelProps) => {
               justifyContent: 'center',
               flexDirection: isHorizontal ? 'column' : 'row',
             }}>
+            <Text
+              style={[
+                {
+                  textAlign: 'right',
+                  fontSize: 14,
+                  position: 'absolute',
+                  ...Platform.select({
+                    ios: {
+                      fontFamily:
+                        selected === i ? 'IBMPlexSans-Bold' : 'IBMPlexSans',
+                    },
+                    android: {
+                      fontFamily:
+                        selected === i
+                          ? 'IBMPlexSans-Bold'
+                          : 'IBMPlexSans-Regular',
+                    },
+                  }),
+                  color: 'white',
+                },
+                isHorizontal ? {top: wp('20%')} : {right: wp('28%')},
+              ]}>
+              {texts[i]}
+            </Text>
             <Animated.View
               style={isHorizontal ? style.horizontalLine1 : style.verticalLine1}
             />
             <Animated.View
               style={{
-                height: 20,
-                width: 20,
+                height: size / 20,
+                width: size / 20,
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: '#fff',
@@ -41,8 +75,8 @@ export default ({size, count, isHorizontal, allColors}: LabelProps) => {
               }}>
               <Animated.View
                 style={{
-                  height: 10,
-                  width: 10,
+                  height: size / 40,
+                  width: size / 40,
                   backgroundColor: allColors[i],
                   borderRadius: 5,
                 }}
@@ -53,13 +87,23 @@ export default ({size, count, isHorizontal, allColors}: LabelProps) => {
             />
             {i < count - 1 && (
               <Animated.View
-                style={{
-                  position: 'absolute',
-                  width: 1,
-                  top: '65%',
-                  height: size / 5.55,
-                  backgroundColor: '#fff',
-                }}
+                style={[
+                  {
+                    position: 'absolute',
+                    width: 1,
+                    height: size / 5.55,
+                    backgroundColor: '#fff',
+                  },
+                  isHorizontal
+                    ? {
+                        height: 1,
+                        width: size / 5.55,
+                        left: '65%',
+                      }
+                    : {
+                        top: '65%',
+                      },
+                ]}
               />
             )}
           </View>

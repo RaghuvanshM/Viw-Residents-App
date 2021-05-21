@@ -150,7 +150,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 50, //70,
     color: 'rgb(22,1,68)',
-    fontFamily: 'GothamMedium',
+    ...Platform.select({
+      ios: {fontFamily: 'Gotham-Medium'},
+      android: {fontFamily: 'GothamMedium'},
+    }),
   },
   minMaxDigits: {
     fontSize: 20,

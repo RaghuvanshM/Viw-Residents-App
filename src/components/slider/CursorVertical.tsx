@@ -21,8 +21,8 @@ const CursorVertical: React.FC<CursorProps> = ({
   changeIndex,
   currentIndex,
 }: CursorProps) => {
-  const yLong = useRef(new Value(0));
   const snapPoints = new Array(count).fill(0).map((e, i) => i * size);
+  const yLong = useRef(new Value(snapPoints[currentIndex]));
   const translationY = useRef(new Value(0));
   const velocityY = useRef(new Value(0));
   const state = useRef(new Value(State.UNDETERMINED));

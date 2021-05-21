@@ -2,8 +2,10 @@ import React from 'react';
 import {
   Image,
   Platform,
+  StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -14,11 +16,13 @@ interface CheckBoxSelectionListProps {
   text: string;
   isSelected: boolean;
   changeChecked: () => void;
+  customTextStyle?: StyleProp<TextStyle>;
 }
 const CheckBoxSelectionList: React.FC<CheckBoxSelectionListProps> = ({
   text,
   changeChecked,
   isSelected,
+  customTextStyle,
 }) => {
   return (
     <View style={styles.checkListWrapper}>
@@ -35,7 +39,9 @@ const CheckBoxSelectionList: React.FC<CheckBoxSelectionListProps> = ({
         activeOpacity={1}
         onPress={changeChecked}
         style={styles.checkBoxTextWrapper}>
-        <Text style={[styles.user, styles.checkedText]}>{text}</Text>
+        <Text style={[styles.user, styles.checkedText, customTextStyle]}>
+          {text}
+        </Text>
       </TouchableOpacity>
     </View>
   );

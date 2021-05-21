@@ -16,12 +16,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
   return (
     <>
       <View style={{marginTop: StatusBar.currentHeight}}>
-        <MyViewHeader
-          navigation={navigation}
-          headerTitle={'Intelligence'}
-          hasAddIcon
-          isIcon={false}
-        />
+        <MyViewHeader navigation={navigation} headerTitle={'Intelligence'} isIcon />
       </View>
       <ScrollView>
         <View style={styles.base}>
@@ -48,7 +43,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </LinearGradient>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/clocksecond.png')}
+              source={images.clocksecond}
               style={styles.image}
               resizeMode="contain"
             />
@@ -56,7 +51,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/sun-2.png')}
+              source={images.sun2}
               style={styles.image}
               resizeMode="contain"
             />
@@ -64,15 +59,15 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/cloud-3.png')}
+              source={images.cloud3}
               style={styles.image}
               resizeMode="contain"
             />
-            <Text style={styles.title}>Cloud Cover</Text>
+            <Text style={{...styles.title, marginLeft: '7%'}}>Cloud Cover</Text>
           </View>
           <View style={{margin: '10%'}}>
             <Image
-              source={require('../../assets/images/angle-1.png')}
+              source={images.angle1}
               style={styles.image}
               resizeMode="contain"
             />
@@ -87,7 +82,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/sun-2.png')}
+              source={images.clocksecond}
               style={styles.image}
               resizeMode="contain"
             />
@@ -95,7 +90,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/landscape-1.png')}
+              source={images.landscape2}
               style={styles.image}
               resizeMode="contain"
             />
@@ -103,7 +98,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{marginTop: '10%'}}>
             <Image
-              source={require('../../assets/images/sun-glasses-1.png')}
+              source={images.sunglasses2}
               style={styles.image}
               resizeMode="contain"
             />
@@ -111,7 +106,7 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <View style={{margin: '10%'}}>
             <Image
-              source={require('../../assets/images/high-temperature-1.png')}
+              source={images.hightemp2}
               style={styles.image}
               resizeMode="contain"
             />

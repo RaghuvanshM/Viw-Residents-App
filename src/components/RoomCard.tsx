@@ -1,9 +1,11 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useCallback, useState} from 'react';
 import {Platform, Switch} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 import {Text, View, ImageBackground, Image, StyleSheet} from 'react-native';
-import {sunset, tint1, arrowRight, cardimage1} from '../constants/Images';
+import {sunset, arrowRight, cardimage1} from '../constants/Images';
 import {useNavigation} from '@react-navigation/native';
+import APPCONSTANTS from '../constants/constants';
+import images from '../assets/images';
 interface RoomCardProps {
   hasWakeupAlarm?: boolean;
   roomStatus: 'Intelligence™' | 'Override' | 'Schedule';
@@ -28,10 +30,35 @@ const RoomCard: FC<RoomCardProps> = ({
     navigation.navigate('LightControl', {roomControl, roomControlStatus});
   };
 
+  const GetButtonImage = useCallback(() => {
+    if (roomStatus === 'Override') {
+      if (controlStatus === 'Clear') {
+        return images.greenClearBtn;
+      } else if (controlStatus === 'Light') {
+        return images.greenLightBtn;
+      } else if (controlStatus === 'Medium') {
+        return images.greenMediumBtn;
+      } else {
+        return images.greenDarkBtn;
+      }
+    } else {
+      if (controlStatus === 'Clear') {
+        return images.blueClearBtn;
+      } else if (controlStatus === 'Light') {
+        return images.blueLightBtn;
+      } else if (controlStatus === 'Medium') {
+        return images.blueMediumBtn;
+      } else {
+        return images.blueDarkBtn;
+      }
+    }
+  }, [roomStatus, controlStatus]);
+
   return (
     <View style={styles.shadowWrap}>
       <View style={styles.card}>
         <TouchableOpacity
+          activeOpacity={0.8}
           onPress={() => navigateToLightCOntrol(controlStatus, roomStatus)}>
           <ImageBackground
             style={{
@@ -43,14 +70,14 @@ const RoomCard: FC<RoomCardProps> = ({
               style={{
                 width: '100%',
                 height: 170,
-                backgroundColor: `rgba(0,0,0,${
+                backgroundColor: `rgba(${APPCONSTANTS.controlStatusColor},${
                   controlStatus === 'Clear'
-                    ? 0
+                    ? APPCONSTANTS.controlStatusClearRate
                     : controlStatus === 'Light'
-                    ? 0.25
+                    ? APPCONSTANTS.controlStatusLightRate
                     : controlStatus === 'Medium'
-                    ? 0.5
-                    : 0.75
+                    ? APPCONSTANTS.controlStatusMediumRate
+                    : APPCONSTANTS.controlStatusDarkRate
                 })`,
               }}>
               <Text
@@ -129,7 +156,7 @@ const RoomCard: FC<RoomCardProps> = ({
                     {controlStatus}
                   </Text>
                   <Image
-                    source={tint1}
+                    source={GetButtonImage()}
                     style={{
                       width: 50,
                       height: 50,

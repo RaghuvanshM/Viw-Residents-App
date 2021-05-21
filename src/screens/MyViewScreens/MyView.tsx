@@ -19,7 +19,6 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
   const currentDate = useRef(new Date());
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      console.log('I am focues in MyView');
       StatusBar.setBarStyle('dark-content');
       StatusBar.setBackgroundColor('white');
       StatusBar.setTranslucent(true);
@@ -73,7 +72,11 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
           textString={'Manage Users'}
           onPress={() => navigation.navigate('ManageUsers')}
         />
-        <TextWithIcon icon={images.appearance} textString={'Appearance'} />
+        <TextWithIcon
+          icon={images.appearance}
+          textString={'Appearance'}
+          onPress={() => navigation.navigate('Appearance')}
+        />
         <TextWithIcon
           icon={images.intelligence}
           textString={'Intelligence™'}
@@ -100,7 +103,7 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
           width: '100%',
         }}>
         <Text style={styles.viewInc}>
-          View, Inc. ${currentDate.current.getFullYear()}
+          View, Inc. {currentDate.current.getFullYear()}
         </Text>
       </View>
     </View>

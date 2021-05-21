@@ -37,7 +37,6 @@ const ManagerUserFlatListComponent: React.FC<AddEditUserProps> = ({
           isCreate={false}
           userData={userData}
           toggleAddEdit={() => {
-            console.log("I'm Pressed");
             setEditMode(false);
           }}
           saveUserData={SaveData}

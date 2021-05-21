@@ -1,8 +1,13 @@
-const images = {
+const images: any = {
   blueClearBtn: require('./images/btnClear.png'),
   blueDarkBtn: require('./images/btnDark.png'),
   blueLightBtn: require('./images/btnLight.png'),
   blueMediumBtn: require('./images/btnMedium.png'),
+  greenClearBtn: require('./images/btnClearGreen.png'),
+  greenDarkBtn: require('./images/btnDarkGreen.png'),
+  greenLightBtn: require('./images/btnLightGreen.png'),
+  greenMediumBtn: require('./images/btnMediumGreen.png'),
+  edit: require('./images/edit.png'),
   arrowRight: require('./images/arrow-right.png'),
   sun: require('./images/sun.png'),
   sunset: require('./images/sunset.png'),
@@ -17,6 +22,8 @@ const images = {
   override: require('./images/override.png'),
   control: require('./images/control.png'),
   calendar: require('./images/calendar.png'),
+  calendarWhite: require('./images/calendarWhite.png'),
+  gallery: require('./images/gallery.png'),
   check: require('./images/check.png'),
   viewLogo: require('./images/logo-view-logo.png'),
   tabIcon1: require('./tabIcon1.png'),
@@ -51,5 +58,12 @@ const images = {
   checkBox: require('./images/checkBox.png'),
   checkBoxUnchecked: require('./images/checkBoxUnchecked.png'),
   delete: require('./images/delete.png'),
+  initialWelnessHeader: require('./wellness_header.png'),
+  wellnessMaskGroup: require('./images/wellnessMaskGroup.png'),
+  patternMaskGroup: require('./images/patternMaskGroup.png'),
+  exoRestonMaskGroup: require('./images/exoRestonMaskGroup.png'),
+  myPhotosMaskGroup: require('./images/myPhotosMaskGroup.png'),
+  spinner: require('./images/spinner.gif'),
+  noImage: require('./images/no-image.png'),
 };
 export default images;
