@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    flex: 1,
+    flex: 7,
   },
   headerTitleText: {
     fontFamily: 'IBMPlexSans-Bold',

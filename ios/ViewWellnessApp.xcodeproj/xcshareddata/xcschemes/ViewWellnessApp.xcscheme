@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "viewresidents.app"
-               BlueprintName = "viewresidents"
-               ReferencedContainer = "container:viewresidents.xcodeproj">
+               BuildableName = "ViewWellnessApp.app"
+               BlueprintName = "ViewWellnessApp"
+               ReferencedContainer = "container:ViewWellnessApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "viewresidentsTests.xctest"
-               BlueprintName = "viewresidentsTests"
-               ReferencedContainer = "container:viewresidents.xcodeproj">
+               BuildableName = "ViewWellnessAppTests.xctest"
+               BlueprintName = "ViewWellnessAppTests"
+               ReferencedContainer = "container:ViewWellnessApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "viewresidents.app"
-            BlueprintName = "viewresidents"
-            ReferencedContainer = "container:viewresidents.xcodeproj">
+            BuildableName = "ViewWellnessApp.app"
+            BlueprintName = "ViewWellnessApp"
+            ReferencedContainer = "container:ViewWellnessApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "viewresidents.app"
-            BlueprintName = "viewresidents"
-            ReferencedContainer = "container:viewresidents.xcodeproj">
+            BuildableName = "ViewWellnessApp.app"
+            BlueprintName = "ViewWellnessApp"
+            ReferencedContainer = "container:ViewWellnessApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

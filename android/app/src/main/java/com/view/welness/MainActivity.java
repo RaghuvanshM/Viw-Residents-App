@@ -1,4 +1,4 @@
-package com.viewresidents;
+package com.view.welness;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "viewresidents";
+    return "ViewWellnessApp";
   }
 }
