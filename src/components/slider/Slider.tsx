@@ -14,10 +14,9 @@ interface SliderProps {
   count?: number;
   backgroundColor?: string;
   allColors?: string[];
-  texts?: string[];
   children: JSX.Element[] | JSX.Element;
   defaultIndex?: number;
-  texts:any
+  texts?:any
   changeSelectedIndex?: (index: number) => void;
 }
 

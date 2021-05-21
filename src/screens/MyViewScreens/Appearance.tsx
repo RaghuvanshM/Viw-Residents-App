@@ -42,6 +42,7 @@ const Appearance: React.FC<Props> = ({navigation}) => {
         navigation={navigation}
         headerTitle={'Appearance'}
         hasAddIcon={false}
+        isIcon={false}
       />
       <View style={styles.screenBodyWrapper}>
         <AppearancePreviewCardComponent

@@ -88,11 +88,11 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
           onPress={() => navigation.navigate('Notification')}
         />
         <TextWithIcon icon={images.privacy} textString={'About'} />
-        <TextWithIcon
+        {/* <TextWithIcon
           icon={images.help}
           textString={'Need Help?'}
           onPress={() => navigation.navigate('NeedHelp')}
-        />
+        /> */}
       </View>
       <View
         style={{
