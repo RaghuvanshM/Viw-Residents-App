@@ -35,6 +35,7 @@ const HomeControlScreen: React.FC<Props> = () => {
   const airqualityindex = useSelector(getAirQualityIndex);
   console.log(airqualityindex);
   const [location, setLocation] = useState({});
+  console.log(location)
   const getAirQuality = async () => {
     await Geolocation.getCurrentPosition(
       postion => {
@@ -74,7 +75,7 @@ const HomeControlScreen: React.FC<Props> = () => {
   // }, []);
   useEffect(() => {
     getAirQuality();
-  }, [location]);
+  }, []);
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],

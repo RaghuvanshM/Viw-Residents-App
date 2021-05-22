@@ -21,7 +21,6 @@ import images from '../../assets/images';
 import APPCONSTANTS from '../../constants/constants';
 import {useSelector} from 'react-redux';
 import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
-
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 interface Props {
