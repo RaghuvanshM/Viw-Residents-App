@@ -20,14 +20,16 @@ import {
 } from 'react-native-responsive-screen';
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
-
+import {useSelector} from 'react-redux';
+import {getAirQualityIndex} from '../../module/selectors';
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 const WellnessScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
-
+  const airqualityindex = useSelector(getAirQualityIndex);
+  console.log(airqualityindex);
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
@@ -169,23 +171,19 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
             data={[
               {
                 title: 'Breathe',
-                text:
-                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+                text: 'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
               },
               {
                 title: 'Breathe',
-                text:
-                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+                text: 'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
               },
               {
                 title: 'Breathe',
-                text:
-                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+                text: 'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
               },
               {
                 title: 'Breathe',
-                text:
-                  'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
+                text: 'Just 1 minute of calm breathing can lower your pulse and blood pressure.',
               },
             ]}
             dotStyle={{

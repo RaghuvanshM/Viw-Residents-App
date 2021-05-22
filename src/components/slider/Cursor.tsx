@@ -51,10 +51,10 @@ const Cursor: React.FC<CursorProps> = ({
       (count - 1) * size,
     ),
   );
-  useCode(() => set(xLong.current, translateX.current), [
-    xLong.current,
-    translateX.current,
-  ]);
+  useCode(
+    () => set(xLong.current, translateX.current),
+    [xLong.current, translateX.current],
+  );
 
   useCode(() => {
     return call([xLong.current], x => {

@@ -16,7 +16,11 @@ const IntelligenceScreen: React.FC<Props> = ({navigation}) => {
   return (
     <>
       <View style={{marginTop: StatusBar.currentHeight}}>
-        <MyViewHeader navigation={navigation} headerTitle={'Intelligence'} isIcon />
+        <MyViewHeader
+          navigation={navigation}
+          headerTitle={'Intelligence'}
+          isIcon
+        />
       </View>
       <ScrollView>
         <View style={styles.base}>

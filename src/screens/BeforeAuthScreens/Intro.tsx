@@ -102,13 +102,6 @@ const Intro: FC = () => {
   const [password, setPassword] = useState('');
   console.log(email);
   console.log(password);
-  // useEffect(()=>{
-  //   axios.get('https://api.breezometer.com/air-quality/v2/current-conditions?lat=28.704060&lon=77.102493&key=e55c933e40744918b0a26d7d1820e0be')
-  //   .then((res=>{
-  //     console.log(res)
-  //   });
-
-  // },[])
   const onSigninPress = () => {
     dispatch(
       authUser({

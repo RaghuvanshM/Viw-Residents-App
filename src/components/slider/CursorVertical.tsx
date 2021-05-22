@@ -52,10 +52,10 @@ const CursorVertical: React.FC<CursorProps> = ({
       (count - 1) * size,
     ),
   );
-  useCode(() => set(yLong.current, translateY.current), [
-    yLong.current,
-    translateY.current,
-  ]);
+  useCode(
+    () => set(yLong.current, translateY.current),
+    [yLong.current, translateY.current],
+  );
 
   useCode(() => {
     return call([yLong.current], y => {

@@ -4,12 +4,14 @@ import MyViewHeader from '../../components/MyViewHeader';
 import {Props} from '../types/auth';
 const NotificationScreen: React.FC<Props> = ({navigation}) => {
   return (
-    <>
-      <View style={{marginVertical: StatusBar.currentHeight}}>
-        <MyViewHeader navigation={navigation} headerTitle={'Notifications'} isIcon={false} />
-      </View>
+    <View style={styles.base}>
+      <MyViewHeader
+        navigation={navigation}
+        headerTitle={'Notifications'}
+        isIcon
+      />
       <Text style={styles.notificatintext}>Notifications on/off here</Text>
-    </>
+    </View>
   );
 };
 export default NotificationScreen;
@@ -19,5 +21,10 @@ const styles = StyleSheet.create({
     color: 'rgb(47, 47, 47)',
     fontFamily: 'IBMPlexSans-Regular',
     margin: '3%',
+  },
+  base: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: StatusBar.currentHeight,
   },
 });

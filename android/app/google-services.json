@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "411364010063",
+    "firebase_url": "https://view-wellness-app.firebaseio.com",
+    "project_id": "view-wellness-app",
+    "storage_bucket": "view-wellness-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411364010063:android:306f0353ff80d14260a23a",
+        "android_client_info": {
+          "package_name": "com.view.welness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvK_IFIjYDU6bWFydsvkifl7ULSMWq13Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411364010063:android:1e74157c5cbb399d60a23a",
+        "android_client_info": {
+          "package_name": "com.viewapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvK_IFIjYDU6bWFydsvkifl7ULSMWq13Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411364010063:android:c87bb00ae7ea33f760a23a",
+        "android_client_info": {
+          "package_name": "com.viewresidents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvK_IFIjYDU6bWFydsvkifl7ULSMWq13Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411364010063-eso97gs8jhgdsdi2b009sdbsao51hj8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

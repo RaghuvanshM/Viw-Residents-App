@@ -41,6 +41,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
+
   return (
     <ImageBackground
       source={

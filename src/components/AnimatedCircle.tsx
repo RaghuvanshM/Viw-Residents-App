@@ -53,12 +53,10 @@ const AnimatedCircle: React.FC<AnimatedCircleProps> = ({
     [spinValue, speed, airQuality, maxNumber],
   );
 
-  useEffect(() => spin((airQuality * 180) / maxNumber), [
-    airQuality,
-    speed,
-    maxNumber,
-    spin,
-  ]);
+  useEffect(
+    () => spin((airQuality * 180) / maxNumber),
+    [airQuality, speed, maxNumber, spin],
+  );
 
   const spinInterpolate = () =>
     spinValue.current.interpolate({

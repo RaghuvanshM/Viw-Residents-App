@@ -58,7 +58,7 @@ const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
         navigation={navigation}
         headerTitle={'Preview'}
         hasAddIcon={false}
-        isIcon={false}
+        isIcon
       />
       <View style={styles.screenBodyWrapper}>
         <AppearancePreviewCardComponent
