@@ -1,4 +1,4 @@
-import React, {useRef, Fragment, useEffect} from 'react';
+import React, {useRef, Fragment, useEffect, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -27,16 +27,18 @@ const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const HomeControlScreen: React.FC<Props> = ({navigation}) => {
+const HomeControlScreen: React.FC<Props> = () => {
   const scrollAnim = useRef(new Animated.Value(0));
   const dispatch = useDispatch();
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const airqualityindex = useSelector(getAirQualityIndex);
   console.log(airqualityindex);
+  const [location, setLocation] = useState({});
   const getAirQuality = async () => {
     await Geolocation.getCurrentPosition(
       postion => {
+        setLocation(postion);
         try {
           axios
             .get(
@@ -60,16 +62,19 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
     );
   };
 
+  // useEffect(() => {
+  //   getAirQuality();
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     StatusBar.setBarStyle('light-content');
+  //     StatusBar.setTranslucent(true);
+  //     StatusBar.setBackgroundColor('transparent');
+  //   });
+  //   // Return the function to unsubscribe from the event so it gets removed on unmount
+  //   return unsubscribe;
+  // }, []);
   useEffect(() => {
     getAirQuality();
-    // const unsubscribe = navigation.addListener('focus', () => {
-    //   StatusBar.setBarStyle('light-content');
-    //   StatusBar.setTranslucent(true);
-    //   StatusBar.setBackgroundColor('transparent');
-    // });
-    // // Return the function to unsubscribe from the event so it gets removed on unmount
-    // return unsubscribe;
-  }, []);
+  }, [location]);
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
