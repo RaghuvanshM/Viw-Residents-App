@@ -35,33 +35,7 @@ const HomeControlScreen: React.FC<Props> = () => {
   const airqualityindex = useSelector(getAirQualityIndex);
   console.log(airqualityindex);
   const [location, setLocation] = useState({});
-  console.log(location)
-  const getAirQuality = async () => {
-    await Geolocation.getCurrentPosition(
-      postion => {
-        setLocation(postion);
-        try {
-          axios
-            .get(
-              `${airQualityApi}?lat=${postion.coords.latitude}&lon=${postion.coords.longitude}&key=${airQualityApiKey}`,
-            )
-            .then(res => {
-              if (res.status === 200) {
-                dispatch(
-                  airQualityIndex({
-                    airQualitydata: res.data.data,
-                  }),
-                );
-              }
-            });
-        } catch {}
-      },
-      error => {
-        console.log(error);
-      },
-      {enableHighAccuracy: true},
-    );
-  };
+  console.log(location);
 
   // useEffect(() => {
   //   getAirQuality();
@@ -74,6 +48,32 @@ const HomeControlScreen: React.FC<Props> = () => {
   //   return unsubscribe;
   // }, []);
   useEffect(() => {
+    async function getAirQuality() {
+      await Geolocation.getCurrentPosition(
+        postion => {
+          setLocation(postion);
+          try {
+            axios
+              .get(
+                `${airQualityApi}?lat=${postion.coords.latitude}&lon=${postion.coords.longitude}&key=${airQualityApiKey}`,
+              )
+              .then(res => {
+                if (res.status === 200) {
+                  dispatch(
+                    airQualityIndex({
+                      airQualitydata: res.data.data,
+                    }),
+                  );
+                }
+              });
+          } catch {}
+        },
+        error => {
+          console.log(error);
+        },
+        {enableHighAccuracy: true},
+      );
+    }
     getAirQuality();
   }, []);
   const headerTranslateY = () =>
