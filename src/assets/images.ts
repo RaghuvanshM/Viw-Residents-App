@@ -65,5 +65,6 @@ const images: any = {
   myPhotosMaskGroup: require('./images/myPhotosMaskGroup.png'),
   spinner: require('./images/spinner.gif'),
   noImage: require('./images/no-image.png'),
+  icircle: require('./images/welnessi.png'),
 };
 export default images;

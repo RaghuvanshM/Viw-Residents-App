@@ -13,6 +13,7 @@ export type AuthRootStackParamList = {
   CreateEditSchedule: undefined;
   Intelligence: undefined;
   Notification: undefined;
+  GallaryImage: undefined;
 };
 type ScreenRouteProp = RouteProp<AuthRootStackParamList, 'HomeControl'>;
 export type ScreenNavigationProp = StackNavigationProp<

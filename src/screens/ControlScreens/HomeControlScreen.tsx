@@ -27,7 +27,7 @@ const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const HomeControlScreen: React.FC<Props> = () => {
+const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
   const dispatch = useDispatch();
   const selectedImage = useSelector(getSelectedImage);
@@ -48,6 +48,11 @@ const HomeControlScreen: React.FC<Props> = () => {
   //   return unsubscribe;
   // }, []);
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      StatusBar.setBarStyle('light-content');
+      StatusBar.setTranslucent(true);
+      StatusBar.setBackgroundColor('transparent');
+    });
     async function getAirQuality() {
       await Geolocation.getCurrentPosition(
         postion => {
@@ -75,6 +80,7 @@ const HomeControlScreen: React.FC<Props> = () => {
       );
     }
     getAirQuality();
+    return unsubscribe;
   }, []);
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({

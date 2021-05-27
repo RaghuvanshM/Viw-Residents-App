@@ -66,16 +66,21 @@ const Appearance: React.FC<Props> = ({navigation}) => {
             contentContainerStyle={styles.flatListContentContainer}
             renderItem={({item}) => {
               return (
-                <AppearanceTile
-                  name={item.name}
-                  image={item.image}
-                  onPress={() =>
-                    navigation.navigate({
-                      name: 'AppearancePreview',
-                      params: {name: item.name},
-                    })
-                  }
-                />
+                <>
+                  <AppearanceTile
+                    name={item.name}
+                    image={item.image}
+                    onPress={() =>
+                      navigation.navigate({
+                        name:
+                          item.name !== 'My Photos'
+                            ? 'AppearancePreview'
+                            : 'GallaryImage',
+                        params: {name: item.name},
+                      })
+                    }
+                  />
+                </>
               );
             }}
             //Setting the number of column

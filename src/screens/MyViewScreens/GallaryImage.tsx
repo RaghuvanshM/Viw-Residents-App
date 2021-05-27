@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -13,7 +13,7 @@ import {
   View,
 } from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import CameraRoll from '@react-native-community/cameraroll';
 import {Props} from '../types/auth';
 import MyViewHeader from '../../components/MyViewHeader';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
@@ -22,39 +22,28 @@ import images from '../../assets/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
 import {changeImage} from '../../module/actions';
-import DummyImages from '../../module/utils/dummyImages';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 const IMAGE_HEIGHT_WIDTH = ratio >= 2 ? wp('42%') : wp('35%');
 
-const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
-  const params: any = route.params || {name: 'My Photos'};
-  // 68
-  const fromImage =
-    params.name === 'My Photos'
-      ? 0
-      : params.name === 'Exo Reston'
-      ? 68
-      : params.name === 'Wellness'
-      ? 136
-      : 204;
-  const toImage =
-    params.name === 'My Photos'
-      ? 68
-      : params.name === 'Exo Reston'
-      ? 136
-      : params.name === 'Wellness'
-      ? 204
-      : 274;
-  const galleryData =
-    params.name === 'My Photos'
-      ? useRef(DummyImages)
-      : useRef(DummyImages.slice(fromImage, toImage));
+const AppearancePreview: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const [localImageSelected, setLocalImageSelected] = useState('');
-
+  const [gallaryImage, setGallayImage] = useState([] as any);
+  useEffect(() => {
+    CameraRoll.getPhotos({
+      first: 50,
+      assetType: 'Photos',
+    })
+      .then(res => {
+        setGallayImage(res.edges);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
   return (
     <View style={styles.base}>
       <MyViewHeader
@@ -115,7 +104,7 @@ const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
           <Text style={styles.headTitleText}>Wellness Images</Text>
         </View>
         <FlatList
-          data={galleryData.current}
+          data={gallaryImage}
           contentContainerStyle={styles.flatListContentContainer}
           renderItem={({item}) => (
             <Tile item={item} setLocalImageSelected={setLocalImageSelected} />
@@ -224,10 +213,15 @@ const styles = StyleSheet.create({
 });
 
 export default AppearancePreview;
-
+interface ImageProps {
+  image: {uri: string};
+}
 interface TileProps {
   setLocalImageSelected: (image: string) => void;
-  item: {id: number; image: string};
+  item: {
+    id: number;
+    node: ImageProps;
+  };
 }
 const Tile: React.FC<TileProps> = ({setLocalImageSelected, item}) => {
   const [hasErrorInImage, setHasErrorInImage] = useState(false);
@@ -236,7 +230,7 @@ const Tile: React.FC<TileProps> = ({setLocalImageSelected, item}) => {
     <TouchableOpacity
       onPress={() => {
         if (!hasErrorInImage) {
-          setLocalImageSelected(item.image);
+          setLocalImageSelected(item.node.image.uri);
         }
       }}
       disabled={hasErrorInImage && loadingEnd}
@@ -252,7 +246,7 @@ const Tile: React.FC<TileProps> = ({setLocalImageSelected, item}) => {
           setLoadingEnd(true);
         }}
         loadingIndicatorSource={images.spinner}
-        source={hasErrorInImage ? images.noImage : {uri: item.image}}
+        source={hasErrorInImage ? images.noImage : {uri: item.node.image.uri}}
       />
     </TouchableOpacity>
   );
