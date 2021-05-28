@@ -1,4 +1,4 @@
-import React, {useRef, Fragment, useEffect, useState} from 'react';
+import React, {useRef, Fragment, useEffect} from 'react';
 import {
   Animated,
   Dimensions,
@@ -13,75 +13,69 @@ import images from '../../assets/images';
 import WelcomeCard from '../../components/WelcomeCard';
 import RoomCard from '../../components/RoomCard';
 import {Props} from '../types/auth';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {
   getSelectedImage,
   getIsInternalImage,
   getAirQualityIndex,
 } from '../../module/selectors';
-import {airQualityIndex} from '../../module/actions';
-import axios from 'axios';
-import Geolocation from '@react-native-community/geolocation';
-import {airQualityApi, airQualityApiKey} from '../../constants/apiconstants';
+
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
-  const dispatch = useDispatch();
+
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const airqualityindex = useSelector(getAirQualityIndex);
   console.log(airqualityindex);
-  const [location, setLocation] = useState({});
-  console.log(location);
 
-  // useEffect(() => {
-  //   getAirQuality();
-  //   const unsubscribe = navigation.addListener('focus', () => {
-  //     StatusBar.setBarStyle('light-content');
-  //     StatusBar.setTranslucent(true);
-  //     StatusBar.setBackgroundColor('transparent');
-  //   });
-  //   // Return the function to unsubscribe from the event so it gets removed on unmount
-  //   return unsubscribe;
-  // }, []);
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
       StatusBar.setTranslucent(true);
       StatusBar.setBackgroundColor('transparent');
     });
-    async function getAirQuality() {
-      await Geolocation.getCurrentPosition(
-        postion => {
-          setLocation(postion);
-          try {
-            axios
-              .get(
-                `${airQualityApi}?lat=${postion.coords.latitude}&lon=${postion.coords.longitude}&key=${airQualityApiKey}`,
-              )
-              .then(res => {
-                if (res.status === 200) {
-                  dispatch(
-                    airQualityIndex({
-                      airQualitydata: res.data.data,
-                    }),
-                  );
-                }
-              });
-          } catch {}
-        },
-        error => {
-          console.log(error);
-        },
-        {enableHighAccuracy: true},
-      );
-    }
-    getAirQuality();
+    // Return the function to unsubscribe from the event so it gets removed on unmount
     return unsubscribe;
-  }, []);
+  }, [navigation]);
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('focus', () => {
+  //     StatusBar.setBarStyle('light-content');
+  //     StatusBar.setTranslucent(true);
+  //     StatusBar.setBackgroundColor('transparent');
+  //   });
+  //   async function getAirQuality() {
+  //     await Geolocation.getCurrentPosition(
+  //       postion => {
+  //         setLocation(postion);
+  //         try {
+  //           axios
+  //             .get(
+  //               `${airQualityApi}?lat=${postion.coords.latitude}&lon=${postion.coords.longitude}&key=${airQualityApiKey}`,
+  //             )
+  //             .then(res => {
+  //               if (res.status === 200) {
+  //                 dispatch(
+  //                   airQualityIndex({
+  //                     airQualitydata: res.data.data,
+  //                   }),
+  //                 );
+  //               }
+  //             });
+  //         } catch {}
+  //       },
+  //       error => {
+  //         console.log(error);
+  //       },
+  //       {enableHighAccuracy: true},
+  //     );
+  //   }
+  //   getAirQuality();
+  //   return unsubscribe;
+  // }, []);
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],

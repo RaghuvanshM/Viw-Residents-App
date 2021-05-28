@@ -46,10 +46,7 @@ const AppearancePreview: React.FC<Props> = ({route, navigation}) => {
       : params.name === 'Wellness'
       ? 204
       : 274;
-  const galleryData =
-    params.name === 'My Photos'
-      ? useRef(DummyImages)
-      : useRef(DummyImages.slice(fromImage, toImage));
+  const galleryData = useRef(DummyImages.slice(fromImage, toImage));
   const dispatch = useDispatch();
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);

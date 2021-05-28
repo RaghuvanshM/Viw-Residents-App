@@ -130,7 +130,7 @@ export default AnimatedCircle;
 const styles = StyleSheet.create({
   dotWrapper: {
     position: 'absolute',
-    top: hp(ratio >= 2 ? '15.5%' : '20%'), // hp(ratio >= 2 ? '17.5%' : '22%'),
+    top: wp(ratio >= 2 ? '15.5%' : '33%'), // hp(ratio >= 2 ? '17.5%' : '22%'),
     left: wp('9.5%'), //wp('4.5%'),
   },
   dotAnimationWrapper: {

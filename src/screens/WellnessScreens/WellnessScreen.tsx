@@ -134,7 +134,7 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
           </View>
           <AnimatedCircle
             airQuality={500}
-            speed={2}
+            speed={7}
             radius={wp('35%')}
             minNumber={0}
             maxNumber={500}

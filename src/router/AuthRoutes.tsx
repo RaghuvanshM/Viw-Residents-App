@@ -16,7 +16,7 @@ import Schedules from '../screens/ScheduleScreens/Schedules';
 import CreateEditSchedule from '../screens/ScheduleScreens/CreateEditSchedule';
 import Intelligence from '../screens/MyViewScreens/Intelligence';
 import Notification from '../screens/MyViewScreens/Notification';
-import GallaryImage  from '../screens/MyViewScreens/GallaryImage'
+import GallaryImage from '../screens/MyViewScreens/GallaryImage';
 const Stack = createStackNavigator();
 const StackNavigationScreens = () => {
   return (
