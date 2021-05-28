@@ -17,7 +17,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {useDispatch} from 'react-redux';
-import {authUser} from '../../module/actions';
+import {signInUser} from '../../module/actions';
 import images from '../../assets/images';
 import {useKeyboardStatus} from '../../module/utils/useKeyboardStatus';
 const slides = [
@@ -98,19 +98,10 @@ const theme = {
 const Intro: FC = () => {
   const dispatch = useDispatch();
   const isKeyboardOpen = useKeyboardStatus();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  console.log(email);
-  console.log(password);
+  const [email, setEmail] = useState('admin@view.com');
+  const [password, setPassword] = useState('q!w@e#r$t%y^');
   const onSigninPress = () => {
-    dispatch(
-      authUser({
-        id: '123',
-        firstName: 'Viral',
-        lastName: 'Pattani',
-        email: 'viral.pattani@piri.ai',
-      }),
-    );
+    dispatch(signInUser({email, password}));
   };
   const _renderItem = ({item}: any) => {
     if (item.key === 3) {
@@ -255,6 +246,7 @@ const Intro: FC = () => {
                     mode="outlined"
                     placeholderTextColor={'#333'}
                     style={styles.textinput}
+                    value={email}
                     onChangeText={text => setEmail(text)}
                     theme={theme}
                   />
@@ -263,6 +255,7 @@ const Intro: FC = () => {
                     mode="outlined"
                     style={styles.textinput}
                     secureTextEntry={true}
+                    value={password}
                     onChangeText={text => setPassword(text)}
                     theme={theme}
                   />

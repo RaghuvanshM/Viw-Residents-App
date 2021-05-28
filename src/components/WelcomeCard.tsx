@@ -8,6 +8,8 @@ import {
   ImageSourcePropType,
   Platform,
 } from 'react-native';
+import {useDispatch} from 'react-redux';
+import * as actions from '../module/actions';
 
 interface WelcomeCardProps {
   cardTitle: string;
@@ -27,6 +29,12 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
   buttonText,
   imageUrl,
 }) => {
+  const dispatch = useDispatch();
+
+  const hideThisBlock = () => {
+    dispatch(actions.hideWelcomeInfo());
+  };
+
   return (
     <View style={styles.shadowWrap}>
       <View style={styles.card}>
@@ -54,6 +62,7 @@ const WelcomeCard: FC<WelcomeCardProps> = ({
         <Text style={styles.description}>{cardDescription}</Text>
 
         <TouchableOpacity
+          onPress={hideThisBlock}
           style={[
             styles.btn,
             {backgroundColor: buttonBgColor || 'rgb(88,166,232)'},

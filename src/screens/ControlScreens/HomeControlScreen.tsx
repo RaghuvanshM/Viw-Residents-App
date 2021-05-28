@@ -1,4 +1,4 @@
-import React, {useRef, Fragment, useEffect, useState} from 'react';
+import React, {useRef, Fragment, useEffect} from 'react';
 import {
   Animated,
   Dimensions,
@@ -18,64 +18,46 @@ import {
   getSelectedImage,
   getIsInternalImage,
   getAirQualityIndex,
+  getUserProfile,
+  getWelcomeInfoShow,
+  getZones,
 } from '../../module/selectors';
-import {airQualityIndex} from '../../module/actions';
-import axios from 'axios';
-import Geolocation from '@react-native-community/geolocation';
-import {airQualityApi, airQualityApiKey} from '../../constants/apiconstants';
+import * as actions from '../../module/actions';
+import APPCONSTANTS from '../../constants/constants';
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const HomeControlScreen: React.FC<Props> = () => {
+const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
   const dispatch = useDispatch();
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const airqualityindex = useSelector(getAirQualityIndex);
+  const userDetails = useSelector(getUserProfile);
+  const isWelcomeInfoShow = useSelector(getWelcomeInfoShow);
+  const zones = useSelector(getZones);
   console.log(airqualityindex);
-  const [location, setLocation] = useState({});
-  console.log(location);
+  console.log(userDetails);
+  console.log(zones);
 
-  // useEffect(() => {
-  //   getAirQuality();
-  //   const unsubscribe = navigation.addListener('focus', () => {
-  //     StatusBar.setBarStyle('light-content');
-  //     StatusBar.setTranslucent(true);
-  //     StatusBar.setBackgroundColor('transparent');
-  //   });
-  //   // Return the function to unsubscribe from the event so it gets removed on unmount
-  //   return unsubscribe;
-  // }, []);
   useEffect(() => {
-    async function getAirQuality() {
-      await Geolocation.getCurrentPosition(
-        postion => {
-          setLocation(postion);
-          try {
-            axios
-              .get(
-                `${airQualityApi}?lat=${postion.coords.latitude}&lon=${postion.coords.longitude}&key=${airQualityApiKey}`,
-              )
-              .then(res => {
-                if (res.status === 200) {
-                  dispatch(
-                    airQualityIndex({
-                      airQualitydata: res.data.data,
-                    }),
-                  );
-                }
-              });
-          } catch {}
-        },
-        error => {
-          console.log(error);
-        },
-        {enableHighAccuracy: true},
-      );
-    }
-    getAirQuality();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      StatusBar.setBarStyle('light-content');
+      if (Platform.OS === 'android') {
+        StatusBar.setTranslucent(true);
+      }
+      StatusBar.setBackgroundColor('transparent');
+    });
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+
+  useEffect(() => {
+    dispatch(actions.getAirQualityIndex());
+    dispatch(actions.getZoneDetails({buildingId: 'Network_6_415582'}));
+  }, [dispatch]);
+
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -162,15 +144,29 @@ const HomeControlScreen: React.FC<Props> = () => {
             />
           </View>
         </View>
-        <WelcomeCard
-          cardTitle={'Welcome Home Emily'}
-          cardDescription={
-            'Your windows are automatically tinting based on our real-time intelligence to provide reduced glare. You can adjust your tint level by tapping on a room and then using the slider.'
-          }
-          buttonText="Got it"
-        />
+        {isWelcomeInfoShow && (
+          <WelcomeCard
+            cardTitle={`Welcome Home ${userDetails?.user?.firstName}`}
+            cardDescription={
+              'Your windows are automatically tinting based on our real-time intelligence to provide reduced glare. You can adjust your tint level by tapping on a room and then using the slider.'
+            }
+            buttonText="Got it"
+          />
+        )}
 
-        <RoomCard
+        {zones.map((zone, index) => {
+          return (
+            <RoomCard
+              key={index}
+              roomStatus={APPCONSTANTS.tintAgent[zone.snapshot.tintAgent]}
+              controlStatus={APPCONSTANTS.tintLevel[zone.snapshot.tintLevel]}
+              roomSubText={''}
+              zone={zone}
+              roomName={zone.name}
+            />
+          );
+        })}
+        {/* <RoomCard
           roomStatus={'Schedule'}
           controlStatus={'Clear'}
           roomSubText={'Weekday Wake Up'}
@@ -195,7 +191,7 @@ const HomeControlScreen: React.FC<Props> = () => {
           controlStatus={'Dark'}
           roomSubText={'0:59:12'}
           roomName={'Living Room'}
-        />
+        /> */}
       </Animated.ScrollView>
       <Animated.View
         style={[

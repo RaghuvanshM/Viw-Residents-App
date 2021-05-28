@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -19,8 +19,11 @@ import {
 } from 'react-native-responsive-screen';
 import images from '../../assets/images';
 import APPCONSTANTS from '../../constants/constants';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
+import * as selectors from '../../module/selectors';
+import {changeZoneNameAction} from '../../module/actions';
+import ArrowBack from 'react-native-vector-icons/MaterialIcons';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 interface Props {
@@ -40,6 +43,29 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
+  const selectedZone = useSelector(selectors.getSelectedZones);
+  const showSlider = useSelector(selectors.isSliderShowing);
+  const dispatch = useDispatch();
+  const [toggle, setToggle] = useState(false);
+  const [name, setName] = useState('');
+  console.log('selectedZone', selectedZone);
+
+  useEffect(() => {
+    if (selectedZone) {
+      setTintText(APPCONSTANTS.tintAgent[selectedZone.snapshot.tintAgent]);
+      setName(selectedZone.name);
+      if (selectedIndex !== selectedZone.snapshot.tintLevel) {
+        setSelectedIndex(selectedZone.snapshot.tintLevel);
+      }
+    }
+  }, [selectedZone, selectedIndex]);
+
+  const changeZoneName = () => {
+    dispatch(changeZoneNameAction(name));
+    toggleShow();
+  };
+
+  const toggleShow = () => setToggle(toggleData => !toggleData);
 
   return (
     <ImageBackground
@@ -80,14 +106,29 @@ const LightControl: React.FC<Props> = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={styles.roomTextWrapper}>
-            <Text style={styles.livingroomtext}>Living Room</Text>
-            <TouchableOpacity
-              style={{justifyContent: 'flex-end', marginBottom: '2%'}}>
-              <Image
-                source={images.edit}
-                style={{height: 14, marginTop: 5, marginLeft: 10}}
-              />
-            </TouchableOpacity>
+            <Text style={styles.livingroomtext}>{name}</Text>
+            {toggle === false && (
+              <TouchableOpacity onPress={toggleShow}>
+                <ArrowBack
+                  name="edit"
+                  size={25}
+                  color="white"
+                  style={{marginTop: 5, marginLeft: 10}}
+                />
+              </TouchableOpacity>
+            )}
+            {!toggle && (
+              <TouchableOpacity
+                style={{display: 'none'}}
+                onPress={() => changeZoneName()}>
+                <ArrowBack
+                  name="done"
+                  size={25}
+                  color="white"
+                  style={{marginTop: 5, marginLeft: 10}}
+                />
+              </TouchableOpacity>
+            )}
           </View>
           <View style={styles.sliderWrapper}>
             <View>
@@ -100,6 +141,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 isHorizontal={false}
                 backgroundColor={'rgba(255,255,255,0.2)'}
                 changeSelectedIndex={setSelectedIndex}
+                showSlider={showSlider}
                 size={hp('52%')}
                 defaultIndex={selectedIndex}>
                 <Fragment>

@@ -1,25 +1,43 @@
 import {createReducer} from 'redux-act';
-import {authUser, signOutUser} from '../actions';
+import {authUser, hideWelcomeInfo, signOutUser} from '../actions';
 
 export interface IUserProfile {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+  access_token: string;
+  refresh_token: string;
+  user: {
+    roles: string[];
+    authenticator: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    uniqueId: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export interface IUserReducer {
   isAuth: boolean;
   profile: IUserProfile;
+  showWelcomeInfo: boolean;
 }
 
 const initialState = {
   isAuth: false,
+  showWelcomeInfo: true,
   profile: {
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
+    access_token: '',
+    refresh_token: '',
+    user: {
+      roles: [],
+      authenticator: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      uniqueId: '',
+      createdAt: '',
+      updatedAt: '',
+    },
   },
 };
 
@@ -29,13 +47,26 @@ user.on(authUser, (state: IUserReducer, payload: IUserProfile) => ({
   isAuth: true,
   profile: payload,
 }));
+user.on(hideWelcomeInfo, (state: IUserReducer) => ({
+  ...state,
+  showWelcomeInfo: false,
+}));
 user.on(signOutUser, (state: IUserReducer) => ({
   ...state,
   isAuth: false,
+  showWelcomeInfo: true,
   profile: {
-    id: '',
-    firstName: '',
-    lastName: '',
-    email: '',
+    access_token: '',
+    refresh_token: '',
+    user: {
+      roles: [],
+      authenticator: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      uniqueId: '',
+      createdAt: '',
+      updatedAt: '',
+    },
   },
 }));

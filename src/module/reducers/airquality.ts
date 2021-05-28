@@ -1,8 +1,23 @@
 import {createReducer} from 'redux-act';
-import {airQualityIndex} from '../actions/airquality';
+import {airQualityIndex, setLocation} from '../actions/airquality';
+
+export interface Coordinates {
+  readonly accuracy: number;
+  readonly altitude: number | null;
+  readonly altitudeAccuracy: number | null;
+  readonly heading: number | null;
+  readonly latitude: number;
+  readonly longitude: number;
+  readonly speed: number | null;
+}
+export interface Position {
+  readonly coords: Coordinates;
+  readonly timestamp: number;
+}
 
 export interface IAirQualityIndexReducer {
   airQualitydata: object;
+  location?: Position;
 }
 
 const initialState = {
@@ -20,3 +35,8 @@ airquality.on(
     airQualitydata: payload.airQualitydata,
   }),
 );
+
+airquality.on(setLocation, (state: IAirQualityIndexReducer, payload: any) => ({
+  ...state,
+  location: payload,
+}));
