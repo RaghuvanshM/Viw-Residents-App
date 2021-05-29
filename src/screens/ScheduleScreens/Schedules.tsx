@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   FlatList,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -53,7 +54,9 @@ const Schedules: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('dark-content');
-      StatusBar.setBackgroundColor('transparent');
+      if (Platform.OS === 'android') {
+        StatusBar.setBackgroundColor('transparent');
+      }
       StatusBar.setTranslucent(true);
     });
 

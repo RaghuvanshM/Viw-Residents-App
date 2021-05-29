@@ -61,7 +61,7 @@ zones.on(setZoneDetail, (state: IZoneReducer, payload: IZoneProps) => {
   clonedZones[selectedZoneIndex] = payload;
   return {
     ...state,
-    clonedZones,
+    zones: clonedZones,
     fetching: false,
   };
 });

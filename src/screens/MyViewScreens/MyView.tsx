@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   GestureResponderEvent,
   ImageSourcePropType,
+  Platform,
 } from 'react-native';
 import {Props} from '../types/auth';
 import images from '../../assets/images';
@@ -20,7 +21,9 @@ const MyViewScreen: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('dark-content');
-      StatusBar.setBackgroundColor('white');
+      if (Platform.OS === 'android') {
+        StatusBar.setBackgroundColor('white');
+      }
       StatusBar.setTranslucent(true);
     });
 
