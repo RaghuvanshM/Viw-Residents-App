@@ -25,7 +25,7 @@ export const setZoneNameApi = async (
     Authorization: `Bearer ${jwt}`,
   };
   return axios.patch(
-    `${baseUrl}${APIUrl.sensorZone}${payload.zoneId}`,
+    `${baseUrl}${APIUrl.setSensorZoneName}${payload.zoneId}`,
     {name: payload.name},
     {
       headers: emailheader,
