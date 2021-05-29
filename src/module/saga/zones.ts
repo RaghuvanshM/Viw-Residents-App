@@ -14,6 +14,7 @@ import {
 import {call, put, select, delay} from 'redux-saga/effects';
 import {ENV, ENV_TYPE} from '../utils/api-constants';
 import {getJwtToken, getSelectedZones, getUserProfile} from '../selectors';
+import * as moment from 'moment';
 
 export const getZoneDetails = function* (
   action: ISagaAction<any>,
@@ -77,6 +78,7 @@ export const changeTintValue = function* (
     );
     selectedZone.snapshot.tintLevel = action.payload;
     selectedZone.snapshot.desiredDuration = 3600;
+    selectedZone.snapshot.timestamp = moment().format();
     selectedZone.snapshot.remainingTime = 3599;
     yield put(setZoneDetail(selectedZone));
   } catch (e) {

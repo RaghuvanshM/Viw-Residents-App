@@ -9,11 +9,12 @@ import images from '../assets/images';
 import {useDispatch} from 'react-redux';
 import {selectZone} from '../module/actions';
 import {IZoneProps} from '../module/reducers';
+import Timer from './Timer';
 interface RoomCardProps {
   hasWakeupAlarm?: boolean;
   roomStatus: string;
   controlStatus: string;
-  roomSubText: string;
+  roomSubText: string | number;
   roomName: string;
   zone: IZoneProps;
 }
@@ -132,17 +133,10 @@ const RoomCard: FC<RoomCardProps> = ({
                         Active
                       </Text>
                     </View>
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 14,
-                        ...Platform.select({
-                          ios: {fontFamily: 'IBMPlexSans'},
-                          android: {fontFamily: 'IBMPlexSans-Regular'},
-                        }),
-                      }}>
-                      {roomSubText}
-                    </Text>
+                    <Timer
+                      remainingTime={zone?.snapshot?.remainingTime || 0}
+                      roomSubText={+roomSubText}
+                    />
                   </View>
                 </View>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>

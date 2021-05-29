@@ -42,31 +42,17 @@ const initialState = {
 };
 
 export const user = createReducer<IUserReducer>({}, initialState);
-user.on(authUser, (state: IUserReducer, payload: IUserProfile) => ({
-  ...state,
-  isAuth: true,
-  profile: payload,
-}));
+user.on(authUser, (state: IUserReducer, payload: IUserProfile) => {
+  return {
+    ...state,
+    isAuth: true,
+    profile: payload,
+  };
+});
 user.on(hideWelcomeInfo, (state: IUserReducer) => ({
   ...state,
   showWelcomeInfo: false,
 }));
-user.on(signOutUser, (state: IUserReducer) => ({
-  ...state,
-  isAuth: false,
-  showWelcomeInfo: true,
-  profile: {
-    access_token: '',
-    refresh_token: '',
-    user: {
-      roles: [],
-      authenticator: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      uniqueId: '',
-      createdAt: '',
-      updatedAt: '',
-    },
-  },
-}));
+user.on(signOutUser, () => {
+  return initialState;
+});

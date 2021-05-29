@@ -24,6 +24,7 @@ import {
 } from '../../module/selectors';
 import * as actions from '../../module/actions';
 import APPCONSTANTS from '../../constants/constants';
+import moment from 'moment';
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
@@ -160,7 +161,9 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
               key={index}
               roomStatus={APPCONSTANTS.tintAgent[zone.snapshot.tintAgent]}
               controlStatus={APPCONSTANTS.tintLevel[zone.snapshot.tintLevel]}
-              roomSubText={''}
+              roomSubText={moment(zone?.snapshot?.timestamp)
+                .add(zone?.snapshot?.remainingTime + 60, 'seconds')
+                .diff(moment(), 'seconds')}
               zone={zone}
               roomName={zone.name}
             />
