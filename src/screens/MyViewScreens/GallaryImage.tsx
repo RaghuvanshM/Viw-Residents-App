@@ -32,6 +32,7 @@ const AppearancePreview: React.FC<Props> = ({navigation}) => {
   const isInternalImage = useSelector(getIsInternalImage);
   const [localImageSelected, setLocalImageSelected] = useState('');
   const [gallaryImage, setGallayImage] = useState([] as any);
+
   useEffect(() => {
     CameraRoll.getPhotos({
       first: 50,
@@ -44,6 +45,7 @@ const AppearancePreview: React.FC<Props> = ({navigation}) => {
         console.log(error);
       });
   }, []);
+
   return (
     <View style={styles.base}>
       <MyViewHeader

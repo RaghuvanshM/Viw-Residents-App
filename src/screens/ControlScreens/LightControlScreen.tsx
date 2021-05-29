@@ -134,8 +134,8 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 style={{
                   color: 'white',
                   fontSize: 30,
-                  borderBottomWidth: 2,
-                  borderBottomColor: 'white',
+                  // borderBottomWidth: 2,
+                  // borderBottomColor: 'white',
                   paddingHorizontal: 20,
                   fontFamily: 'IBMPlexSans-Bold',
                 }}
