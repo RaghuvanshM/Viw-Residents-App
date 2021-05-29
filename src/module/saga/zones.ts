@@ -14,7 +14,6 @@ import {
 import {call, put, select, delay} from 'redux-saga/effects';
 import {ENV, ENV_TYPE} from '../utils/api-constants';
 import {getJwtToken, getSelectedZones, getUserProfile} from '../selectors';
-
 export const getZoneDetails = function* (
   action: ISagaAction<any>,
 ): SagaIterator {
@@ -52,6 +51,7 @@ export const setZoneName = function* (action: ISagaAction<any>): SagaIterator {
   } catch (e) {
     yield put(failedToFetchZoneDetails());
     console.error('error', e);
+    console.log('error o alkas dfjkasdf asjkdf s')
   }
 };
 

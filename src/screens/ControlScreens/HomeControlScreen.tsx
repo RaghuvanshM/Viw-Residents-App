@@ -1,4 +1,4 @@
-import React, {useRef, Fragment, useEffect} from 'react';
+import React, {useRef, Fragment, useEffect } from 'react';
 import {
   Animated,
   Dimensions,
@@ -14,6 +14,7 @@ import WelcomeCard from '../../components/WelcomeCard';
 import RoomCard from '../../components/RoomCard';
 import {Props} from '../types/auth';
 import {useSelector, useDispatch} from 'react-redux';
+import { useIsFocused } from '@react-navigation/native';
 import {
   getSelectedImage,
   getIsInternalImage,
@@ -37,6 +38,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const userDetails = useSelector(getUserProfile);
   const isWelcomeInfoShow = useSelector(getWelcomeInfoShow);
   const zones = useSelector(getZones);
+  const isFocused = useIsFocused();
   console.log(airqualityindex);
   console.log(userDetails);
   console.log(zones);
@@ -56,7 +58,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     dispatch(actions.getAirQualityIndex());
     dispatch(actions.getZoneDetails({buildingId: 'Network_6_415582'}));
-  }, [dispatch]);
+  }, [dispatch,isFocused]);
 
   const headerTranslateY = () =>
     scrollAnim.current.interpolate({
