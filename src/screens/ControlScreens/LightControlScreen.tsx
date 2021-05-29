@@ -28,7 +28,7 @@ import {
   getZones,
 } from '../../module/selectors';
 import * as selectors from '../../module/selectors';
-import {changeZoneNameAction} from '../../module/actions';
+import {changeZoneNameAction, changeTintAction} from '../../module/actions';
 import ArrowBack from 'react-native-vector-icons/MaterialIcons';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
@@ -49,31 +49,33 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
-  const selectedZone = useSelector(selectors.getSelectedZones);
+  const selectedZone: any = useSelector(selectors.getSelectedZones);
   const showSlider = useSelector(selectors.isSliderShowing);
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const [name, setName] = useState('');
-  console.log('selectedZone', selectedZone);
   const zones = useSelector(getZones);
+  console.log(zones);
   useEffect(() => {
+    console.log(selectedZone.snapshot.tintLevel);
     if (selectedZone) {
       setTintText(APPCONSTANTS.tintAgent[selectedZone.snapshot.tintAgent]);
       setName(selectedZone.name);
+
       if (selectedIndex !== selectedZone.snapshot.tintLevel) {
+        console.log(selectedIndex);
         setSelectedIndex(selectedZone.snapshot.tintLevel);
+        dispatch(changeTintAction(selectedIndex));
       }
     }
   }, [selectedZone, selectedIndex]);
 
   const changeZoneName = () => {
     dispatch(changeZoneNameAction(name));
-    console.log(zones);
     toggleShow();
   };
 
   const toggleShow = () => setToggle(toggleData => !toggleData);
-  console.log(toggle);
   return (
     <ImageBackground
       source={

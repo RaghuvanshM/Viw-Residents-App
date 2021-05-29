@@ -1,6 +1,5 @@
 import React, {Fragment, useEffect} from 'react';
 import {View} from 'react-native';
-
 import Cursor from './Cursor';
 import CursorVertical from './CursorVertical';
 import Labels from './Labels';

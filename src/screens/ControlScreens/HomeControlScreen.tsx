@@ -39,7 +39,7 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const isWelcomeInfoShow = useSelector(getWelcomeInfoShow);
   const zones = useSelector(getZones);
   const isFocused = useIsFocused();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   console.log(airqualityindex);
   console.log(userDetails);
   console.log(zones);
