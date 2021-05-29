@@ -9,7 +9,7 @@ export const signIn = function* (action: ISagaAction<any>): SagaIterator {
   try {
     const userDetails = yield call(signInApi, ENV[ENV_TYPE.DEV], {
       ...action.payload,
-      role: 'admin',
+      role: 'customer',
     });
     yield put(authUser(userDetails.data.data));
   } catch (e) {

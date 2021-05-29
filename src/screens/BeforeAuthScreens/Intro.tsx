@@ -98,8 +98,8 @@ const theme = {
 const Intro: FC = () => {
   const dispatch = useDispatch();
   const isKeyboardOpen = useKeyboardStatus();
-  const [email, setEmail] = useState('admin@view.com');
-  const [password, setPassword] = useState('q!w@e#r$t%y^');
+  const [email, setEmail] = useState('net6@view.com');
+  const [password, setPassword] = useState('viewnet195');
   const onSigninPress = () => {
     dispatch(signInUser({email, password}));
   };
