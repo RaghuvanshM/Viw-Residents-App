@@ -51,7 +51,7 @@ export const setZoneName = function* (action: ISagaAction<any>): SagaIterator {
   } catch (e) {
     yield put(failedToFetchZoneDetails());
     console.error('error', e);
-    console.log('error o alkas dfjkasdf asjkdf s')
+    console.log('error o alkas dfjkasdf asjkdf s');
   }
 };
 

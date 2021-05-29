@@ -136,7 +136,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                   fontSize: 30,
                   borderBottomWidth: 2,
                   borderBottomColor: 'white',
-                  paddingHorizontal:20,
+                  paddingHorizontal: 20,
                   fontFamily: 'IBMPlexSans-Bold',
                 }}
                 onChangeText={text => setName(text)}
