@@ -6,5 +6,7 @@ const APPCONSTANTS = {
   controlStatusDarkRate: 0.75,
   days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   roomTypes: ['Living Room', 'Main Bedroom', 'Guest Bedroom'],
+  tintAgent: ['Override', 'Cloud', 'Schedule', 'Intelligence', 'Scene'],
+  tintLevel: ['Clear', 'Light', 'Medium', 'Dark'],
 };
 export default APPCONSTANTS;

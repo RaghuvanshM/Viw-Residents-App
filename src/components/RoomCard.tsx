@@ -6,12 +6,16 @@ import {sunset, arrowRight, cardimage1} from '../constants/Images';
 import {useNavigation} from '@react-navigation/native';
 import APPCONSTANTS from '../constants/constants';
 import images from '../assets/images';
+import {useDispatch} from 'react-redux';
+import {selectZone} from '../module/actions';
+import {IZoneProps} from '../module/reducers';
 interface RoomCardProps {
   hasWakeupAlarm?: boolean;
-  roomStatus: 'Intelligence™' | 'Override' | 'Schedule';
-  controlStatus: 'Light' | 'Dark' | 'Clear' | 'Medium';
+  roomStatus: string;
+  controlStatus: string;
   roomSubText: string;
   roomName: string;
+  zone: IZoneProps;
 }
 const RoomCard: FC<RoomCardProps> = ({
   roomSubText,
@@ -19,14 +23,17 @@ const RoomCard: FC<RoomCardProps> = ({
   roomStatus,
   roomName,
   hasWakeupAlarm = false,
+  zone,
 }) => {
   const [value, setValue] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const navigateToLightCOntrol = (
     roomControl: String,
     roomControlStatus: String,
   ): void => {
+    dispatch(selectZone(zone));
     navigation.navigate('LightControl', {roomControl, roomControlStatus});
   };
 

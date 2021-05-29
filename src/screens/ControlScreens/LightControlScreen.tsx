@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -7,8 +7,10 @@ import {
   StyleSheet,
   Text,
   Platform,
+  TextInput,
   Dimensions,
   StatusBar,
+  ScrollView,
 } from 'react-native';
 import image from '../../assets/images';
 import Slider from '../../components/slider/Slider';
@@ -19,8 +21,15 @@ import {
 } from 'react-native-responsive-screen';
 import images from '../../assets/images';
 import APPCONSTANTS from '../../constants/constants';
-import {useSelector} from 'react-redux';
-import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  getIsInternalImage,
+  getSelectedImage,
+  getZones,
+} from '../../module/selectors';
+import * as selectors from '../../module/selectors';
+import {changeZoneNameAction} from '../../module/actions';
+import ArrowBack from 'react-native-vector-icons/MaterialIcons';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 interface Props {
@@ -40,7 +49,31 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
+  const selectedZone = useSelector(selectors.getSelectedZones);
+  const showSlider = useSelector(selectors.isSliderShowing);
+  const dispatch = useDispatch();
+  const [toggle, setToggle] = useState(false);
+  const [name, setName] = useState('');
+  console.log('selectedZone', selectedZone);
+  const zones = useSelector(getZones);
+  useEffect(() => {
+    if (selectedZone) {
+      setTintText(APPCONSTANTS.tintAgent[selectedZone.snapshot.tintAgent]);
+      setName(selectedZone.name);
+      if (selectedIndex !== selectedZone.snapshot.tintLevel) {
+        setSelectedIndex(selectedZone.snapshot.tintLevel);
+      }
+    }
+  }, [selectedZone, selectedIndex]);
 
+  const changeZoneName = () => {
+    dispatch(changeZoneNameAction(name));
+    console.log(zones);
+    toggleShow();
+  };
+
+  const toggleShow = () => setToggle(toggleData => !toggleData);
+  console.log(toggle);
   return (
     <ImageBackground
       source={
@@ -64,7 +97,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               : APPCONSTANTS.controlStatusDarkRate
           })`,
         }}>
-        <View style={styles.screenViewWrapper}>
+        <ScrollView contentContainerStyle={{flexGrow: 1, marginVertical: '6%'}}>
           <View style={styles.header}>
             <TouchableOpacity
               style={[styles.touchableButton, styles.backButton]}
@@ -79,77 +112,112 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               <Text style={styles.backtext}>Schedule</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.roomTextWrapper}>
-            <Text style={styles.livingroomtext}>Living Room</Text>
-            <TouchableOpacity
-              style={{justifyContent: 'flex-end', marginBottom: '2%'}}>
-              <Image
-                source={images.edit}
-                style={{height: 14, marginTop: 5, marginLeft: 10}}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.sliderWrapper}>
-            <View>
-              <Slider
-                allColors={
-                  tintText === 'Override'
-                    ? ['#3b6503', '#71a131', '#aae066', '#d9efbb']
-                    : ['#033D65', '#3173A2', '#66ADE0', '#BBD9EF']
-                }
-                isHorizontal={false}
-                backgroundColor={'rgba(255,255,255,0.2)'}
-                changeSelectedIndex={setSelectedIndex}
-                size={hp('52%')}
-                defaultIndex={selectedIndex}>
-                <Fragment>
-                  {selectedIndex === 3 && (
-                    <Image
-                      source={
-                        tintText === 'Override'
-                          ? image.greenClearBtn
-                          : image.blueClearBtn
-                      }
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 2 && (
-                    <Image
-                      source={
-                        tintText === 'Override'
-                          ? image.greenLightBtn
-                          : image.blueLightBtn
-                      }
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 1 && (
-                    <Image
-                      source={
-                        tintText === 'Override'
-                          ? image.greenMediumBtn
-                          : image.blueMediumBtn
-                      }
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 0 && (
-                    <Image
-                      source={
-                        tintText === 'Override'
-                          ? image.greenDarkBtn
-                          : image.blueDarkBtn
-                      }
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                </Fragment>
-              </Slider>
+          {!toggle ? (
+            <View style={styles.roomTextWrapper}>
+              <Text style={styles.livingroomtext}>{name}</Text>
+              <TouchableOpacity onPress={toggleShow}>
+                <ArrowBack
+                  name="edit"
+                  size={30}
+                  color="white"
+                  style={{marginTop: 2, marginLeft: 10}}
+                />
+              </TouchableOpacity>
             </View>
+          ) : (
+            <View style={styles.roomTextWrapper}>
+              <TextInput
+                value={name}
+                placeholderTextColor={'red'}
+                selectionColor={'white'}
+                autoFocus={toggle}
+                style={{
+                  color: 'white',
+                  fontSize: 30,
+                  borderBottomWidth: 2,
+                  borderBottomColor: 'white',
+                  paddingHorizontal: 20,
+                  fontFamily: 'IBMPlexSans-Bold',
+                }}
+                onChangeText={text => setName(text)}
+              />
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  marginTop: 20,
+                }}
+                onPress={changeZoneName}>
+                <ArrowBack
+                  name="done"
+                  size={40}
+                  color="white"
+                  style={{marginLeft: 10}}
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+
+          <View style={styles.sliderWrapper}>
+            <Slider
+              allColors={
+                tintText === 'Override'
+                  ? ['#3b6503', '#71a131', '#aae066', '#d9efbb']
+                  : ['#033D65', '#3173A2', '#66ADE0', '#BBD9EF']
+              }
+              isHorizontal={false}
+              backgroundColor={'rgba(255,255,255,0.2)'}
+              changeSelectedIndex={setSelectedIndex}
+              showSlider={showSlider}
+              size={hp('52%')}
+              defaultIndex={selectedIndex}>
+              <Fragment>
+                {selectedIndex === 3 && (
+                  <Image
+                    source={
+                      tintText === 'Override'
+                        ? image.greenClearBtn
+                        : image.blueClearBtn
+                    }
+                    resizeMode={'cover'}
+                    style={styles.sliderImage}
+                  />
+                )}
+                {selectedIndex === 2 && (
+                  <Image
+                    source={
+                      tintText === 'Override'
+                        ? image.greenLightBtn
+                        : image.blueLightBtn
+                    }
+                    resizeMode={'cover'}
+                    style={styles.sliderImage}
+                  />
+                )}
+                {selectedIndex === 1 && (
+                  <Image
+                    source={
+                      tintText === 'Override'
+                        ? image.greenMediumBtn
+                        : image.blueMediumBtn
+                    }
+                    resizeMode={'cover'}
+                    style={styles.sliderImage}
+                  />
+                )}
+                {selectedIndex === 0 && (
+                  <Image
+                    source={
+                      tintText === 'Override'
+                        ? image.greenDarkBtn
+                        : image.blueDarkBtn
+                    }
+                    resizeMode={'cover'}
+                    style={styles.sliderImage}
+                  />
+                )}
+              </Fragment>
+            </Slider>
           </View>
           <View style={{justifyContent: 'center', flex: 0.4}}>
             {tintText === 'Override' ? (
@@ -248,7 +316,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
             <View style={{flex: 1}} />
             <View />
           </View>
-        </View>
+        </ScrollView>
       </View>
     </ImageBackground>
   );
@@ -257,8 +325,7 @@ export default LightControl;
 
 const styles = StyleSheet.create({
   screenViewWrapper: {
-    justifyContent: 'space-around',
-    flex: 1,
+    flexGrow: 1,
     marginTop: StatusBar.currentHeight,
   },
   header: {
@@ -308,6 +375,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     width: '100%',
+    marginTop: 10,
   },
   tinttext: {
     fontSize: 18,

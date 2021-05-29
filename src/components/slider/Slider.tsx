@@ -17,6 +17,7 @@ interface SliderProps {
   children: JSX.Element[] | JSX.Element;
   defaultIndex?: number;
   texts?: any;
+  showSlider?: boolean;
   changeSelectedIndex?: (index: number) => void;
 }
 
@@ -26,6 +27,7 @@ const Slider: React.FC<SliderProps> = ({
   count = 4,
   backgroundColor = 'rgba(3,3,3,0.5)',
   changeSelectedIndex,
+  showSlider = true,
   defaultIndex = 0,
   children,
   texts,
@@ -54,13 +56,15 @@ const Slider: React.FC<SliderProps> = ({
           isHorizontal={isHorizontal}
           allColors={allColors}
         />
-        <Cursor
-          size={size / count}
-          {...{count}}
-          changeIndex={setSelectedIndex}
-          currentIndex={selectedIndex}>
-          {children}
-        </Cursor>
+        {showSlider && (
+          <Cursor
+            size={size / count}
+            {...{count}}
+            changeIndex={setSelectedIndex}
+            currentIndex={selectedIndex}>
+            {children}
+          </Cursor>
+        )}
       </View>
     );
   }
@@ -74,13 +78,15 @@ const Slider: React.FC<SliderProps> = ({
         isHorizontal={isHorizontal}
         allColors={allColors}
       />
-      <CursorVertical
-        size={size / count}
-        {...{count}}
-        changeIndex={setSelectedIndex}
-        currentIndex={selectedIndex}>
-        <Fragment>{children}</Fragment>
-      </CursorVertical>
+      {showSlider && (
+        <CursorVertical
+          size={size / count}
+          {...{count}}
+          changeIndex={setSelectedIndex}
+          currentIndex={selectedIndex}>
+          <Fragment>{children}</Fragment>
+        </CursorVertical>
+      )}
     </View>
   );
 };
