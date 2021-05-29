@@ -29,7 +29,7 @@ const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 const WellnessScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
   const airqualityindex = useSelector(getAirQualityIndex);
-  console.log(airqualityindex);
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
@@ -121,7 +121,7 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
           <AnimatedCircle
-            airQuality={500}
+            airQuality={airqualityindex.airQualitydata?.indexes?.baqi?.aqi}
             speed={2}
             radius={wp('35%')}
             minNumber={0}
@@ -135,7 +135,8 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
                 color: 'rgb(23,23,23)',
                 fontFamily: 'IBMPlexSans-Bold',
               }}>
-              Good Air Quality
+              {/*Good Air Quality*/}
+              {airqualityindex.airQualitydata?.indexes?.baqi?.category}
             </Text>
             <Text
               style={{

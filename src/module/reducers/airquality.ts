@@ -16,7 +16,7 @@ export interface Position {
 }
 
 export interface IAirQualityIndexReducer {
-  airQualitydata: object;
+  airQualitydata: any;
   location?: Position;
 }
 
