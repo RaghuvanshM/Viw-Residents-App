@@ -7,7 +7,9 @@ import {
   StatusBar,
   Animated,
   Platform,
+  Image,
 } from 'react-native';
+
 import WelcomeCard from '../../components/WelcomeCard';
 
 import {Props} from '../types/auth';
@@ -18,14 +20,15 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import LinearGradient from 'react-native-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {useSelector} from 'react-redux';
 import {getAirQualityIndex} from '../../module/selectors';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const HEADER_MAX_HEIGHT = Dimensions.get('window').height / 2.5;
 const HEADER_MIN_HEIGHT = Dimensions.get('window').height / 4.5;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
-
 const WellnessScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
   const airqualityindex = useSelector(getAirQualityIndex);
@@ -111,20 +114,29 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
                 width: '100%',
                 marginBottom: hp('7%'),
               }}>
-              <Text
-                style={{
-                  fontSize: 15,
-                  color: 'rgb(23,23,23)',
-                  fontFamily: 'IBMPlexSans-Bold',
-                }}>
-                AQI(US)
-              </Text>
-              <Text>AQI(US)</Text>
+              <TouchableOpacity
+                style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    color: 'rgb(23,23,23)',
+                    fontFamily: 'IBMPlexSans-Bold',
+                  }}>
+                  AQI(US)
+                </Text>
+                <Icon
+                  name="keyboard-arrow-down"
+                  size={30}
+                  color="rgb(87, 87, 87)"
+                />
+              </TouchableOpacity>
+
+              <Image source={images.icircle} style={{height: 20, width: 20}} />
             </View>
           </View>
           <AnimatedCircle
             airQuality={airqualityindex.airQualitydata?.indexes?.baqi?.aqi}
-            speed={2}
+            speed={7}
             radius={wp('35%')}
             minNumber={0}
             maxNumber={500}

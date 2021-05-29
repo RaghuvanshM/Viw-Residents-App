@@ -16,6 +16,7 @@ import Schedules from '../screens/ScheduleScreens/Schedules';
 import CreateEditSchedule from '../screens/ScheduleScreens/CreateEditSchedule';
 import Intelligence from '../screens/MyViewScreens/Intelligence';
 import Notification from '../screens/MyViewScreens/Notification';
+import GallaryImage from '../screens/MyViewScreens/GallaryImage';
 const Stack = createStackNavigator();
 const StackNavigationScreens = () => {
   return (
@@ -30,6 +31,7 @@ const StackNavigationScreens = () => {
       <Stack.Screen name="CreateEditSchedule" component={CreateEditSchedule} />
       <Stack.Screen name="Intelligence" component={Intelligence} />
       <Stack.Screen name="Notification" component={Notification} />
+      <Stack.Screen name="GallaryImage" component={GallaryImage} />
     </Stack.Navigator>
   );
 };

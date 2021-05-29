@@ -14,7 +14,6 @@ import WelcomeCard from '../../components/WelcomeCard';
 import RoomCard from '../../components/RoomCard';
 import {Props} from '../types/auth';
 import {useSelector, useDispatch} from 'react-redux';
-
 import {
   getSelectedImage,
   getIsInternalImage,
@@ -31,12 +30,16 @@ const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const scrollAnim = useRef(new Animated.Value(0));
-  const dispatch = useDispatch();
+
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const userDetails = useSelector(getUserProfile);
   const isWelcomeInfoShow = useSelector(getWelcomeInfoShow);
   const zones = useSelector(getZones);
+  const isFocused = useIsFocused();
+  console.log(airqualityindex);
+  console.log(userDetails);
+  console.log(zones);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {

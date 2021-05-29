@@ -7,7 +7,7 @@ import {persistStore} from 'redux-persist';
 import Router from './router';
 import {StatusBar} from 'react-native';
 import {enableScreens} from 'react-native-screens';
-import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
 import {SplashScreen} from './screens/SplashScreen';
 enableScreens();
 const persistor = persistStore(Store);
@@ -22,7 +22,7 @@ const App = () => {
   return (
     <AppContext.Provider value={{}}>
       <StatusBar translucent backgroundColor="transparent" />
-      <PaperProvider>
+      <PaperProvider theme={DefaultTheme}>
         <Provider store={Store}>
           <PersistGate
             persistor={persistor}
