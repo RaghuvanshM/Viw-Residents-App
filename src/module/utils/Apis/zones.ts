@@ -50,7 +50,7 @@ export const setTintApi = async (
     Authorization: `Bearer ${jwt}`,
   };
   return axios.put(
-    `${baseUrl}${APIUrl.setSensorTint}${payload.zoneId}`,
+    `${baseUrl}${APIUrl.setZoneTint}${payload.zoneId}`,
     payload,
     {
       headers: emailheader,

@@ -14,7 +14,7 @@ import {
 import {call, put, select, delay} from 'redux-saga/effects';
 import {ENV, ENV_TYPE} from '../utils/api-constants';
 import {getJwtToken, getSelectedZones, getUserProfile} from '../selectors';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const getZoneDetails = function* (
   action: ISagaAction<any>,

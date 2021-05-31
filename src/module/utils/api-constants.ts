@@ -2,7 +2,7 @@ export const APIUrl = {
   login: '/v1/auth/login',
   sensorZone: '/v1/sensor/zones?buildingId=',
   setSensorZoneName: '/v1/devices/zones/',
-  setSensorTint: '/v1/sensor/zones/',
+  setZoneTint: '/v1/sensor/zones/',
 };
 export const ENV_TYPE = {
   DEV: 'Development',

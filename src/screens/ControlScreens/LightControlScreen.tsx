@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useCallback, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -22,13 +22,9 @@ import {
 import images from '../../assets/images';
 import APPCONSTANTS from '../../constants/constants';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  getIsInternalImage,
-  getSelectedImage,
-  getZones,
-} from '../../module/selectors';
+import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
 import * as selectors from '../../module/selectors';
-import {changeZoneNameAction} from '../../module/actions';
+import {changeZoneNameAction, changeTintAction} from '../../module/actions';
 import ArrowBack from 'react-native-vector-icons/MaterialIcons';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
@@ -38,42 +34,33 @@ interface Props {
 const LightControl: React.FC<Props> = ({navigation}) => {
   const route: any = useRoute();
   const [selectedIndex, setSelectedIndex] = useState(
-    route.params.roomControl === 'Clear'
-      ? 3
-      : route.params.roomControl === 'Light'
-      ? 2
-      : route.params.roomControl === 'Medium'
-      ? 1
-      : 0,
+    Math.abs(
+      APPCONSTANTS.tintLevel.findIndex(x => x === route.params.roomControl) - 3,
+    ),
   );
   const [tintText, setTintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
-  const selectedZone = useSelector(selectors.getSelectedZones);
+  const selectedZone: any = useSelector(selectors.getSelectedZones);
   const showSlider = useSelector(selectors.isSliderShowing);
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
-  const [name, setName] = useState('');
-  console.log('selectedZone', selectedZone);
-  const zones = useSelector(getZones);
-  useEffect(() => {
-    if (selectedZone) {
-      setTintText(APPCONSTANTS.tintAgent[selectedZone.snapshot.tintAgent]);
-      setName(selectedZone.name);
-      if (selectedIndex !== selectedZone.snapshot.tintLevel) {
-        setSelectedIndex(selectedZone.snapshot.tintLevel);
-      }
-    }
-  }, [selectedZone, selectedIndex]);
+  const [name, setName] = useState(selectedZone.name);
+
+  const changeSelectIndexCallBack = useCallback(
+    tint => {
+      setSelectedIndex(tint);
+      dispatch(changeTintAction(Math.abs(tint - 3)));
+    },
+    [dispatch],
+  );
 
   const changeZoneName = () => {
     dispatch(changeZoneNameAction(name));
-    console.log(zones);
     toggleShow();
   };
 
   const toggleShow = () => setToggle(toggleData => !toggleData);
-  console.log(toggle);
   return (
     <ImageBackground
       source={
@@ -167,7 +154,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               }
               isHorizontal={false}
               backgroundColor={'rgba(255,255,255,0.2)'}
-              changeSelectedIndex={setSelectedIndex}
+              changeSelectedIndex={changeSelectIndexCallBack}
               showSlider={showSlider}
               size={hp('52%')}
               defaultIndex={selectedIndex}>
