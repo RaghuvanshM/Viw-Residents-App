@@ -36,9 +36,9 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
-        if (Platform.OS === 'android') {
-            StatusBar.setTranslucent(true);
-        }
+      if (Platform.OS === 'android') {
+        StatusBar.setTranslucent(true);
+      }
       StatusBar.setBackgroundColor('transparent');
     });
 
