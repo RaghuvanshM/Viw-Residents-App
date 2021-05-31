@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useState} from 'react';
+import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -46,7 +46,17 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const [name, setName] = useState(selectedZone.name);
-
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      StatusBar.setBarStyle('light-content');
+      if (Platform.OS === 'android') {
+        StatusBar.setTranslucent(true);
+      }
+      StatusBar.setBackgroundColor('transparent');
+    });
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
   const changeSelectIndexCallBack = useCallback(
     tint => {
       setSelectedIndex(tint);
@@ -71,6 +81,11 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           : {uri: selectedImage}
       }
       style={{height: '100%'}}>
+      <StatusBar
+        barStyle={'light-content'}
+        translucent
+        backgroundColor="transparent"
+      />
       <View
         style={{
           flex: 1,
