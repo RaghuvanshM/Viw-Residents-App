@@ -8,18 +8,20 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  TouchableOpacity,
 } from 'react-native';
+import LottieView from 'lottie-react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {TextInput} from 'react-native-paper';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {signInUser} from '../../module/actions';
 import images from '../../assets/images';
 import {useKeyboardStatus} from '../../module/utils/useKeyboardStatus';
+import {getErrorValue, getSubmitValue} from '../../module/selectors';
 const slides = [
   {
     key: 0,
@@ -97,6 +99,10 @@ const theme = {
 };
 const Intro: FC = () => {
   const dispatch = useDispatch();
+  const loginError = useSelector(getErrorValue);
+  const loginSubmit = useSelector(getSubmitValue);
+  console.log(loginError);
+  console.log(loginSubmit);
   const isKeyboardOpen = useKeyboardStatus();
   const [email, setEmail] = useState('net6@view.com');
   const [password, setPassword] = useState('viewnet195');
@@ -273,11 +279,26 @@ const Intro: FC = () => {
                       </Text>
                     </TouchableOpacity>
                   </View>
-                  <TouchableOpacity
-                    style={styles.signinbutton}
-                    onPress={onSigninPress}>
-                    <Text style={styles.signtext}>SIGN IN</Text>
-                  </TouchableOpacity>
+                  {loginSubmit ? (
+                    <View style={styles.signinbutton}>
+                      <LottieView
+                        source={require('../../assets/loader.json')}
+                        style={{
+                          height: 40,
+                          marginVertical: 5,
+                          alignSelf: 'center',
+                        }}
+                        autoPlay
+                        loop
+                      />
+                    </View>
+                  ) : (
+                    <TouchableOpacity
+                      style={styles.signinbutton}
+                      onPress={onSigninPress}>
+                      <Text style={styles.signtext}>SIGN IN</Text>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             </View>
