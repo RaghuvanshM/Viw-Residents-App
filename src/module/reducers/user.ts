@@ -1,5 +1,11 @@
 import {createReducer} from 'redux-act';
-import {authUser, hideWelcomeInfo, signOutUser} from '../actions';
+import {
+  authUser,
+  handleError,
+  handleSubmit,
+  hideWelcomeInfo,
+  signOutUser,
+} from '../actions';
 
 export interface IUserProfile {
   access_token: string;
@@ -20,11 +26,15 @@ export interface IUserReducer {
   isAuth: boolean;
   profile: IUserProfile;
   showWelcomeInfo: boolean;
+  isError: boolean;
+  isSubmit: boolean;
 }
 
 const initialState = {
   isAuth: false,
   showWelcomeInfo: true,
+  isError: false,
+  isSubmit: false,
   profile: {
     access_token: '',
     refresh_token: '',
@@ -47,11 +57,25 @@ user.on(authUser, (state: IUserReducer, payload: IUserProfile) => {
     ...state,
     isAuth: true,
     profile: payload,
+    isSubmit: false,
   };
 });
 user.on(hideWelcomeInfo, (state: IUserReducer) => ({
   ...state,
   showWelcomeInfo: false,
+}));
+user.on(hideWelcomeInfo, (state: IUserReducer) => ({
+  ...state,
+  showWelcomeInfo: false,
+}));
+user.on(handleError, (state: IUserReducer) => ({
+  ...state,
+  isError: true,
+  isSubmit: false,
+}));
+user.on(handleSubmit, (state: IUserReducer) => ({
+  ...state,
+  isSubmit: true,
 }));
 user.on(signOutUser, () => {
   return initialState;
