@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, Fragment} from 'react';
 import {
   StyleSheet,
   View,
@@ -8,9 +8,9 @@ import {
   SafeAreaView,
   StatusBar,
   Platform,
+  ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import LottieView from 'lottie-react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {TextInput} from 'react-native-paper';
 import {
@@ -21,7 +21,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {signInUser} from '../../module/actions';
 import images from '../../assets/images';
 import {useKeyboardStatus} from '../../module/utils/useKeyboardStatus';
-import {getErrorValue, getSubmitValue} from '../../module/selectors';
+import {getSubmitValue} from '../../module/selectors';
 const slides = [
   {
     key: 0,
@@ -99,10 +99,8 @@ const theme = {
 };
 const Intro: FC = () => {
   const dispatch = useDispatch();
-  const loginError = useSelector(getErrorValue);
+  // const loginError = useSelector(getErrorValue);
   const loginSubmit = useSelector(getSubmitValue);
-  console.log(loginError);
-  console.log(loginSubmit);
   const isKeyboardOpen = useKeyboardStatus();
   const [email, setEmail] = useState('net6@view.com');
   const [password, setPassword] = useState('viewnet195');
@@ -227,91 +225,92 @@ const Intro: FC = () => {
       );
     } else if (item.key === 4) {
       return (
-        <View key={item.key} style={styles.slide2}>
-          <View
-            style={{
-              justifyContent: 'space-around',
-              flex: 1,
-            }}>
-            <View>
-              <Text style={styles.title2}>{item.title} </Text>
+        <Fragment>
+          {loginSubmit && (
+            <View
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(3,3,3, 0.8)',
+                zIndex: 5,
+              }}>
+              <ActivityIndicator size="large" color="#fff" />
             </View>
-            <View>
-              <Text style={styles.description2}>{item.description}</Text>
-            </View>
-            <View>
-              <View style={styles.formcontainer}>
-                <Image
-                  source={item.image2}
-                  style={{...styles.image, marginTop: 10}}
-                  resizeMode="contain"
-                />
-                <View style={{marginTop: 10}}>
-                  <TextInput
-                    label="Email"
-                    mode="outlined"
-                    placeholderTextColor={'#333'}
-                    style={styles.textinput}
-                    value={email}
-                    onChangeText={text => setEmail(text)}
-                    theme={theme}
+          )}
+
+          <View key={item.key} style={styles.slide2}>
+            <View
+              style={{
+                justifyContent: 'space-around',
+                flex: 1,
+              }}>
+              <View>
+                <Text style={styles.title2}>{item.title} </Text>
+              </View>
+              <View>
+                <Text style={styles.description2}>{item.description}</Text>
+              </View>
+              <View>
+                <View style={styles.formcontainer}>
+                  <Image
+                    source={item.image2}
+                    style={{...styles.image, marginTop: 10}}
+                    resizeMode="contain"
                   />
-                  <TextInput
-                    label="Password"
-                    mode="outlined"
-                    style={styles.textinput}
-                    secureTextEntry={true}
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    theme={theme}
-                  />
-                  <View
-                    style={{
-                      alignSelf: 'center',
-                      flexDirection: 'row',
-                      marginVertical: 10,
-                    }}>
-                    <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
-                    <TouchableOpacity>
-                      <Text
-                        style={{...styles.formsubtitle, fontWeight: 'bold'}}>
-                        {item.subtitle4}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                  {loginSubmit ? (
-                    <View style={styles.signinbutton}>
-                      <LottieView
-                        source={require('../../assets/loader.json')}
-                        style={{
-                          height: 40,
-                          marginVertical: 5,
-                          alignSelf: 'center',
-                        }}
-                        autoPlay
-                        loop
-                      />
+                  <View style={{marginTop: 10}}>
+                    <TextInput
+                      label="Email"
+                      mode="outlined"
+                      placeholderTextColor={'#333'}
+                      style={styles.textinput}
+                      value={email}
+                      onChangeText={text => setEmail(text)}
+                      theme={theme}
+                    />
+                    <TextInput
+                      label="Password"
+                      mode="outlined"
+                      style={styles.textinput}
+                      secureTextEntry={true}
+                      value={password}
+                      onChangeText={text => setPassword(text)}
+                      theme={theme}
+                    />
+                    <View
+                      style={{
+                        alignSelf: 'center',
+                        flexDirection: 'row',
+                        marginVertical: 10,
+                      }}>
+                      <Text style={styles.formsubtitle}>{item.subtitle3}</Text>
+                      <TouchableOpacity>
+                        <Text
+                          style={{...styles.formsubtitle, fontWeight: 'bold'}}>
+                          {item.subtitle4}
+                        </Text>
+                      </TouchableOpacity>
                     </View>
-                  ) : (
                     <TouchableOpacity
                       style={styles.signinbutton}
                       onPress={onSigninPress}>
                       <Text style={styles.signtext}>SIGN IN</Text>
                     </TouchableOpacity>
-                  )}
+                  </View>
                 </View>
               </View>
-            </View>
-            <View style={{flexDirection: 'row', alignSelf: 'center'}}>
-              <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
-              <TouchableOpacity>
-                <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
-                  {item.subtitle2}
-                </Text>
-              </TouchableOpacity>
+              <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+                <Text style={styles.donthaveacc}>{item.subtitle1}</Text>
+                <TouchableOpacity>
+                  <Text style={{...styles.donthaveacc, fontWeight: 'bold'}}>
+                    {item.subtitle2}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
+        </Fragment>
       );
     }
     return (
