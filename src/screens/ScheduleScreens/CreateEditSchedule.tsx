@@ -1,4 +1,4 @@
-import React, {Fragment, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Platform,
   StatusBar,
@@ -9,37 +9,77 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  ImageBackground,
-  Image,
-  Dimensions,
 } from 'react-native';
 import {Props} from '../types/auth';
 import MyViewHeader from '../../components/MyViewHeader';
-import CheckBoxSelectionList from '../../components/ManagerUsers/CheckboxSelectionList';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import RadioButton from '../../components/RadioButton';
+// import CheckBoxSelectionList from '../../components/ManagerUsers/CheckboxSelectionList';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+// import RadioButton from '../../components/RadioButton';
 import APPCONSTANTS from '../../constants/constants';
-import {useSelector} from 'react-redux';
-import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
-import images from '../../assets/images';
-import Slider from '../../components/slider/Slider';
+// import {useSelector} from 'react-redux';
+// import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
+// import images from '../../assets/images';
+// import Slider from '../../components/slider/Slider';
 import cloneDeep from 'lodash/cloneDeep';
-const window = Dimensions.get('window');
-const ratio = window.height / window.width;
+import ScheduleRoom from '../../components/Schedule/ScheduleRoom';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import CheckBoxSelectionList from '../../components/ManagerUsers/CheckboxSelectionList';
+// const window = Dimensions.get('window');
+// const ratio = window.height / window.width;
 const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
   const days = useRef(APPCONSTANTS.days);
-  const selectedImage = useSelector(getSelectedImage);
-  const isInternalImage = useSelector(getIsInternalImage);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  // const selectedImage = useSelector(getSelectedImage);
+  // const isInternalImage = useSelector(getIsInternalImage);
+  // const [selectedIndex, setSelectedIndex] = useState(0);
   const [scheduleRoomName, setScheduleRoomName] = useState('');
   const [isActive, setActive] = useState(false);
-  const [roomTypes, setRoomType] = useState([] as any[]);
+  // const [roomTypes, setRoomType] = useState([] as any[]);
   const [activeDays, setActiveDays] = useState([] as any[]);
-  const [repeatType, setRepeatType] = useState('Weekly');
+  const [repeatType, setRepeatType] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [isEndTimePickerVisible, setEndTimeVisibility] = useState(false);
+  const [starttime, setStartTime] = useState('6:30 AM');
+  const [endtime, setEndTime] = useState('7:30 AM');
 
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date: any) => {
+    // console.log("A date has been picked: ", date);
+    setStartTime(
+      date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }),
+    );
+    hideDatePicker();
+  };
+  const showEndTimePicker = () => {
+    setEndTimeVisibility(true);
+  };
+
+  const hideEndTimePicker = () => {
+    setEndTimeVisibility(false);
+  };
+
+  const handleEndTimeConfirm = (date: any) => {
+  
+    // console.log("A date has been picked: ", date);
+    setEndTime(
+      date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      }),
+    );
+    hideEndTimePicker();
+  };
   return (
     <View style={styles.base}>
       <StatusBar
@@ -47,7 +87,13 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
         translucent
         backgroundColor="rgb(255,255,255)"
       />
-      <MyViewHeader navigation={navigation} headerTitle={'Create'} isIcon />
+      <MyViewHeader
+        navigation={navigation}
+        headerTitle={'New Schedule'}
+        hasAddIcon
+        isIcon={false}
+        save={'Save'}
+      />
       <ScrollView style={styles.scrollStyle}>
         <View style={{paddingHorizontal: '5%'}}>
           <View style={styles.scrollContentStyle}>
@@ -72,40 +118,35 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
               />
             </View>
           </View>
+          <View></View>
+
           <View style={styles.commonBlockStyle}>
-            <View style={styles.commonBlockInnerStyle}>
-              <Text style={styles.commonLabelStyle}>Rooms</Text>
-            </View>
-            <View>
-              {APPCONSTANTS.roomTypes.map((room: any, index: number) => (
-                <CheckBoxSelectionList
-                  key={`room_type_${index}`}
-                  text={room}
-                  isSelected={roomTypes.some(r => r === room)}
-                  customTextStyle={
-                    roomTypes.indexOf(room) !== -1
-                      ? {fontFamily: 'IBMPlexSans-Bold', marginBottom: 5}
-                      : {opacity: 0.5, marginBottom: 5}
-                  }
-                  changeChecked={() => {
-                    setRoomType(prevRoomTypes => {
-                      const rooms = cloneDeep(prevRoomTypes);
-                      const selectedRoomIndex = rooms.findIndex(
-                        r => r === room,
-                      );
-                      if (selectedRoomIndex !== -1) {
-                        rooms.splice(selectedRoomIndex, 1);
-                      } else {
-                        rooms.push(room);
-                      }
-                      return rooms;
-                    });
-                  }}
-                />
-              ))}
+            <View style={{paddingVertical: hp('2%')}}>
+              <View style={styles.timeScheduleWrapper}>
+                <TouchableOpacity onPress={showDatePicker} style={{flex: 1}}>
+                  <Text style={styles.timeLabel}>Start time</Text>
+                  <Text style={styles.timeText}>{starttime}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={showEndTimePicker} style={{flex: 1}}>
+                  <Text style={styles.timeLabel}>End time</Text>
+                  <Text style={styles.timeText}>{endtime}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-          <View style={styles.commonBlockStyle}>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="time"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
+          />
+          <DateTimePickerModal
+            isVisible={isEndTimePickerVisible}
+            mode="time"
+            onConfirm={handleEndTimeConfirm}
+            onCancel={hideEndTimePicker}
+          />
+          <View >
             <View style={[styles.commonBlockInnerStyle, {marginBottom: 10}]}>
               <Text style={styles.commonLabelStyle}>Days</Text>
             </View>
@@ -150,118 +191,42 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
             </View>
           </View>
           <View style={styles.commonBlockStyle}>
-            <View style={styles.commonBlockInnerStyle}>
-              <Text style={styles.commonLabelStyle}>Repeat</Text>
-            </View>
-            <View style={{flexDirection: 'row', marginTop: 10}}>
-              <RadioButton
-                selected={repeatType === 'Weekly'}
-                text={'Repeat Weekly'}
-                changeRadio={() => setRepeatType('Weekly')}
-              />
-              <RadioButton
-                selected={repeatType === 'Custom'}
-                text={'Custom'}
-                changeRadio={() => setRepeatType('Custom')}
-              />
-            </View>
-          </View>
-          <View style={{paddingVertical: hp('2%')}}>
-            <View style={styles.timeScheduleWrapper}>
-              <View style={{flex: 1}}>
-                <Text style={styles.timeLabel}>Start time</Text>
-                <Text style={styles.timeText}>6:30 AM</Text>
-              </View>
-              <View style={{flex: 1}}>
-                <Text style={styles.timeLabel}>End time</Text>
-                <Text style={styles.timeText}>7:30 AM</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        <View>
-          <ImageBackground
-            style={{height: hp('25%')}}
-            source={
-              isInternalImage
-                ? selectedImage
-                  ? images[selectedImage]
-                  : images.initialWelnessHeader
-                : {uri: selectedImage}
-            }>
             <View
               style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: `rgba(${APPCONSTANTS.controlStatusColor},${
-                  selectedIndex === 0
-                    ? APPCONSTANTS.controlStatusClearRate
-                    : selectedIndex === 1
-                    ? APPCONSTANTS.controlStatusLightRate
-                    : selectedIndex === 2
-                    ? APPCONSTANTS.controlStatusMediumRate
-                    : APPCONSTANTS.controlStatusDarkRate
-                })`,
+                flexDirection: 'row',
+                marginTop: 10,
               }}>
-              <Text
-                style={{
-                  position: 'absolute',
-                  color: '#fff',
-                  top: '8%',
-                  left: '10%',
-                }}>
-                Tint
-              </Text>
-              <Slider
-                allColors={[
-                  '#033D65',
-                  '#3173A2',
-                  '#66ADE0',
-                  '#BBD9EF',
-                ].reverse()}
-                isHorizontal={true}
-                texts={['Dark', 'Medium', 'Light', 'Clear'].reverse()}
-                backgroundColor={'rgba(255,255,255,0.2)'}
-                changeSelectedIndex={setSelectedIndex}
-                size={wp('88%')}
-                defaultIndex={selectedIndex}>
-                <Fragment>
-                  {selectedIndex === 0 && (
-                    <Image
-                      source={images.blueClearBtn}
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 1 && (
-                    <Image
-                      source={images.blueLightBtn}
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 2 && (
-                    <Image
-                      source={images.blueMediumBtn}
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                  {selectedIndex === 3 && (
-                    <Image
-                      source={images.blueDarkBtn}
-                      resizeMode={'cover'}
-                      style={styles.sliderImage}
-                    />
-                  )}
-                </Fragment>
-              </Slider>
+              <CheckBoxSelectionList
+                key={`room_type`}
+                text={'Repeat Weekly'}
+                isSelected={repeatType}
+                customTextStyle={{
+                  fontFamily: 'IBMPlexSans-Bold',
+                  marginBottom: 5,
+                  fontSize: 18,
+                }}
+                changeChecked={() => {
+                  setRepeatType(!repeatType)
+                }}
+              />
             </View>
-          </ImageBackground>
+          </View>
+        </View>
+        <View style={styles.commonBlockStyle}>
+          <View style={styles.commonBlockInnerStyle}>
+            <Text style={{...styles.commonLabelStyle, marginLeft: '4%'}}>
+              Rooms
+            </Text>
+          </View>
+        </View>
+        <View style={{backgroundColor: 'rgb(196,196,196)'}}>
+          <ScheduleRoom Title={'Living Room'} roomType={'Guest Bedroom'} />
+          <ScheduleRoom Title={'Living Room'} roomType={'Kitchen'} />
+          <ScheduleRoom Title={'Living Room'} roomType={'Living Room'} />
+          <ScheduleRoom Title={'Living Room'} roomType={'Main Bedroom'} />
         </View>
         <View style={styles.actionWrapper}>
-          <View style={{flex: 1}}>
+          {/* <View style={{flex: 1}}>
             <TouchableOpacity style={styles.discardWrapper}>
               <Image
                 source={images.delete}
@@ -270,8 +235,8 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
               />
               <Text style={styles.discardText}>Disacard</Text>
             </TouchableOpacity>
-          </View>
-          <View
+          </View> */}
+          {/* <View
             style={{
               flexDirection: 'row',
               flex: 2,
@@ -284,7 +249,7 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
             <TouchableOpacity style={styles.actionSaveWrapper}>
               <Text style={styles.saveText}>Save</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </View>
@@ -390,12 +355,7 @@ const styles = StyleSheet.create({
     color: 'rgb(52,101,127)',
     fontSize: 22,
   },
-  sliderImage: {
-    borderWidth: 2,
-    width: wp(ratio >= 2 ? '22%' : '20%'),
-    height: wp(ratio >= 2 ? '22%' : '20%'),
-    marginTop: hp('2.5%'),
-  },
+
   actionWrapper: {flexDirection: 'row', flex: 1, marginVertical: '4%'},
   discardWrapper: {
     flex: 0.5,

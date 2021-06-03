@@ -19,7 +19,7 @@ export const signIn = function* (action: ISagaAction<any>): SagaIterator {
     Toast.show({
       type: 'error',
       text1: 'something went wrong',
-      visibilityTime: 30000,
+      visibilityTime: 10000,
       position: 'bottom',
     });
   }
