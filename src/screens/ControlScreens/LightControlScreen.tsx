@@ -65,9 +65,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const increaseTime = (min: any) => {
     var num = min;
     console.log(num);
-    var hours = num / 60;
-    var rhours = Math.floor(hours);
-    var minutes = (hours - rhours) * 60;
+    var hour = num / 60;
+    var rhours = Math.floor(hour);
+    var minutes = (hour - rhours) * 60;
     var rminutes = Math.round(minutes);
     setoverrideTime(min);
     setHorus(rhours);
@@ -79,9 +79,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   };
   const decreaseTime = (min: any) => {
     var num = overrideTime;
-    var hours = num / 60;
-    var rhours = Math.floor(hours);
-    var minutes = (hours - rhours) * 60;
+    var hour = num / 60;
+    var rhours = Math.floor(hour);
+    var minutes = (hour - rhours) * 60;
     var rminutes = Math.round(minutes);
     setHorus(rhours);
     if (min >= 60) {

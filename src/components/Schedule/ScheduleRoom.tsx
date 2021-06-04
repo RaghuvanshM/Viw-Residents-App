@@ -38,7 +38,7 @@ const ScheduleRoom: FC<ScheduleRoomProps> = ({roomType}) => {
   return (
     <View style={styles.cardcontainer}>
       <CheckBoxSelectionList
-        key={`room_type`}
+        key={'room_type'}
         text={roomType}
         isSelected={roomTypes.some(r => r === roomType)}
         customTextStyle={
