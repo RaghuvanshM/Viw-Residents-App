@@ -67,9 +67,9 @@ export const changeTintValue = function* (
       setTintApi,
       ENV[ENV_TYPE.DEV],
       {
-        tintLevel: action.payload,
+        tintLevel: action.payload.tint,
         tintAgent: selectedZone.snapshot.tintAgent,
-        duration: 3600,
+        duration: action.payload.duration,
         comment: `set tint level ${action.payload}`,
         author: user.user.email,
         zoneId: selectedZone.uniqueId,
@@ -77,9 +77,9 @@ export const changeTintValue = function* (
       jwt,
     );
     selectedZone.snapshot.tintLevel = action.payload;
-    selectedZone.snapshot.desiredDuration = 3600;
+    selectedZone.snapshot.desiredDuration = action.payload.duration;
     selectedZone.snapshot.timestamp = moment().format();
-    selectedZone.snapshot.remainingTime = 3599;
+    selectedZone.snapshot.remainingTime = action.payload.duration - 1;
     yield put(setZoneDetail(selectedZone));
   } catch (e) {
     const selectedZone = yield select(getSelectedZones);
