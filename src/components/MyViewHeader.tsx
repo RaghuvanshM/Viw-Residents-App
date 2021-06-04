@@ -54,7 +54,14 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
           activeOpacity={hasAddIcon ? 0.2 : 1}
           onPress={addIconPress}
           style={[styles.addUserIcon, !hasAddIcon && {opacity: 0}]}>
-         <Text style={{fontSize:20,color:'rgb(33, 150 , 243)',fontFamily:'IBMPlexSans-Regular'}}>{save}</Text>
+          <Text
+            style={{
+              fontSize: 20,
+              color: 'rgb(33, 150 , 243)',
+              fontFamily: 'IBMPlexSans-Regular',
+            }}>
+            {save}
+          </Text>
         </TouchableOpacity>
       ) : null}
     </View>

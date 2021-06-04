@@ -24,7 +24,7 @@ interface ScheduleRoomProps {
   Title: string;
   roomType: string;
 }
-const ScheduleRoom: FC<ScheduleRoomProps> = ({RoomImage, Title, roomType}) => {
+const ScheduleRoom: FC<ScheduleRoomProps> = ({roomType}) => {
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -81,15 +81,17 @@ const ScheduleRoom: FC<ScheduleRoomProps> = ({RoomImage, Title, roomType}) => {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: roomTypes.some(r => r === roomType)?`rgba(${APPCONSTANTS.controlStatusColor},${
-              selectedIndex === 0
-                ? APPCONSTANTS.controlStatusClearRate
-                : selectedIndex === 1
-                ? APPCONSTANTS.controlStatusLightRate
-                : selectedIndex === 2
-                ? APPCONSTANTS.controlStatusMediumRate
-                : APPCONSTANTS.controlStatusDarkRate
-            })`:'rgba(0,0,0,0.25)'
+            backgroundColor: roomTypes.some(r => r === roomType)
+              ? `rgba(${APPCONSTANTS.controlStatusColor},${
+                  selectedIndex === 0
+                    ? APPCONSTANTS.controlStatusClearRate
+                    : selectedIndex === 1
+                    ? APPCONSTANTS.controlStatusLightRate
+                    : selectedIndex === 2
+                    ? APPCONSTANTS.controlStatusMediumRate
+                    : APPCONSTANTS.controlStatusDarkRate
+                })`
+              : 'rgba(0,0,0,0.25)',
           }}>
           {roomTypes.some(r => r === roomType) ? (
             <Slider

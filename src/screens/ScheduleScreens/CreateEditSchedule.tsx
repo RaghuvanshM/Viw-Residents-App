@@ -69,7 +69,6 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
   };
 
   const handleEndTimeConfirm = (date: any) => {
-  
     // console.log("A date has been picked: ", date);
     setEndTime(
       date.toLocaleTimeString('en-US', {
@@ -146,7 +145,7 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
             onConfirm={handleEndTimeConfirm}
             onCancel={hideEndTimePicker}
           />
-          <View >
+          <View>
             <View style={[styles.commonBlockInnerStyle, {marginBottom: 10}]}>
               <Text style={styles.commonLabelStyle}>Days</Text>
             </View>
@@ -206,7 +205,7 @@ const CreateEditSchedule: React.FC<Props> = ({navigation}) => {
                   fontSize: 18,
                 }}
                 changeChecked={() => {
-                  setRepeatType(!repeatType)
+                  setRepeatType(!repeatType);
                 }}
               />
             </View>

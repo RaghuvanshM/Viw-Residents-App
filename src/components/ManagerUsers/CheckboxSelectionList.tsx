@@ -22,7 +22,6 @@ const CheckBoxSelectionList: React.FC<CheckBoxSelectionListProps> = ({
   isSelected,
   customTextStyle,
 }) => {
-
   return (
     <View style={styles.checkListWrapper}>
       <TouchableOpacity
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
   checkListWrapper: {flexDirection: 'row', width: '100%'},
   checkBoxWrapper: {
     flex: 1,
-   justifyContent:'center'
+    justifyContent: 'center',
   },
   checkBox: {height: 24, width: 24},
   user: {alignItems: 'center', color: 'rgb(52,101,127)'},

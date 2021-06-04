@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useState} from 'react';
+import React, {Fragment, useCallback, useEffect, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -46,7 +46,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const [name, setName] = useState(selectedZone.name);
-
+  const [overrideTime, setoverrideTime] = useState(60);
+  const [hours, setHorus] = useState(0);
+  const [minute, setMinute] = useState('');
   const changeSelectIndexCallBack = useCallback(
     tint => {
       setSelectedIndex(tint);
@@ -59,8 +61,41 @@ const LightControl: React.FC<Props> = ({navigation}) => {
     dispatch(changeZoneNameAction(name));
     toggleShow();
   };
-
   const toggleShow = () => setToggle(toggleData => !toggleData);
+  const increaseTime = (min: any) => {
+    var num = min;
+    console.log(num);
+    var hours = num / 60;
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    setoverrideTime(min);
+    setHorus(rhours);
+    if (rminutes === 0) {
+      setMinute('00');
+    } else {
+      setMinute(rminutes.toString());
+    }
+  };
+  const decreaseTime = (min: any) => {
+    var num = overrideTime;
+    var hours = num / 60;
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    setHorus(rhours);
+    if (min >= 60) {
+      setoverrideTime(min);
+    }
+    if (rminutes === 0) {
+      setMinute('00');
+    } else {
+      setMinute(rminutes.toString());
+    }
+  };
+  useEffect(() => {
+    increaseTime(overrideTime);
+  }, []);
   return (
     <ImageBackground
       source={
@@ -207,7 +242,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
             </Slider>
           </View>
           <View style={{justifyContent: 'center', flex: 0.4}}>
-            {tintText === 'Override' ? (
+            {tintText === 'Intelligence' ? (
               <Fragment>
                 <View
                   style={{
@@ -240,7 +275,12 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     justifyContent: 'space-around',
                     marginHorizontal: wp('18%'),
                   }}>
-                  <TouchableOpacity style={{alignSelf: 'center', flex: 1}}>
+                  <TouchableOpacity
+                    style={{alignSelf: 'center', flex: 1}}
+                    disabled={overrideTime === 45}
+                    onPress={() => {
+                      decreaseTime(overrideTime - 15);
+                    }}>
                     <Image
                       source={image.minusbutton}
                       resizeMode="contain"
@@ -248,9 +288,13 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     />
                   </TouchableOpacity>
                   <View style={{flex: 2}}>
-                    <Text style={styles.timing}>1:00</Text>
+                    <Text style={styles.timing}>{`${hours}:${minute}`}</Text>
                   </View>
-                  <TouchableOpacity style={{alignSelf: 'center', flex: 1}}>
+                  <TouchableOpacity
+                    style={{alignSelf: 'center', flex: 1}}
+                    onPress={() => {
+                      increaseTime(overrideTime + 15);
+                    }}>
                     <Image
                       source={image.plusbutton}
                       resizeMode="contain"
