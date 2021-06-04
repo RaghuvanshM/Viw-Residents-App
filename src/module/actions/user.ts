@@ -3,5 +3,4 @@ export const authUser = createAction<any>();
 export const signOutUser = createAction();
 export const signInUser = createAction<{email: string; password: string}>();
 export const hideWelcomeInfo = createAction();
-export const handleError = createAction();
-export const handleSubmit = createAction();
+export const authFailed = createAction<string>();

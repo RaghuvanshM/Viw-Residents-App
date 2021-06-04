@@ -1,9 +1,9 @@
 import {createReducer} from 'redux-act';
 import {
   authUser,
-  handleError,
-  handleSubmit,
+  authFailed,
   hideWelcomeInfo,
+  signInUser,
   signOutUser,
 } from '../actions';
 
@@ -68,12 +68,12 @@ user.on(hideWelcomeInfo, (state: IUserReducer) => ({
   ...state,
   showWelcomeInfo: false,
 }));
-user.on(handleError, (state: IUserReducer) => ({
+user.on(authFailed, (state: IUserReducer) => ({
   ...state,
   isError: true,
   isSubmit: false,
 }));
-user.on(handleSubmit, (state: IUserReducer) => ({
+user.on(signInUser, (state: IUserReducer) => ({
   ...state,
   isSubmit: true,
 }));
