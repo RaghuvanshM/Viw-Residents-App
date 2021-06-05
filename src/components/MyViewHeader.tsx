@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
+
 import images from '../assets/images';
 import {ScreenNavigationProp} from '../screens/types/auth';
 
@@ -17,6 +18,8 @@ interface MyViewHeaderProps {
   hasAddIcon?: boolean;
   addIconPress?: () => void;
   isIcon: boolean;
+  saveschedule?: () => void;
+  save?: string;
 }
 
 const MyViewHeader: React.FC<MyViewHeaderProps> = ({
@@ -25,6 +28,7 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
   addIconPress,
   hasAddIcon,
   isIcon,
+  save,
 }) => {
   return (
     <View style={styles.headerText}>
@@ -37,12 +41,27 @@ const MyViewHeader: React.FC<MyViewHeaderProps> = ({
       <View style={styles.headerTitle}>
         <Text style={styles.headerTitleText}>{headerTitle}</Text>
       </View>
+
       {isIcon ? (
         <TouchableOpacity
           activeOpacity={hasAddIcon ? 0.2 : 1}
           onPress={addIconPress}
           style={[styles.addUserIcon, !hasAddIcon && {opacity: 0}]}>
           <Image source={images.newUser} style={styles.addUserImage} />
+        </TouchableOpacity>
+      ) : hasAddIcon ? (
+        <TouchableOpacity
+          activeOpacity={hasAddIcon ? 0.2 : 1}
+          onPress={addIconPress}
+          style={[styles.addUserIcon, !hasAddIcon && {opacity: 0}]}>
+          <Text
+            style={{
+              fontSize: 20,
+              color: 'rgb(33, 150 , 243)',
+              fontFamily: 'IBMPlexSans-Regular',
+            }}>
+            {save}
+          </Text>
         </TouchableOpacity>
       ) : null}
     </View>

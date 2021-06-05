@@ -151,16 +151,6 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
         )}
 
         {zones.map((zone, index) => {
-          if (zone.name === 'office home') {
-            console.log(
-              'zone?.snapshot?.timestamp ',
-              zone?.snapshot?.timestamp,
-            );
-            console.log(
-              'zone?.snapshot?.remainingTime ',
-              zone?.snapshot?.remainingTime,
-            );
-          }
           return (
             <RoomCard
               key={index}
