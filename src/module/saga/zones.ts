@@ -76,7 +76,7 @@ export const changeTintValue = function* (
       },
       jwt,
     );
-    selectedZone.snapshot.tintLevel = action.payload;
+    selectedZone.snapshot.desiredTintLevel = action.payload.tint;
     selectedZone.snapshot.desiredDuration = action.payload.duration;
     selectedZone.snapshot.timestamp = moment().format();
     selectedZone.snapshot.remainingTime = action.payload.duration - 1;

@@ -151,11 +151,27 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
         )}
 
         {zones.map((zone, index) => {
+          if (zone.name === 'office home') {
+            console.log(
+              'zone?.snapshot?.timestamp ',
+              zone?.snapshot?.timestamp,
+            );
+            console.log(
+              'zone?.snapshot?.remainingTime ',
+              zone?.snapshot?.remainingTime,
+            );
+          }
           return (
             <RoomCard
               key={index}
               roomStatus={APPCONSTANTS.tintAgent[zone.snapshot.tintAgent]}
-              controlStatus={APPCONSTANTS.tintLevel[zone.snapshot.tintLevel]}
+              controlStatus={
+                APPCONSTANTS.tintLevel[
+                  zone.snapshot.tintLevel !== zone.snapshot.desiredTintLevel
+                    ? zone.snapshot.desiredTintLevel
+                    : zone.snapshot.tintLevel
+                ]
+              }
               roomSubText={moment(zone?.snapshot?.timestamp)
                 .add(zone?.snapshot?.remainingTime + 60, 'seconds')
                 .diff(moment(), 'seconds')}

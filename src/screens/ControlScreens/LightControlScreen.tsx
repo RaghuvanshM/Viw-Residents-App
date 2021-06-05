@@ -59,11 +59,13 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   }, [navigation]);
   const changeSelectIndexCallBack = useCallback(
     tint => {
-      setSelectedIndex(tint);
-      // duration will be in second
-      dispatch(changeTintAction({tint: Math.abs(tint - 3), duration: 3600}));
+      if (selectedIndex !== tint) {
+        setSelectedIndex(tint);
+        // duration will be in second
+        dispatch(changeTintAction({tint: Math.abs(tint - 3), duration: 3600}));
+      }
     },
-    [dispatch],
+    [dispatch, selectedIndex],
   );
 
   const changeZoneName = () => {
@@ -100,7 +102,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               : APPCONSTANTS.controlStatusDarkRate
           })`,
         }}>
-        <ScrollView contentContainerStyle={{flexGrow: 1, marginVertical: '6%'}}>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1, marginVertical: '6%'}}
+          keyboardShouldPersistTaps="always">
           <View style={styles.header}>
             <TouchableOpacity
               style={[styles.touchableButton, styles.backButton]}
@@ -118,12 +122,14 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           {!toggle ? (
             <View style={styles.roomTextWrapper}>
               <Text style={styles.livingroomtext}>{name}</Text>
-              <TouchableOpacity onPress={toggleShow}>
+              <TouchableOpacity
+                style={{borderWidth: 5, borderColor: 'transparent'}}
+                onPress={toggleShow}>
                 <ArrowBack
                   name="edit"
-                  size={30}
-                  color="white"
-                  style={{marginTop: 2, marginLeft: 10}}
+                  size={20}
+                  color="rgba(255,255,255,0.5)"
+                  style={{marginLeft: 10}}
                 />
               </TouchableOpacity>
             </View>
@@ -137,9 +143,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 style={{
                   color: 'white',
                   fontSize: 30,
-                  // borderBottomWidth: 2,
-                  // borderBottomColor: 'white',
-                  paddingHorizontal: 20,
+                  // paddingHorizontal: 10,
                   fontFamily: 'IBMPlexSans-Bold',
                 }}
                 onChangeText={text => setName(text)}
@@ -148,13 +152,13 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 style={{
                   alignItems: 'center',
                   alignSelf: 'center',
-                  marginTop: 20,
+                  marginTop: 10,
                 }}
                 onPress={changeZoneName}>
                 <ArrowBack
                   name="done"
-                  size={40}
-                  color="white"
+                  size={20}
+                  color="rgba(255,255,255,0.5)"
                   style={{marginLeft: 10}}
                 />
               </TouchableOpacity>
