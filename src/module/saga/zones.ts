@@ -80,6 +80,7 @@ export const changeTintValue = function* (
     selectedZone.snapshot.desiredDuration = action.payload.duration;
     selectedZone.snapshot.timestamp = moment().format();
     selectedZone.snapshot.remainingTime = action.payload.duration - 1;
+    console.log(selectedZone)
     yield put(setZoneDetail(selectedZone));
   } catch (e) {
     const selectedZone = yield select(getSelectedZones);

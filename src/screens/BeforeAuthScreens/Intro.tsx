@@ -45,10 +45,12 @@ const slides = [
     subtitle2: 'Angle of the Sun',
     subtitle3: 'Cloud Cover',
     subtitle4: 'Orientation',
+    subtitle5: 'Surrounding environment',
     image1: images.clock,
     image2: images.sun,
     image3: images.cloud,
     image4: images.angle,
+    image5: images.inputart,
   },
   {
     key: 2,
@@ -82,6 +84,7 @@ const slides = [
       'Sign in with your email and password provided by your building manager.',
     image1: null,
     image2: images.viewLogo,
+
     subtitle1: 'Don’t have an account? ',
     subtitle2: 'Sign up here.',
     subtitle3: 'Forgot your password ',
@@ -139,15 +142,34 @@ const Intro: FC = () => {
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'space-around',
+                justifyContent: 'space-between',
                 marginHorizontal: wp('5%'),
               }}>
-              <Image
-                source={item.calender}
-                style={{height: 100, alignSelf: 'center'}}
-                resizeMode="contain"
-              />
               <View>
+                <Image
+                  source={images.skedArt1}
+                  style={{alignSelf: 'center'}}
+                  resizeMode="contain"
+                />
+                  <Text style={styles.timeText}>6:30 AM</Text>
+              </View>
+              <View style={{marginTop:10}} >
+                <Image
+                  source={images.skedArt2}
+                  style={{alignSelf: 'center'}}
+                  resizeMode="contain"
+                />
+                   <Text style={{...styles.timeText,alignSelf:'center',alignItems:'center'}}>2 PM</Text>
+              </View>
+              <View>
+                <Image
+                  source={images.skedArt3}
+                  style={{alignSelf: 'center'}}
+                  resizeMode="contain"
+                />
+                   <Text style={styles.timeText}>7:30 AM</Text>
+              </View>
+              {/* <View>
                 <View style={styles.checkboxList}>
                   <Image
                     source={item.check}
@@ -180,7 +202,7 @@ const Intro: FC = () => {
                   />
                   <Text style={{...styles.checktext}}>{item.custom}</Text>
                 </View>
-              </View>
+              </View> */}
             </View>
           </View>
         </View>
@@ -312,6 +334,100 @@ const Intro: FC = () => {
           </View>
         </Fragment>
       );
+    } else if (item.key === 0) {
+      return (
+        <View key={item.key} style={styles.slide}>
+          <View style={{justifyContent: 'space-around', flex: 1}}>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flex: 1,
+              }}>
+              <View style={{flex: 1}}>
+                <Image
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={item.image1}
+                />
+                <Text style={styles.subtitle}>{item.subtitle1}</Text>
+              </View>
+              <View style={{flexDirection: 'row', flex: 1}}>
+                <View>
+                  <Image
+                    style={styles.image}
+                    resizeMode="contain"
+                    source={images.arrowright}
+                  />
+                </View>
+                <View style={styles.rightcontainer}>
+                  <Text style={styles.righttext}>Better night’s sleep</Text>
+                </View>
+              </View>
+            </View>
+
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flex: 1,
+              }}>
+              <View style={{flex: 1}}>
+                <Image
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={item.image2}
+                />
+                <Text style={styles.subtitle}>{item.subtitle2}</Text>
+              </View>
+              <View style={{flexDirection: 'row', flex: 1}}>
+                <View>
+                  <Image
+                    style={styles.image}
+                    resizeMode="contain"
+                    source={images.arrowright}
+                  />
+                </View>
+                <View style={styles.rightcontainer}>
+                  <Text style={styles.righttext}>Less eye strain</Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flex: 1,
+              }}>
+              <View style={{flex: 1}}>
+                <Image
+                  style={styles.image}
+                  resizeMode="contain"
+                  source={item.image3}
+                />
+                <Text style={styles.subtitle}>{item.subtitle3}</Text>
+              </View>
+              <View style={{flexDirection: 'row', flex: 1}}>
+                <View>
+                  <Image
+                    style={{...styles.image,marginTop:'10%'}}
+                    resizeMode="contain"
+                    source={images.arrowright}
+                  />
+                </View>
+                <View style={styles.rightcontainer}>
+                  <Text style={styles.righttext}>Fewer headaches</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      );
     }
     return (
       <View key={item.key} style={styles.slide}>
@@ -342,6 +458,12 @@ const Intro: FC = () => {
             source={item.image4}
           />
           <Text style={styles.subtitle}>{item.subtitle4}</Text>
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={item.image5}
+          />
+          <Text style={styles.subtitle}>{item.subtitle5}</Text>
         </View>
       </View>
     );
@@ -409,6 +531,12 @@ const styles = StyleSheet.create({
     color: 'rgb(52,101,127)',
     marginTop: 15,
     fontFamily: 'IBMPlexSans-Bold',
+  },
+  righttext: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'rgb(255, 255, 255)',
+    fontFamily: 'IBMPlexSans-Medium',
   },
   description: {
     marginVertical: 20,
@@ -522,4 +650,18 @@ const styles = StyleSheet.create({
       android: {fontFamily: 'IBMPlexSans-Regular'},
     }),
   },
+  rightcontainer: {
+    backgroundColor: 'rgba(0 ,119, 200,0.6)',
+    flex: 0.8,
+    padding: 20,
+   alignItems:'center',
+    borderRadius: 10,
+    marginLeft: '5%',
+  },
+  timeText: {
+    fontFamily: 'IBMPlexSans-Medium',
+    color: 'rgb(52,101,127)',
+    fontSize: 22,
+  },
+
 });

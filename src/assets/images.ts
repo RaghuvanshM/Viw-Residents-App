@@ -66,5 +66,10 @@ const images: any = {
   spinner: require('./images/spinner.gif'),
   noImage: require('./images/no-image.png'),
   icircle: require('./images/welnessi.png'),
+  arrowright: require('./images/arrow.png'),
+  inputart: require('./images/input-art.png'),
+  skedArt1: require('./images/sked-art-1.png'),
+  skedArt2: require('./images/sked-art-2.png'),
+  skedArt3: require('./images/sked-art.png'),
 };
 export default images;

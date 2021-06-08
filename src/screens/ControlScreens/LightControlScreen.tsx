@@ -60,6 +60,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const changeSelectIndexCallBack = useCallback(
     tint => {
       setSelectedIndex(tint);
+      console.log(selectedIndex)
       // duration will be in second
       dispatch(changeTintAction({tint: Math.abs(tint - 3), duration: 3600}));
     },
