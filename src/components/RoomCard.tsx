@@ -35,7 +35,7 @@ const RoomCard: FC<RoomCardProps> = ({
     roomControlStatus: String,
   ): void => {
     dispatch(selectZone(zone));
-    navigation.navigate('LightControl', {roomControl, roomControlStatus});
+    navigation.navigate('LightControl', {roomControl, roomControlStatus, zone});
   };
 
   const GetButtonImage = useCallback(() => {
@@ -133,10 +133,24 @@ const RoomCard: FC<RoomCardProps> = ({
                         Active
                       </Text>
                     </View>
-                    <Timer
-                      remainingTime={zone?.snapshot?.remainingTime || 0}
-                      roomSubText={+roomSubText}
-                    />
+                    {zone.snapshot.tintAgent !== 3 ? (
+                      <Timer
+                        remainingTime={zone?.snapshot?.remainingTime || 0}
+                        roomSubText={+roomSubText}
+                      />
+                    ) : (
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 14,
+                          ...Platform.select({
+                            ios: {fontFamily: 'IBMPlexSans'},
+                            android: {fontFamily: 'IBMPlexSans-Regular'},
+                          }),
+                        }}>
+                        {' '}
+                      </Text>
+                    )}
                   </View>
                 </View>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>

@@ -26,6 +26,7 @@ import {getIsInternalImage, getSelectedImage} from '../../module/selectors';
 import * as selectors from '../../module/selectors';
 import {changeZoneNameAction, changeTintAction} from '../../module/actions';
 import ArrowBack from 'react-native-vector-icons/MaterialIcons';
+import moment from 'moment';
 const window = Dimensions.get('window');
 const ratio = window.height / window.width;
 interface Props {
@@ -38,7 +39,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
       APPCONSTANTS.tintLevel.findIndex(x => x === route.params.roomControl) - 3,
     ),
   );
-  const [tintText, setTintText] = useState(route.params.roomControlStatus);
+  const [tintText] = useState(route.params.roomControlStatus);
   const selectedImage = useSelector(getSelectedImage);
   const isInternalImage = useSelector(getIsInternalImage);
   const selectedZone: any = useSelector(selectors.getSelectedZones);
@@ -46,6 +47,10 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
   const [name, setName] = useState(selectedZone.name);
+  const [overrideTime, setOverrideTime] = useState(3600);
+  const [overRidingTime, setOverRidingTime] = useState(
+    moment().startOf('day').add({hour: 1}),
+  );
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
@@ -59,12 +64,15 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   }, [navigation]);
   const changeSelectIndexCallBack = useCallback(
     tint => {
-      setSelectedIndex(tint);
-      console.log(selectedIndex)
-      // duration will be in second
-      dispatch(changeTintAction({tint: Math.abs(tint - 3), duration: 3600}));
+      if (selectedIndex !== tint) {
+        setSelectedIndex(tint);
+        // duration will be in second
+        dispatch(
+          changeTintAction({tint: Math.abs(tint - 3), duration: overrideTime}),
+        );
+      }
     },
-    [dispatch],
+    [dispatch, selectedIndex, overrideTime],
   );
 
   const changeZoneName = () => {
@@ -73,6 +81,19 @@ const LightControl: React.FC<Props> = ({navigation}) => {
   };
 
   const toggleShow = () => setToggle(toggleData => !toggleData);
+  const increaseTime = () => {
+    setOverRidingTime(time => time.add({minute: 15}));
+    setOverrideTime(ort => ort + 15 * 60);
+  };
+  const decreaseTime = () => {
+    if (
+      !(overRidingTime.get('hour') === 1 && overRidingTime.get('minute') === 0)
+    ) {
+      setOverRidingTime(time => time.add({minute: -15}));
+      setOverrideTime(ort => ort - 15 * 60);
+    }
+  };
+
   return (
     <ImageBackground
       source={
@@ -101,7 +122,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
               : APPCONSTANTS.controlStatusDarkRate
           })`,
         }}>
-        <ScrollView contentContainerStyle={{flexGrow: 1, marginVertical: '6%'}}>
+        <ScrollView
+          contentContainerStyle={{flexGrow: 1, marginVertical: '6%'}}
+          keyboardShouldPersistTaps="always">
           <View style={styles.header}>
             <TouchableOpacity
               style={[styles.touchableButton, styles.backButton]}
@@ -119,12 +142,14 @@ const LightControl: React.FC<Props> = ({navigation}) => {
           {!toggle ? (
             <View style={styles.roomTextWrapper}>
               <Text style={styles.livingroomtext}>{name}</Text>
-              <TouchableOpacity onPress={toggleShow}>
+              <TouchableOpacity
+                style={{borderWidth: 5, borderColor: 'transparent'}}
+                onPress={toggleShow}>
                 <ArrowBack
                   name="edit"
-                  size={30}
-                  color="white"
-                  style={{marginTop: 2, marginLeft: 10}}
+                  size={24}
+                  color="rgba(255,255,255,0.5)"
+                  style={{marginLeft: 10}}
                 />
               </TouchableOpacity>
             </View>
@@ -138,9 +163,7 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 style={{
                   color: 'white',
                   fontSize: 30,
-                  // borderBottomWidth: 2,
-                  // borderBottomColor: 'white',
-                  paddingHorizontal: 20,
+                  // paddingHorizontal: 10,
                   fontFamily: 'IBMPlexSans-Bold',
                 }}
                 onChangeText={text => setName(text)}
@@ -149,13 +172,13 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                 style={{
                   alignItems: 'center',
                   alignSelf: 'center',
-                  marginTop: 20,
+                  marginTop: 10,
                 }}
                 onPress={changeZoneName}>
                 <ArrowBack
                   name="done"
-                  size={40}
-                  color="white"
+                  size={24}
+                  color="rgba(255,255,255,0.5)"
                   style={{marginLeft: 10}}
                 />
               </TouchableOpacity>
@@ -257,7 +280,10 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     justifyContent: 'space-around',
                     marginHorizontal: wp('18%'),
                   }}>
-                  <TouchableOpacity style={{alignSelf: 'center', flex: 1}}>
+                  <TouchableOpacity
+                    style={{alignSelf: 'center', flex: 1}}
+                    disabled={overrideTime === 45}
+                    onPress={decreaseTime}>
                     <Image
                       source={image.minusbutton}
                       resizeMode="contain"
@@ -265,9 +291,13 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     />
                   </TouchableOpacity>
                   <View style={{flex: 2}}>
-                    <Text style={styles.timing}>1:00</Text>
+                    <Text style={styles.timing}>{`${moment(
+                      overRidingTime,
+                    ).format('HH:mm')}`}</Text>
                   </View>
-                  <TouchableOpacity style={{alignSelf: 'center', flex: 1}}>
+                  <TouchableOpacity
+                    style={{alignSelf: 'center', flex: 1}}
+                    onPress={increaseTime}>
                     <Image
                       source={image.plusbutton}
                       resizeMode="contain"
@@ -280,7 +310,9 @@ const LightControl: React.FC<Props> = ({navigation}) => {
                     activeOpacity={0.5}
                     style={styles.cancelbutton}
                     onPress={() => {
-                      setTintText('Intelligence™');
+                      // setTintText('Intelligence™');
+                      setOverrideTime(3600);
+                      setOverRidingTime(moment().startOf('day').add({hour: 1}));
                     }}>
                     <Text style={styles.canceltext}>Cancel</Text>
                   </TouchableOpacity>

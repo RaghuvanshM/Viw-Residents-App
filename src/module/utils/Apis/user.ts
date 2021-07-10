@@ -9,3 +9,8 @@ export const signInApi = async (baseUrl: string, payload: any) => {
     headers: emailheader,
   });
 };
+
+
+export const testApi = async()=>{
+  return axios.get(APIUrl.fakeurl)
+}

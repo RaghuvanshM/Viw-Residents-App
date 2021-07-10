@@ -2,6 +2,10 @@
   "extends": [
     "tslint-react-recommended"
   ],
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
+  ],
   "rules": {
     "ordered-imports": [
       true

@@ -4,3 +4,4 @@ export const signOutUser = createAction();
 export const signInUser = createAction<{email: string; password: string}>();
 export const hideWelcomeInfo = createAction();
 export const authFailed = createAction<string>();
+export const fakeapiCallH = createAction();

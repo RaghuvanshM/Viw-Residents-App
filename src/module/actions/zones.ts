@@ -13,6 +13,7 @@ export const selectZone = createAction<IZoneProps>();
 
 export const changeZoneNameAction = createAction<string>();
 
-export const changeTintAction = createAction<{tint: number, duration: number}>();
+export const changeTintAction =
+  createAction<{tint: number; duration: number}>();
 
 export const toggleSliderAction = createAction<boolean>();

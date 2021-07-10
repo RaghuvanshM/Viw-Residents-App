@@ -37,6 +37,12 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
   const isWelcomeInfoShow = useSelector(getWelcomeInfoShow);
   const zones = useSelector(getZones);
 
+
+
+useEffect(()=>{
+ dispatch(actions.fakeapiCallH())
+},[])
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       StatusBar.setBarStyle('light-content');
@@ -155,7 +161,13 @@ const HomeControlScreen: React.FC<Props> = ({navigation}) => {
             <RoomCard
               key={index}
               roomStatus={APPCONSTANTS.tintAgent[zone.snapshot.tintAgent]}
-              controlStatus={APPCONSTANTS.tintLevel[zone.snapshot.tintLevel]}
+              controlStatus={
+                APPCONSTANTS.tintLevel[
+                  zone.snapshot.tintLevel !== zone.snapshot.desiredTintLevel
+                    ? zone.snapshot.desiredTintLevel
+                    : zone.snapshot.tintLevel
+                ]
+              }
               roomSubText={moment(zone?.snapshot?.timestamp)
                 .add(zone?.snapshot?.remainingTime + 60, 'seconds')
                 .diff(moment(), 'seconds')}

@@ -3,6 +3,7 @@ export const APIUrl = {
   sensorZone: '/v1/sensor/zones?buildingId=',
   setSensorZoneName: '/v1/devices/zones/',
   setZoneTint: '/v1/sensor/zones/',
+  fakeurl:'https://jsonplaceholder.typicode.com/todos/1'
 };
 export const ENV_TYPE = {
   DEV: 'Development',

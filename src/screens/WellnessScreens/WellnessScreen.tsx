@@ -348,17 +348,12 @@ const WellnessScreen: React.FC<Props> = ({navigation}) => {
                 </Animated.Text>
                 <Animated.Image
                   source={images.greenDot}
-                  style={[
-                    {
-                      marginRight: 10,
-                      width: 14,
-                      height: 14,
-                      resizeMode: 'contain',
-                    },
-                    {
-                      transform: [{translateY: sunsetTextAndImageTranslateY()}],
-                    },
-                  ]}
+                  style={{
+                    marginRight: 10,
+                    width: 14,
+                    height: 14,
+                    resizeMode: 'contain',
+                  }}
                 />
               </Animated.View>
             </View>

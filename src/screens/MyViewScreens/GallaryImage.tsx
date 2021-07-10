@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
   Dimensions,
   FlatList,
@@ -33,18 +33,23 @@ const AppearancePreview: React.FC<Props> = ({navigation}) => {
   const [localImageSelected, setLocalImageSelected] = useState('');
   const [gallaryImage, setGallayImage] = useState([] as any);
 
-  useEffect(() => {
-    CameraRoll.getPhotos({
-      first: 50,
-      assetType: 'Photos',
-    })
-      .then(res => {
-        setGallayImage(res.edges);
-      })
-      .catch(error => {
-        console.log(error);
+  const fetchAllImages = useCallback(async (after: string) => {
+    try {
+      const photos = await CameraRoll.getPhotos({
+        first: 50,
+        after,
+        assetType: 'Photos',
       });
+      setGallayImage((imgs: any) => [...imgs, ...photos.edges]);
+      if (photos.page_info.has_next_page && photos.page_info.end_cursor) {
+        fetchAllImages(photos.page_info.end_cursor);
+      }
+    } catch (e) {}
   }, []);
+
+  useEffect(() => {
+    fetchAllImages('0');
+  }, [fetchAllImages]);
 
   return (
     <View style={styles.base}>

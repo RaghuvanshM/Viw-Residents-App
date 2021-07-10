@@ -10,6 +10,8 @@ const Timer: FC<TimerProps> = ({roomSubText, remainingTime}) => {
   const [time, setTime] = useState(roomSubText);
   const intrevals: any = useRef(null);
 
+  useEffect(() => setTime(roomSubText), [roomSubText]);
+
   useEffect(() => {
     if (+roomSubText > 0) {
       intrevals.current = setInterval(() => {
@@ -26,7 +28,7 @@ const Timer: FC<TimerProps> = ({roomSubText, remainingTime}) => {
       setTime(0);
     }
     return () => {
-      if (intrevals.current) {
+      if (intrevals.current !== null) {
         clearInterval(intrevals.current);
       }
     };
